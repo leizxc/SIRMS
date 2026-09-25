@@ -1,20 +1,208 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>My Web Page</title>
-    <link rel="stylesheet" href="styles.css" />
-  </head>
-    <body>
-        <header>
-        <h1>Welcome to My Web Page</h1>
-        </header>
-        <main>
-        <p>This is a sample web page created for demonstration purposes.</p>
-        </main>
-        <footer>
-        <p>&copy; 2024 My Web Page</p>
-        </footer>
-    </body>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>SIRMS — Safety Incident Reporting Management System</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+
+<body>
+
+  <header class="nav">
+    <div class="nav-inner">
+      <div class="brand">
+        <span class="mark">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+            <path d="M12 2L4 5v6c0 5 3.4 9 8 11 4.6-2 8-6 8-11V5l-8-3z" fill="#fff" />
+            <path d="M9 12l2 2 4-4" stroke="#1D4ED8" stroke-width="1.8" stroke-linecap="round"
+              stroke-linejoin="round" />
+          </svg>
+        </span>
+        <span>SIRMS<span class="sub">SAFETY INCIDENT REPORTING</span></span>
+      </div>
+      <nav class="links">
+        <a href="#home" class="active">Home</a>
+        <a href="#how">How It Works</a>
+        <a href="#features">Features</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <div class="nav-actions">
+        <span class="track"> Track Status</span>
+        <button class="btn btn-primary"> Portal Login</button>
+      </div>
+    </div>
+  </header>
+
+  <section class="hero" id="home">
+    <div class="wrap">
+      <span class="eyebrow"><span class="dot"></span> SAFE WORKPLACES. STRONGER TOMORROWS.</span>
+      <h1 class="hero-title">Safety Incident<br><span class="accent">Reporting Management</span><br>System</h1>
+      <p class="hero-lede">A centralized intelligent system for reporting, managing, investigating, and monitoring
+        workplace incidents with complete transparency, safety accountability, and instant officer dispatch.</p>
+      <div class="hero-ctas">
+        <button class="btn btn-primary"> Report an Incident</button>
+        <button class="btn btn-ghost"> Login to SIRMS</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="tinted" id="how">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="sec-tag">HOW IT WORKS</span>
+        <h2 class="sec-title">From Report to Resolution</h2>
+        <p class="sec-desc">A simple, transparent, and structured 5-step lifecycle ensuring every incident is handled
+          promptly with zero gaps.</p>
+      </div>
+      <div class="steps">
+        <div class="step">
+          <div class="icon-badge ib-1">✎<span class="num">1</span></div>
+          <h3>Report an Incident</h3>
+          <p>Employee or witness submits details, location, and photos via portal or mobile.</p>
+        </div>
+        <div class="step">
+          <div class="icon-badge ib-2">✔<span class="num">2</span></div>
+          <h3>Review &amp; Validation</h3>
+          <p>Safety triage validates urgency, hazards, and initiates priority queue assignment.</p>
+        </div>
+        <div class="step">
+          <div class="icon-badge ib-3">🔍<span class="num">3</span></div>
+          <h3>Investigation</h3>
+          <p>Assigned safety officers inspect on-site, interview staff, and gather proof logs.</p>
+        </div>
+        <div class="step">
+          <div class="icon-badge ib-4">📋<span class="num">4</span></div>
+          <h3>Action &amp; Findings</h3>
+          <p>Root causes and permanent corrective action plans are documented &amp; enforced.</p>
+        </div>
+        <div class="step">
+          <div class="icon-badge ib-5">📊<span class="num">5</span></div>
+          <h3>Status Monitoring</h3>
+          <p>All stakeholders monitor live status, compliance analytics, and final closure signs.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="features">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="sec-tag">FEATURES</span>
+        <h2 class="sec-title">Everything You Need in One Place</h2>
+        <p class="sec-desc">Enterprise-grade tools built to simplify incident mitigation, regulatory compliance, and
+          workplace safety accountability.</p>
+      </div>
+      <div class="feat-grid">
+        <div class="feat">
+          <div class="fi fi-red">📄</div>
+          <h3>Incident Reporting</h3>
+          <p>Streamlined multi-step form to record injuries, spills, hazards, and near-misses quickly.</p>
+        </div>
+        <div class="feat">
+          <div class="fi fi-purple">🖼️</div>
+          <h3>Evidence Upload</h3>
+          <p>Securely upload high-definition images, videos, CCTV snippets, and PDF witness statements.</p>
+        </div>
+        <div class="feat">
+          <div class="fi fi-green">🔍</div>
+          <h3>Incident Investigation</h3>
+          <p>Integrated root-cause templates (5-Whys, Fishbone) for conclusive investigator findings.</p>
+        </div>
+        <div class="feat">
+          <div class="fi fi-yellow">🛡️</div>
+          <h3>Officer Assignment</h3>
+          <p>Smart automated dispatch and duty scheduling based on incident category and geo-location.</p>
+        </div>
+        <div class="feat">
+          <div class="fi fi-blue">🏷️</div>
+          <h3>Incident Categories</h3>
+          <p>Customizable taxonomy: Environmental, Electrical, Structural, Chemical, and Ergonomics.</p>
+        </div>
+        <div class="feat">
+          <div class="fi fi-purple">📊</div>
+          <h3>Live Dashboard</h3>
+          <p>Aggregated safety analytics, open caseloads, severity heatmaps, and trend projections.</p>
+        </div>
+        <div class="feat">
+          <div class="fi fi-teal">🕒</div>
+          <h3>Incident History</h3>
+          <p>Immutable timestamped logs with tamper-proof version control for insurance and compliance.</p>
+        </div>
+        <div class="feat">
+          <div class="fi fi-yellow">⚡</div>
+          <h3>Status Tracking</h3>
+          <p>Step-by-step resolution milestones accessible by incident ticket ID for reporters.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="tinted" id="contact">
+    <div class="wrap">
+      <div class="cta">
+        <div>
+          <div class="cta-tag">READY TO TRANSFORM SAFETY?</div>
+          <h2>Protect your workforce with intelligent incident reporting.</h2>
+          <p>Deploy SIRMS across your plant, warehouse, or corporate site today. Eliminate paper hazards and reduce risk
+            exposure.</p>
+          <div class="cta-actions">
+            <button class="btn btn-primary">Submit an Incident</button>
+            <button class="btn btn-outline-light">Schedule Demo</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap">
+      <div class="foot-grid">
+        <div>
+          <div class="foot-brand">
+            <span class="mark"><svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                <path d="M12 2L4 5v6c0 5 3.4 9 8 11 4.6-2 8-6 8-11V5l-8-3z" fill="#fff" />
+              </svg></span>
+            SIRMS
+          </div>
+          <p class="foot-desc">Empowering safer organizations with instant accident prevention, rigorous investigation
+            tracking, and auditable corrective compliance.</p>
+        </div>
+        <div class="foot-col">
+          <h4>NAVIGATION</h4>
+          <a href="#home">Home Portal</a>
+          <a href="#how">How It Works</a>
+          <a href="#roles">Role Management</a>
+          <a href="#features">Core Features</a>
+        </div>
+        <div class="foot-col">
+          <h4>COMPLIANCE</h4>
+          <a href="#">OSHA Standard Logs</a>
+          <a href="#">ISO 45001 Framework</a>
+          <a href="#">Incident Taxonomy</a>
+          <a href="#">Data Privacy &amp; GDPR</a>
+        </div>
+        <div class="foot-col">
+          <h4>EMERGENCY HOTLINE</h4>
+          <div>Immediate hazard dispatch available 24/7/365.</div>
+          <div class="hotline">1-800-SAFE-SIRMS</div>
+          <a href="mailto:dispatch@sirms-safety.org">dispatch@sirms-safety.org</a>
+        </div>
+      </div>
+      <div class="foot-bottom">
+        <span>SIRMS © 2026 — Safety Incident Reporting Management System. All rights reserved.</span>
+        <div class="socials">
+          <a href="#">f</a><a href="#">◎</a><a href="#">✉</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+</body>
+
 </html>
