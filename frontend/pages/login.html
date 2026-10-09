@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#edf5ff" />
+    <title>Login | SIRMS</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../assets/css/login.css" />
+  </head>
+  <body class="login-page">
+    <main class="login-layout">
+      <section class="welcome-panel" aria-label="SIRMS introduction">
+        <div class="welcome-overlay"></div>
+        <div class="welcome-content">
+          <a class="brand" href="#login" aria-label="SIRMS home">
+            <span class="brand-mark" aria-hidden="true"
+              ><svg viewBox="0 0 32 32">
+                <path
+                  d="M16 3 5 7v8c0 7 4.7 11.7 11 15 6.3-3.3 11-8 11-15V7L16 3Z"
+                />
+                <path d="m11 16 3.5 3.5L21.5 12" /></svg
+            ></span>
+            <span class="brand-copy"
+              ><strong>SIRMS</strong
+              ><small
+                >SAFETY INCIDENT REPORTING<br />MANAGEMENT SYSTEM</small
+              ></span
+            >
+          </a>
+          <div class="welcome-copy">
+            <h1>Safer Workplaces.<br /><span>Stronger Tomorrows.</span></h1>
+            <p>
+              Report, manage, investigate, and monitor workplace incidents — all
+              in one system.
+            </p>
+          </div>
+          <div class="safety-note">
+            <span class="safety-icon" aria-hidden="true"
+              ><svg viewBox="0 0 32 32">
+                <path
+                  d="M16 3 5 7v8c0 7 4.7 11.7 11 15 6.3-3.3 11-8 11-15V7L16 3Z"
+                />
+                <path d="m11 16 3.5 3.5L21.5 12" /></svg
+            ></span>
+            <strong>Safety<br />Starts with<br />You</strong>
+          </div>
+        </div>
+      </section>
+
+      <section class="form-panel" id="login" aria-label="Login">
+        <div class="login-card">
+          <header class="card-heading">
+            <span class="card-mark" aria-hidden="true"
+              ><svg viewBox="0 0 32 32">
+                <path
+                  d="M16 3 5 7v8c0 7 4.7 11.7 11 15 6.3-3.3 11-8 11-15V7L16 3Z"
+                />
+                <path d="m11 16 3.5 3.5L21.5 12" /></svg
+            ></span>
+            <h2>SIRMS</h2>
+            <p>Safety Incident Reporting Management System</p>
+          </header>
+
+          <div class="form-intro">
+            <h1>Welcome Back!</h1>
+            <p>Login to your account to continue.</p>
+          </div>
+
+          <form class="login-form" action="../../backend/public/auth/login.php" method="post">
+            <label class="input-wrap">
+              <svg class="field-icon" viewBox="0 0 24 24" aria-hidden="true">
+                <path
+                  d="M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8Zm0 2c-4.4 0-8 2.2-8 5v1h16v-1c0-2.8-3.6-5-8-5Z"
+                />
+              </svg>
+              <span class="sr-only">Username or Email</span>
+              <input
+                type="text"
+                name="username"
+                placeholder="Username or Email"
+                autocomplete="username"
+                required
+              />
+            </label>
+            <label class="input-wrap">
+              <svg class="field-icon" viewBox="0 0 24 24" aria-hidden="true">
+                <path
+                  d="M18 8h-1V6a5 5 0 0 0-10 0v2H6a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V10a2 2 0 0 0-2-2ZM9 6a3 3 0 0 1 6 0v2H9V6Zm3 11a2 2 0 1 1 0-4 2 2 0 0 1 0 4Z"
+                />
+              </svg>
+              <span class="sr-only">Password</span>
+              <input
+                id="password"
+                type="password"
+                name="password"
+                placeholder="Password"
+                autocomplete="current-password"
+                required
+              />
+              <button
+                class="password-toggle"
+                type="button"
+                aria-label="Show password"
+                aria-pressed="false"
+              >
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path
+                    d="M2 12s3.6-7 10-7c2.2 0 4.1.8 5.7 2M22 12s-3.6 7-10 7c-2.2 0-4.1-.8-5.7-2M3 3l18 18"
+                  />
+                  <path d="M9.9 9.9a3 3 0 0 0 4.2 4.2" />
+                </svg>
+              </button>
+            </label>
+            <div class="form-options">
+              <label class="remember"
+                ><input type="checkbox" name="remember" /><span
+                  >Remember me</span
+                ></label
+              >
+              <a href="#forgot-password" class="text-link">Forgot password?</a>
+            </div>
+            <button class="login-button" type="submit">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path
+                  d="M13 5h5a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-5M10 8l-4 4 4 4m-4-4h12"
+                /></svg
+              >Login
+            </button>
+          </form>
+          <p class="login-message" role="status" aria-live="polite" hidden></p>
+
+          <p class="register-copy">
+            Don't have an account?
+            <a href="#register" class="text-link">Register</a>
+          </p>
+          <div class="divider"><span>OR</span></div>
+          <a class="register-button" href="#register"
+            ><svg viewBox="0 0 24 24" aria-hidden="true">
+              <path
+                d="M15 19c0-2.2-2.7-4-6-4s-6 1.8-6 4v2h12v-2ZM9 13a4 4 0 1 0 0-8 4 4 0 0 0 0 8Zm10-7v8m-4-4h8"
+              /></svg
+            >Register Now!</a
+          >
+          <footer class="card-footer">
+            SIRMS © 2026 — Safety Incident Reporting Management System
+          </footer>
+        </div>
+      </section>
+    </main>
+    <script src="../assets/js/login.js" defer></script>
+  </body>
+</html>
