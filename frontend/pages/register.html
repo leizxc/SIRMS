@@ -1,0 +1,279 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#edf5ff" />
+    <title>SIRMS — Register</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../assets/css/register.css" />
+  </head>
+  <body class="register-page">
+    <main class="register-layout">
+      <!-- ═══════════ FORM PANEL (left) ═══════════ -->
+      <section class="form-panel" id="register" aria-label="Registration">
+        <div class="register-card">
+          <header class="form-intro">
+            <h1>REGISTRATION</h1>
+            <p>
+              Register your account to access the incident reporting portal.
+            </p>
+          </header>
+
+          <form
+            class="register-form"
+            action="../../backend/public/auth/register.php"
+            method="post"
+          >
+            <!-- First Name + Last Name -->
+            <div class="field-row">
+              <div class="field-group">
+                <label class="field-label" for="first_name"
+                  >First Name <span class="req">*</span></label
+                >
+                <label class="input-wrap">
+                  <svg
+                    class="field-icon"
+                    viewBox="0 0 24 24"
+                    aria-hidden="true"
+                  >
+                    <path
+                      d="M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8Zm0 2c-4.4 0-8 2.2-8 5v1h16v-1c0-2.8-3.6-5-8-5Z"
+                    />
+                  </svg>
+                  <input
+                    id="first_name"
+                    type="text"
+                    name="first_name"
+                    placeholder="e.g. Alexander"
+                    autocomplete="given-name"
+                    required
+                  />
+                </label>
+              </div>
+              <div class="field-group">
+                <label class="field-label" for="last_name"
+                  >Last Name <span class="req">*</span></label
+                >
+                <label class="input-wrap">
+                  <svg
+                    class="field-icon"
+                    viewBox="0 0 24 24"
+                    aria-hidden="true"
+                  >
+                    <path
+                      d="M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8Zm0 2c-4.4 0-8 2.2-8 5v1h16v-1c0-2.8-3.6-5-8-5Z"
+                    />
+                  </svg>
+                  <input
+                    id="last_name"
+                    type="text"
+                    name="last_name"
+                    placeholder="e.g. Vance"
+                    autocomplete="family-name"
+                    required
+                  />
+                </label>
+              </div>
+            </div>
+
+            <!-- Email -->
+            <div class="field-group">
+              <label class="field-label" for="email"
+                >Email Address <span class="req">*</span></label
+              >
+              <label class="input-wrap">
+                <svg class="field-icon" viewBox="0 0 24 24" aria-hidden="true">
+                  <path
+                    d="M4 6h16a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2Zm0 2 8 5 8-5"
+                  />
+                </svg>
+                <input
+                  id="email"
+                  type="email"
+                  name="email"
+                  placeholder="officer.vance@workplace-safety.gov"
+                  autocomplete="email"
+                  required
+                />
+              </label>
+            </div>
+
+            <!-- Username -->
+            <div class="field-group">
+              <label class="field-label" for="username"
+                >Username <span class="req">*</span></label
+              >
+              <label class="input-wrap">
+                <svg class="field-icon" viewBox="0 0 24 24" aria-hidden="true">
+                  <path
+                    d="M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8Zm0 2c-4.4 0-8 2.2-8 5v1h16v-1c0-2.8-3.6-5-8-5Z"
+                  />
+                </svg>
+                <input
+                  id="username"
+                  type="text"
+                  name="username"
+                  placeholder="@ vance_ehs_officer"
+                  autocomplete="username"
+                  required
+                />
+              </label>
+            </div>
+
+            <!-- Password + Confirm Password -->
+            <div class="field-row">
+              <div class="field-group">
+                <label class="field-label" for="reg-password"
+                  >Password <span class="req">*</span></label
+                >
+                <label class="input-wrap">
+                  <svg
+                    class="field-icon"
+                    viewBox="0 0 24 24"
+                    aria-hidden="true"
+                  >
+                    <path
+                      d="M18 8h-1V6a5 5 0 0 0-10 0v2H6a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V10a2 2 0 0 0-2-2ZM9 6a3 3 0 0 1 6 0v2H9V6Zm3 11a2 2 0 1 1 0-4 2 2 0 0 1 0 4Z"
+                    />
+                  </svg>
+                  <input
+                    id="reg-password"
+                    type="password"
+                    name="password"
+                    placeholder="••••••••"
+                    autocomplete="new-password"
+                    required
+                  />
+                  <button
+                    class="password-toggle"
+                    type="button"
+                    aria-label="Show password"
+                    aria-pressed="false"
+                    data-target="reg-password"
+                  >
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                      <path
+                        d="M2 12s3.6-7 10-7c2.2 0 4.1.8 5.7 2M22 12s-3.6 7-10 7c-2.2 0-4.1-.8-5.7-2M3 3l18 18"
+                      />
+                      <path d="M9.9 9.9a3 3 0 0 0 4.2 4.2" />
+                    </svg>
+                  </button>
+                </label>
+              </div>
+              <div class="field-group">
+                <label class="field-label" for="reg-confirm-password"
+                  >Confirm Password <span class="req">*</span></label
+                >
+                <label class="input-wrap">
+                  <svg
+                    class="field-icon"
+                    viewBox="0 0 24 24"
+                    aria-hidden="true"
+                  >
+                    <path
+                      d="M18 8h-1V6a5 5 0 0 0-10 0v2H6a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V10a2 2 0 0 0-2-2ZM9 6a3 3 0 0 1 6 0v2H9V6Zm3 11a2 2 0 1 1 0-4 2 2 0 0 1 0 4Z"
+                    />
+                  </svg>
+                  <input
+                    id="reg-confirm-password"
+                    type="password"
+                    name="confirm_password"
+                    placeholder="••••••••"
+                    autocomplete="new-password"
+                    required
+                  />
+                  <button
+                    class="password-toggle"
+                    type="button"
+                    aria-label="Show password"
+                    aria-pressed="false"
+                    data-target="reg-confirm-password"
+                  >
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                      <path
+                        d="M2 12s3.6-7 10-7c2.2 0 4.1.8 5.7 2M22 12s-3.6 7-10 7c-2.2 0-4.1-.8-5.7-2M3 3l18 18"
+                      />
+                      <path d="M9.9 9.9a3 3 0 0 0 4.2 4.2" />
+                    </svg>
+                  </button>
+                </label>
+              </div>
+            </div>
+
+            <button class="submit-button" type="submit">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M9 12l2 2 4-4m6 2a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+              </svg>
+              Confirm
+            </button>
+          </form>
+
+          <p
+            class="register-message"
+            role="status"
+            aria-live="polite"
+            hidden
+          ></p>
+
+          <p class="login-link">
+            Already have an account?
+            <a href="login.html" class="text-link">Log in here</a>
+          </p>
+
+          <footer class="card-footer">
+            SIRMS © 2026 — Safety Incident Reporting Management System
+          </footer>
+        </div>
+      </section>
+
+      <!-- ═══════════ WELCOME / HERO PANEL (right) ═══════════ -->
+      <section class="welcome-panel" aria-label="SIRMS introduction">
+        <div class="welcome-overlay"></div>
+        <div class="welcome-content">
+          <a class="brand" href="login.html" aria-label="SIRMS home">
+            <span class="brand-mark" aria-hidden="true">
+              <svg viewBox="0 0 32 32">
+                <path
+                  d="M16 3 5 7v8c0 7 4.7 11.7 11 15 6.3-3.3 11-8 11-15V7L16 3Z"
+                />
+                <path d="m11 16 3.5 3.5L21.5 12" />
+              </svg>
+            </span>
+            <span class="brand-copy">
+              <strong>SIRMS</strong>
+              <small>SAFETY INCIDENT REPORTING<br />MANAGEMENT SYSTEM</small>
+            </span>
+          </a>
+
+          <div class="welcome-copy">
+            <h1>Safer Workplaces.<br /><span>Stronger Tomorrows.</span></h1>
+            <p>
+              Report, manage, investigate, and monitor workplace incidents — all
+              in one system.
+            </p>
+          </div>
+
+          <div class="safety-note">
+            <span class="safety-icon" aria-hidden="true">
+              <svg viewBox="0 0 32 32">
+                <path
+                  d="M16 3 5 7v8c0 7 4.7 11.7 11 15 6.3-3.3 11-8 11-15V7L16 3Z"
+                />
+                <path d="m11 16 3.5 3.5L21.5 12" />
+              </svg>
+            </span>
+            <strong>Safety<br />Starts with<br />You</strong>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <script src="../assets/js/login.js" defer></script>
+  </body>
+</html>

@@ -273,6 +273,7 @@ a {
   color: var(--muted);
   font-size: clamp(0.76rem, 0.95vw, 0.9rem);
   font-weight: 700;
+  margin-bottom: 20px;
 }
 
 .form-intro {
