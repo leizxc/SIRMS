@@ -1,0 +1,311 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#f4f7fb" />
+    <title>Admin Dashboard | SIRMS</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../assets/css/admin.css" />
+    <script src="../assets/js/admin.js" defer></script>
+  </head>
+  <body>
+    <div class="admin-shell">
+      <aside class="sidebar">
+        <a class="brand" href="index.html" aria-label="SIRMS home">
+          <span class="brand-mark"
+            ><svg viewBox="0 0 24 24" aria-hidden="true">
+              <path
+                d="M12 2.5 4.5 5.4v5.2c0 5.1 3.1 8.9 7.5 10.9 4.4-2 7.5-5.8 7.5-10.9V5.4L12 2.5Z"
+              />
+              <path class="brand-check" d="m8.8 11.8 2.1 2.1 4.5-4.7" /></svg
+          ></span>
+          <span class="brand-copy"
+            ><strong>SIRMS</strong
+            ><small>Safety Operations<br />Management</small></span
+          >
+        </a>
+
+        <nav class="side-nav" aria-label="Admin navigation">
+          <a class="nav-item selected" href="#dashboard"
+            ><svg viewBox="0 0 24 24" aria-hidden="true">
+              <rect x="3" y="3" width="7" height="7" rx="1" />
+              <rect x="14" y="3" width="7" height="7" rx="1" />
+              <rect x="3" y="14" width="7" height="7" rx="1" />
+              <rect x="14" y="14" width="7" height="7" rx="1" /></svg
+            ><span>Dashboard</span></a
+          >
+          <a class="nav-item" href="#incidents"
+            ><svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M12 3v18M4.2 7.5l15.6 9M4.2 16.5l15.6-9" />
+              <path
+                d="m9 4 3 3 3-3M9 20l3-3 3 3M3.5 10l4 .8-.8-4M20.5 14l-4-.8.8 4M3.5 14l4-.8-.8 4M20.5 10l-4 .8.8-4"
+              /></svg
+            ><span>Incidents</span></a
+          >
+          <a class="nav-item" href="#officers"
+            ><svg viewBox="0 0 24 24" aria-hidden="true">
+              <rect x="3" y="6" width="18" height="15" rx="2" />
+              <path
+                d="M8 6V4h8v2M12 10l1 2 2 .3-1.5 1.5.4 2.2-1.9-1-1.9 1 .4-2.2L8 12.3 10 12l1-2ZM7 19h10"
+              /></svg
+            ><span>Officers Management Account</span></a
+          >
+          <a class="nav-item" href="login.html"
+            ><svg viewBox="0 0 24 24" aria-hidden="true">
+              <path
+                d="M10 4H5a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h5M16 16l4-4-4-4m4 4H9"
+              /></svg
+            ><span>Log Out</span></a
+          >
+        </nav>
+      </aside>
+
+      <main class="main-area" id="dashboard">
+        <header class="topbar">
+          <div class="page-heading">
+            <h1>Admin Dashboard</h1>
+            <p>Overview of incidents and safety operations.</p>
+          </div>
+          <div class="account-area">
+            <button class="profile-button" type="button">
+              <span class="avatar">AD</span><span>Administrator</span>
+            </button>
+          </div>
+        </header>
+
+        <div class="dashboard-content">
+          <section class="overview-grid" aria-label="Incident overview">
+            <article class="panel chart-panel">
+              <div class="chart-heading">
+                <div>
+                  <h2>Total Incidents</h2>
+                  <p>Logged safety issues and current responses</p>
+                </div>
+                <div class="segmented" aria-label="Chart time range">
+                  <button class="chosen" type="button">Today</button
+                  ><button type="button">Week</button
+                  ><button type="button">Month</button>
+                </div>
+              </div>
+              <div
+                class="chart-wrap"
+                role="img"
+                aria-label="Line chart showing incidents rising toward midday and declining in the afternoon"
+              >
+                <svg
+                  class="chart"
+                  viewBox="0 0 620 190"
+                  preserveAspectRatio="none"
+                  aria-hidden="true"
+                >
+                  <defs>
+                    <linearGradient id="chartFill" x1="0" x2="0" y1="0" y2="1">
+                      <stop offset="0" stop-color="#2878f0" stop-opacity=".2" />
+                      <stop offset="1" stop-color="#2878f0" stop-opacity="0" />
+                    </linearGradient>
+                  </defs>
+                  <g class="grid-lines">
+                    <path
+                      d="M40 18H610M40 55H610M40 92H610M40 129H610M40 166H610"
+                    />
+                    <path d="M40 18V166M255 18V166M470 18V166M610 18V166" />
+                  </g>
+                  <g class="axis-labels">
+                    <text x="4" y="22">40</text>
+                    <text x="4" y="59">30</text>
+                    <text x="4" y="96">20</text>
+                    <text x="4" y="133">10</text>
+                    <text x="12" y="170">0</text>
+                    <text x="26" y="187">12 AM</text>
+                    <text x="145" y="187">4 AM</text>
+                    <text x="250" y="187">8 AM</text>
+                    <text x="358" y="187">12 PM</text>
+                    <text x="463" y="187">4 PM</text>
+                    <text x="568" y="187">8 PM</text>
+                  </g>
+                  <path
+                    class="chart-area"
+                    d="M40 147 70 143 120 130 147 134 176 130 229 113 256 110 285 96 335 75 361 64 374 60 389 65 442 81 470 95 500 110 530 108 578 96 610 95V166H40Z"
+                  />
+                  <path
+                    class="chart-line"
+                    d="M40 147 70 143 120 130 147 134 176 130 229 113 256 110 285 96 335 75 361 64 374 60 389 65 442 81 470 95 500 110 530 108 578 96 610 95"
+                  />
+                  <g class="chart-dots">
+                    <circle cx="40" cy="147" r="3.5" />
+                    <circle cx="70" cy="143" r="3.5" />
+                    <circle cx="120" cy="130" r="3.5" />
+                    <circle cx="147" cy="134" r="3.5" />
+                    <circle cx="176" cy="130" r="3.5" />
+                    <circle cx="229" cy="113" r="3.5" />
+                    <circle cx="256" cy="110" r="3.5" />
+                    <circle cx="285" cy="96" r="3.5" />
+                    <circle cx="335" cy="75" r="3.5" />
+                    <circle cx="361" cy="64" r="3.5" />
+                    <circle cx="374" cy="60" r="3.5" />
+                    <circle cx="389" cy="65" r="3.5" />
+                    <circle cx="442" cy="81" r="3.5" />
+                    <circle cx="470" cy="95" r="3.5" />
+                    <circle cx="500" cy="110" r="3.5" />
+                    <circle cx="530" cy="108" r="3.5" />
+                    <circle cx="578" cy="96" r="3.5" />
+                    <circle cx="610" cy="95" r="3.5" />
+                  </g>
+                </svg>
+              </div>
+            </article>
+            <article class="panel stat-card">
+              <div class="stat-top">
+                <span>Active / Pending</span
+                ><svg viewBox="0 0 24 24" aria-hidden="true">
+                  <rect x="4" y="5" width="16" height="16" rx="2" />
+                  <path d="M8 3v4m8-4v4M8 11h8m-8 4h4" />
+                  <circle cx="18" cy="17" r="4" />
+                </svg>
+              </div>
+              <strong>38</strong
+              ><span class="status-pill blue-pill">In Progress</span>
+            </article>
+            <article class="panel stat-card">
+              <div class="stat-top">
+                <span>Dispatched Officers</span
+                ><svg viewBox="0 0 24 24" aria-hidden="true">
+                  <rect x="3" y="6" width="18" height="15" rx="2" />
+                  <path
+                    d="M8 6V4h8v2m-4 4 1 2 2 .3-1.5 1.5.4 2.2-1.9-1-1.9 1 .4-2.2L9 12.3l2-.3 1-2Z"
+                  />
+                </svg>
+              </div>
+              <strong>18</strong
+              ><span class="status-pill green-pill">Active</span>
+            </article>
+            <article class="panel stat-card">
+              <div class="stat-top">
+                <span>Resolved Cases</span
+                ><svg viewBox="0 0 24 24" aria-hidden="true">
+                  <circle cx="12" cy="12" r="9" />
+                  <path d="m8 12 2.5 2.5L16.5 9" />
+                </svg>
+              </div>
+              <strong>228</strong
+              ><span class="status-pill gray-pill">Closed</span>
+            </article>
+          </section>
+
+          <section class="panel incidents-panel" id="incidents">
+            <div class="incidents-heading">
+              <div>
+                <h2>Recent Incidents</h2>
+                <p>Logged safety issues and current responses</p>
+              </div>
+              <div class="table-tools">
+                <label class="search-box"
+                  ><svg viewBox="0 0 24 24" aria-hidden="true">
+                    <circle cx="10.8" cy="10.8" r="6.3" />
+                    <path d="m16 16 4.5 4.5" /></svg
+                  ><input
+                    type="search"
+                    placeholder="Filter incidents..."
+                    aria-label="Filter incidents"
+                /></label>
+                <div class="filters" aria-label="Incident status">
+                  <button class="chosen" type="button">All</button
+                  ><button type="button">Critical</button
+                  ><button type="button">Pending</button
+                  ><button type="button">Resolved</button>
+                </div>
+              </div>
+            </div>
+            <div class="table-scroll">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Incident ID</th>
+                    <th>Category</th>
+                    <th>Location</th>
+                    <th>Reported By</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a href="#incident-089">#SIR-2026-089</a></td>
+                    <td>Chemical Spill</td>
+                    <td class="muted-cell">Sector 4 - Tank B</td>
+                    <td class="muted-cell">K. Bradley</td>
+                    <td><span class="status-pill red-pill">Critical</span></td>
+                    <td>
+                      <button class="view-button" type="button">View</button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><a href="#incident-088">#SIR-2026-088</a></td>
+                    <td>Equipment Malfunction</td>
+                    <td class="muted-cell">Turbine Hall C</td>
+                    <td class="muted-cell">M. Danvers</td>
+                    <td>
+                      <span class="status-pill blue-pill">In Progress</span>
+                    </td>
+                    <td>
+                      <button class="view-button" type="button">View</button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><a href="#incident-087">#SIR-2026-087</a></td>
+                    <td>Workplace Injury</td>
+                    <td class="muted-cell">Loading Dock 4</td>
+                    <td class="muted-cell">J. Thorne</td>
+                    <td>
+                      <span class="status-pill blue-pill">Pending Officer</span>
+                    </td>
+                    <td>
+                      <button class="view-button" type="button">View</button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><a href="#incident-086">#SIR-2026-086</a></td>
+                    <td>Hazard Observation</td>
+                    <td class="muted-cell">Main Yard</td>
+                    <td class="muted-cell">A. Geller</td>
+                    <td>
+                      <span class="status-pill gray-pill">Under Review</span>
+                    </td>
+                    <td>
+                      <button class="view-button" type="button">View</button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><a href="#incident-085">#SIR-2026-085</a></td>
+                    <td>Maintenance Request</td>
+                    <td class="muted-cell">Admin Complex</td>
+                    <td class="muted-cell">R. Sterling</td>
+                    <td>
+                      <span class="status-pill green-pill">Resolved</span>
+                    </td>
+                    <td>
+                      <button class="view-button" type="button">View</button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="table-footer">
+              <span>Showing 5 of 284 incidents</span>
+              <div class="pagination">
+                <button type="button">Previous</button><span>1 of 57</span
+                ><button type="button">Next</button>
+              </div>
+            </div>
+          </section>
+        </div>
+      </main>
+    </div>
+  </body>
+</html>

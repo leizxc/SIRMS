@@ -33,7 +33,7 @@ try {
     require_once __DIR__ . '/../../config/database.php';
     $pdo = database_connection();
     $query = $pdo->prepare(
-        'SELECT id, username, email, password_hash FROM users
+        'SELECT id, username, email, password_hash, role FROM users
          WHERE is_active = 1 AND (username = :username OR email = :email)
          LIMIT 1'
     );
@@ -61,9 +61,14 @@ try {
         'id' => (int) $user['id'],
         'username' => $user['username'],
         'email' => $user['email'],
+        'role' => $user['role'],
     ];
 
-    respond(200, ['ok' => true, 'message' => 'Login successful. Your session is now active.']);
+    respond(200, [
+        'ok' => true,
+        'message' => 'Login successful. Your session is now active.',
+        'role' => $user['role'],
+    ]);
 } catch (Throwable $error) {
     error_log('SIRMS login error: ' . $error->getMessage());
     respond(500, ['ok' => false, 'message' => 'Unable to connect to the login service. Check the database setup and try again.']);

@@ -57,11 +57,20 @@
         }),
       });
       const result = await response.json();
-      loginMessage.textContent = result.message || "Unable to sign in.";
+      loginMessage.textContent =
+        result.ok && result.role
+          ? `Login successful. Signed in as ${result.role}.`
+          : result.message || "Unable to sign in.";
       loginMessage.classList.add(result.ok ? "is-success" : "is-error");
-      if (result.ok) loginForm.elements.password.value = "";
+      if (result.ok) {
+        loginForm.elements.password.value = "";
+        if (String(result.role || "").toUpperCase() === "ADMIN") {
+          window.location.href = "admin.html";
+        }
+      }
     } catch (error) {
-      loginMessage.textContent = "Cannot reach the login service. Make sure Apache and PHP are running in XAMPP.";
+      loginMessage.textContent =
+        "Cannot reach the login service. Make sure Apache and PHP are running in XAMPP.";
       loginMessage.classList.add("is-error");
     } finally {
       submitButton.disabled = false;

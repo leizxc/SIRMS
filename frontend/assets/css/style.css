@@ -109,7 +109,7 @@ nav.links a {
     color: var(--ink-soft);
     padding: 6px 2px;
     border-bottom: 2px solid transparent;
-    transition: color .15s;
+    transition: color .15s, border-color .15s, font-weight .15s;
 }
 
 nav.links a:hover {
@@ -367,6 +367,12 @@ p.sec-desc {
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+.step .step-icon {
+    width: 34px;
+    height: 34px;
+    object-fit: contain;
 }
 
 .step h3 {
