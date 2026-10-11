@@ -66,6 +66,10 @@
         loginForm.elements.password.value = "";
         if (String(result.role || "").toUpperCase() === "ADMIN") {
           window.location.href = "admin.html";
+        } else if (["USER", "USERS", "REPORTER"].includes(String(result.role || "").toUpperCase())) {
+          window.location.href = "user.html";
+        } else if (["OFFICER", "OFFICERS", "SAFETY_OFFICER"].includes(String(result.role || "").toUpperCase())) {
+          window.location.href = "officer.html";
         }
       }
     } catch (error) {

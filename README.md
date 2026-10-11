@@ -1,21 +1,23 @@
 # SIRMS
 
-## local host link of xampp
- 
-Visit `http://localhost/SIRMS/frontend/pages/index.html` and choose **Portal Login**. The login form sends credentials to `backend/public/auth/login.php`; successful authentication creates a PHP session.
+## Local XAMPP setup
 
-SINCE WE DONT HAVE YET REGISTER THIS IS THE QUERY TO INSERT ACC
+1. Start Apache and MySQL.
+2. Import `backend/config/schema.sql` for a new database. If the older `users` table is already present, run `backend/config/migrations/20261010_add_user_names.sql` once.
+3. Open `http://localhost/SIRMS/frontend/pages/login.html` to sign in, or register at `register.html`.
 
-   ```sql
-   INSERT INTO users (username, email, password_hash)
-   VALUES ('your-username', 'you@example.com', 'PASTE_THE_GENERATED_HASH');
-   ```
+Login routes users according to the `users.role` value:
 
-THIS IS HOW TO ALTER role
+- `ADMIN` → `frontend/pages/admin.html`
+- `USERS` → `frontend/pages/user.html` (new registrations receive this role)
+- `OFFICER` → `frontend/pages/officer.html`
+
+Set an account's role in phpMyAdmin by username, for example:
+
 ```sql
-UPDATE users SET role = 'admin' WHERE username = 'leizxc'
+UPDATE users SET role = 'ADMIN' WHERE username = 'your-username';
+UPDATE users SET role = 'OFFICER' WHERE username = 'your-username';
+UPDATE users SET role = 'USERS' WHERE username = 'your-username';
 ```
 
-
-## REMEMBER!
-This project does not yet include a dashboard, registration flow, or password reset endpoint. The login form reports successful authentication and keeps the session active; those destinations can be connected when their pages are added.
+The default database connection is `sirms` with MySQL user `root` and an empty password. Override it with `SIRMS_DB_HOST`, `SIRMS_DB_NAME`, `SIRMS_DB_USER`, and `SIRMS_DB_PASSWORD` when needed.

@@ -1,0 +1,388 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#ffffff" />
+    <title>Reporter Dashboard | SIRMS</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../assets/css/user.css" />
+    <script src="../assets/js/user.js" defer></script>
+  </head>
+  <body>
+    <div class="reporter-shell">
+      <aside class="reporter-sidebar">
+        <a
+          class="reporter-brand"
+          href="#dashboard"
+          aria-label="Reporter dashboard"
+        >
+          <span class="reporter-mark"
+            ><svg viewBox="0 0 24 24" aria-hidden="true">
+              <path
+                d="M12 2.5 4.5 5.4v5.2c0 5.1 3.1 8.9 7.5 10.9 4.4-2 7.5-5.8 7.5-10.9V5.4L12 2.5Z"
+              />
+              <path d="m8.8 11.8 2.1 2.1 4.5-4.7" /></svg
+          ></span>
+          <span class="reporter-brand-copy"
+            ><strong>SIRMS</strong><small>Reporter Portal</small></span
+          >
+        </a>
+        <nav class="reporter-nav" aria-label="Reporter navigation">
+          <a class="reporter-nav-link is-active" href="#dashboard"
+            ><svg viewBox="0 0 24 24" aria-hidden="true">
+              <rect x="3" y="3" width="7" height="7" rx="1" />
+              <rect x="14" y="3" width="7" height="7" rx="1" />
+              <rect x="3" y="14" width="7" height="7" rx="1" />
+              <rect x="14" y="14" width="7" height="7" rx="1" /></svg
+            ><span>Dashboard</span></a
+          >
+          <a class="reporter-nav-link" href="#new-report"
+            ><svg viewBox="0 0 24 24" aria-hidden="true">
+              <circle cx="12" cy="12" r="9" />
+              <path d="M12 8v8M8 12h8" /></svg
+            ><span>File New Report</span></a
+          >
+          <a class="reporter-nav-link" href="#reports"
+            ><svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M4 12a8 8 0 1 1 2.3 5.7M4 17v-5h5" />
+              <path d="M12 7v5l3 2" /></svg
+            ><span>Track Status</span></a
+          >
+          <a class="reporter-nav-link" href="#guidelines"
+            ><svg viewBox="0 0 24 24" aria-hidden="true">
+              <path
+                d="M4 5.5A3.5 3.5 0 0 1 7.5 2H20v17H7.5A3.5 3.5 0 0 0 4 22zM4 5.5v16.2M8 6h8M8 10h8M8 14h5"
+              /></svg
+            ><span>Safety Guidelines</span></a
+          >
+        </nav>
+        <a class="reporter-logout" href="login.html"
+          ><svg viewBox="0 0 24 24" aria-hidden="true">
+            <path
+              d="M10 4H5a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h5M16 16l4-4-4-4m4 4H9"
+            /></svg
+          ><span>Log Out</span></a
+        >
+      </aside>
+
+      <main class="reporter-main" id="dashboard">
+        <header class="reporter-topbar">
+          <h1>DASHBOARD</h1>
+          <div class="reporter-user">
+            <span class="reporter-avatar">U</span
+            ><span class="reporter-user-name">User</span>
+          </div>
+        </header>
+
+        <div class="reporter-content">
+          <section class="reporter-stats" aria-label="Report activity overview">
+            <article class="reporter-card stat-overview">
+              <div class="stat-heading">
+                <div>
+                  <span class="eyebrow">ACTIVITY OVERVIEW</span>
+                  <h2>Total Reports<br />Submitted</h2>
+                </div>
+                <span class="stat-icon blue-icon"
+                  ><svg viewBox="0 0 24 24" aria-hidden="true">
+                    <rect x="5" y="4" width="14" height="17" rx="2" />
+                    <path d="M9 4V2h6v2M9 9h6M9 13h6M9 17h3" /></svg
+                ></span>
+              </div>
+              <div class="stat-value-row">
+                <strong>12</strong><span class="trend">↗ +3 this month</span>
+              </div>
+              <svg
+                class="sparkline"
+                viewBox="0 0 250 42"
+                preserveAspectRatio="none"
+                aria-hidden="true"
+              >
+                <path
+                  d="M2 30 C35 19 45 20 68 25 S105 29 132 17 S172 4 184 19 S207 34 224 22 S239 10 248 4"
+                />
+                <circle cx="248" cy="4" r="4" />
+              </svg>
+            </article>
+            <article class="reporter-card stat-progress">
+              <div class="stat-heading">
+                <div>
+                  <span class="eyebrow blue-text">IN PROCESS</span>
+                  <h2>Under<br />Investigation</h2>
+                </div>
+                <span class="stat-icon indigo-icon"
+                  ><svg viewBox="0 0 24 24" aria-hidden="true">
+                    <rect x="4" y="5" width="16" height="16" rx="2" />
+                    <path d="M8 3v4m8-4v4M8 11h8m-8 4h5" />
+                    <circle cx="18" cy="18" r="4" /></svg
+                ></span>
+              </div>
+              <div class="metric-line">
+                <strong>3</strong
+                ><span class="small-pill blue-pill">2 Active Desk</span>
+              </div>
+              <div class="progress-track">
+                <span class="progress-blue"></span>
+              </div>
+            </article>
+            <article class="reporter-card stat-resolved">
+              <div class="stat-heading">
+                <div>
+                  <span class="eyebrow green-text">SAFE &amp; SIGNED-OFF</span>
+                  <h2>Resolved &amp;<br />Closed</h2>
+                </div>
+                <span class="stat-icon mint-icon"
+                  ><svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path
+                      d="m12 2 2.2 2 3-.2 1.1 2.8 2.6 1.4-.7 2.9 1.1 2.8-2.3 1.9-.4 3-3 .5L12 21l-2.6-1.7-3-.5-.4-3-2.3-1.9 1.1-2.8-.7-2.9 2.6-1.4 1.1-2.8 3 .2z"
+                    />
+                    <path d="m8.7 12 2.1 2.1 4.6-4.7" /></svg
+                ></span>
+              </div>
+              <div class="metric-line">
+                <strong>9</strong><span class="trend">75% Cleared</span>
+              </div>
+              <div class="progress-track">
+                <span class="progress-green"></span>
+              </div>
+            </article>
+            <article class="reporter-card stat-sla">
+              <div class="stat-heading">
+                <div>
+                  <span class="eyebrow">DISPATCH SLA</span>
+                  <h2>Avg.<br />Response Time</h2>
+                </div>
+                <span class="stat-icon gray-icon"
+                  ><svg viewBox="0 0 24 24" aria-hidden="true">
+                    <circle cx="12" cy="13" r="8" />
+                    <path d="M12 9v4l2.5 1.5M9 2h6M12 2v3" /></svg
+                ></span>
+              </div>
+              <div class="response-row">
+                <strong>18</strong><span>mins</span
+                ><span class="trend">↓4m faster</span>
+              </div>
+              <p class="sla-note"><i></i>Target compliance &lt; 30 mins</p>
+            </article>
+          </section>
+
+          <section class="reporter-card roadmap" id="guidelines">
+            <div class="section-title">
+              <span class="roadmap-icon"
+                ><svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path
+                    d="M5 5v14m0-10h6m0 0-3-3m3 3-3 3M19 19V5m0 10h-6m0 0 3 3m-3-3 3-3"
+                  /></svg
+              ></span>
+              <div>
+                <h2>Reporting Lifecycle Roadmap</h2>
+                <p>
+                  Standard Operating Procedure for reporting hazards across
+                  Sector 4
+                </p>
+              </div>
+            </div>
+            <div class="roadmap-grid">
+              <article class="roadmap-step first-step">
+                <div class="step-meta">
+                  <span class="step-number">1</span
+                  ><svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path
+                      d="M12 3a5 5 0 0 0-5 5v4l-2 3h14l-2-3V8a5 5 0 0 0-5-5ZM10 19a2 2 0 0 0 4 0"
+                    />
+                  </svg>
+                </div>
+                <h3>1. Report Issue</h3>
+                <p>
+                  Initiate report ticket upon noticing any unsafe condition or
+                  incident.
+                </p>
+              </article>
+              <article class="roadmap-step">
+                <div class="step-meta">
+                  <span class="step-number">2</span
+                  ><svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="m12 3 4 7H8l4-7ZM5 14h5v7H5zM14 14h5l2 7h-9z" />
+                  </svg>
+                </div>
+                <h3>2. Select Category</h3>
+                <p>
+                  Classify hazard: Chemical, Slip/Trip, Structural, or
+                  Equipment.
+                </p>
+              </article>
+              <article class="roadmap-step">
+                <div class="step-meta">
+                  <span class="step-number">3</span
+                  ><svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M4 6h13M4 11h10M4 16h7m5 3 5-5-2-2-5 5-1 3z" />
+                  </svg>
+                </div>
+                <h3>3. Tell What Happened</h3>
+                <p>
+                  Provide precise location, time noticed, and a brief hazard
+                  description.
+                </p>
+              </article>
+              <article class="roadmap-step">
+                <div class="step-meta">
+                  <span class="step-number">4</span
+                  ><svg viewBox="0 0 24 24" aria-hidden="true">
+                    <rect x="3" y="6" width="18" height="15" rx="2" />
+                    <path d="M8 6V4h8v2m-4 4v6m-3-3h6" />
+                  </svg>
+                </div>
+                <h3>4. Upload Evidence</h3>
+                <p>
+                  Attach photos, a short audio note, or barcode of damaged
+                  equipment.
+                </p>
+              </article>
+              <article class="roadmap-step">
+                <div class="step-meta">
+                  <span class="step-number">5</span
+                  ><svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M4 12a8 8 0 1 1 2.3 5.7M4 17v-5h5" />
+                    <path d="M12 7v5l3 2" />
+                  </svg>
+                </div>
+                <h3>5. Track &amp; Sign-off</h3>
+                <p>
+                  Monitor the assigned officer response until resolution
+                  approval.
+                </p>
+              </article>
+            </div>
+          </section>
+
+          <section class="reporter-card submitted-reports" id="reports">
+            <div class="reports-heading">
+              <div>
+                <h2>My Submitted Reports</h2>
+                <p>
+                  Track status updates and safety officer comments on your filed
+                  tickets.
+                </p>
+              </div>
+              <button class="export-button" type="button">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M12 3v12m0 0 4-4m-4 4-4-4M5 17v4h14v-4" /></svg
+                >Export Log
+              </button>
+            </div>
+            <div class="report-tools">
+              <label class="report-search"
+                ><svg viewBox="0 0 24 24" aria-hidden="true">
+                  <circle cx="10.8" cy="10.8" r="6.3" />
+                  <path d="m16 16 4.5 4.5" /></svg
+                ><input
+                  type="search"
+                  placeholder="Search by Ticket ID, Category, or Location..."
+                  aria-label="Search submitted reports"
+              /></label>
+              <div class="report-filters" aria-label="Filter reports">
+                <button class="selected" type="button">ALL (3)</button
+                ><button type="button">PENDING CONFIRMATION</button
+                ><button type="button">UNDER INVESTIGATION</button
+                ><button type="button">RESOLVED</button>
+              </div>
+            </div>
+            <div class="report-list">
+              <article class="report-item in-review">
+                <div class="report-main">
+                  <div class="report-badges">
+                    <span class="ticket-id">#REP-2026-042</span
+                    ><span class="report-status status-investigating"
+                      ><i></i>UNDER INVESTIGATION</span
+                    >
+                  </div>
+                  <h3>
+                    Chemical Vapor Leak <span class="priority">PRIORITY 1</span>
+                  </h3>
+                  <p class="location">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                      <path
+                        d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0Z"
+                      />
+                      <circle cx="12" cy="10" r="2.5" /></svg
+                    >Sector 4 Tank B (Cooling Junction 2)
+                  </p>
+                </div>
+                <div class="report-detail">
+                  <time>◷ Oct 11, 2026 • 10:15 AM</time>
+                  <p>Safety Lead<br /><strong>Officer M. Reyes</strong></p>
+                </div>
+                <button class="timeline-button" type="button">
+                  View Timeline &amp; Updates ›
+                </button>
+              </article>
+              <article class="report-item">
+                <div class="report-main">
+                  <div class="report-badges">
+                    <span class="ticket-id neutral-ticket">#REP-2026-039</span
+                    ><span class="report-status status-pending"
+                      ><i></i>PENDING OFFICER CONFIRMATION</span
+                    >
+                  </div>
+                  <h3>
+                    Broken Safety Railing
+                    <span class="category-tag">FACILITY HAZARD</span>
+                  </h3>
+                  <p class="location">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                      <path
+                        d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0Z"
+                      />
+                      <circle cx="12" cy="10" r="2.5" /></svg
+                    >Stairwell B3 (Floor 2 to Mezzanine)
+                  </p>
+                </div>
+                <div class="report-detail">
+                  <time>◷ Oct 08, 2026 • 02:40 PM</time>
+                  <p>Assigned EHS<br /><strong>Officer K. Bradley</strong></p>
+                </div>
+                <button class="timeline-button" type="button">
+                  View Timeline ›
+                </button>
+              </article>
+              <article class="report-item">
+                <div class="report-main">
+                  <div class="report-badges">
+                    <span class="ticket-id resolved-ticket">#REP-2026-031</span
+                    ><span class="report-status status-resolved"
+                      ><i></i>RESOLVED &amp; CLOSED</span
+                    >
+                  </div>
+                  <h3>
+                    Oil Spill on Walkway
+                    <span class="cleaned-tag">CLEANED</span>
+                  </h3>
+                  <p class="location">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                      <path
+                        d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0Z"
+                      />
+                      <circle cx="12" cy="10" r="2.5" /></svg
+                    >Loading Dock 4 (Bay C Corridor)
+                  </p>
+                </div>
+                <div class="report-detail">
+                  <time>◷ Oct 02, 2026 • 08:20 AM</time>
+                  <p>Cleared By<br /><strong>Officer D. Vance</strong></p>
+                </div>
+                <button class="timeline-button resolved-action" type="button">
+                  View Report ›
+                </button>
+              </article>
+            </div>
+          </section>
+        </div>
+      </main>
+    </div>
+  </body>
+</html>

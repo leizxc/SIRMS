@@ -1,0 +1,20 @@
+.officer-stat { min-height: 170px; display: flex; flex-direction: column; align-items: flex-start; padding: 18px; }
+.officer-stat h2 { margin: 0 0 15px; font-size: 14px; font-weight: 600; }
+.officer-stat > strong { font-size: 34px; line-height: 1; letter-spacing: -.05em; }
+.officer-stat-note { margin-top: auto; padding-top: 14px; color: #677286; font-size: 11px; }
+.red-text, .red-number { color: #cc3946; }
+.blue-number { color: #0755d4; }
+.green-number { color: #087954; }
+.officer-queue { padding: 18px; }
+.officer-queue .reports-heading { margin-bottom: 16px; }
+.queue-count { padding: 6px 11px; border-radius: 99px; color: #0755d4; background: #e0e9ff; font-size: 11px; font-weight: 700; white-space: nowrap; }
+.officer-guidelines { display: flex; align-items: center; justify-content: space-between; padding: 18px 20px; }
+.officer-guidelines h2 { margin: 0 0 4px; font-size: 16px; }
+.officer-guidelines p { margin: 0; color: #5d687d; font-size: 12px; }
+.guideline-mark { display: grid; place-items: center; width: 34px; height: 34px; border-radius: 50%; color: #087954; background: #c9f8e7; font-size: 19px; font-weight: 700; }
+@media (max-width: 600px) {
+  .officer-stats { grid-template-columns: 1fr 1fr; }
+  .officer-stat { min-height: 150px; padding: 13px; }
+  .officer-stat > strong { font-size: 29px; }
+  .officer-queue { padding: 13px 11px; }
+}
