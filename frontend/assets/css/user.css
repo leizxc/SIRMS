@@ -43,7 +43,7 @@ button {
   align-items: center;
   gap: 12px;
   padding: 0 8px;
-  color: var(--report-ink);
+  color: #000;
   text-decoration: none;
 }
 .reporter-mark {
@@ -65,13 +65,13 @@ button {
 }
 .reporter-brand-copy strong {
   display: block;
-  color: var(--report-blue-dark);
+  color: #000;
   font-size: 19px;
   line-height: 1.35;
   font-weight: 800;
 }
 .reporter-brand-copy small {
-  color: var(--report-muted);
+  color: #000;
   font-size: 13px;
 }
 .reporter-nav {
@@ -87,7 +87,7 @@ button {
   min-height: 43px;
   padding: 0 12px;
   border-radius: 9px;
-  color: #515d71;
+  color: #000;
   text-decoration: none;
   font-size: 14px;
   transition:
@@ -96,11 +96,11 @@ button {
 }
 .reporter-nav-link:hover,
 .reporter-logout:hover {
-  color: var(--report-blue);
+  color: #000;
   background: #f1f5ff;
 }
 .reporter-nav-link.is-active {
-  color: #fff;
+  color: #000;
   background: #2864e8;
 }
 .reporter-nav-link svg,

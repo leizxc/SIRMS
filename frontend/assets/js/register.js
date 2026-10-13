@@ -11,6 +11,8 @@
       if (!input) return;
       const show = input.type === "password";
       input.type = show ? "text" : "password";
+      const icon = toggle.querySelector("img");
+      if (icon) icon.src = show ? "../assets/icons/eye-close-up.png" : "../assets/icons/closed-eyes.png";
       toggle.setAttribute("aria-pressed", String(show));
       toggle.setAttribute("aria-label", show ? "Hide password" : "Show password");
     });

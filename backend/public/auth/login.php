@@ -33,8 +33,8 @@ try {
     require_once __DIR__ . '/../../config/database.php';
     $pdo = database_connection();
     $query = $pdo->prepare(
-        'SELECT id, username, email, password_hash, role FROM users
-         WHERE is_active = 1 AND (username = :username OR email = :email)
+        'SELECT id, username, email, password_hash, role, is_active FROM users
+         WHERE username = :username OR email = :email
          LIMIT 1'
     );
     $query->execute(['username' => $identifier, 'email' => $identifier]);
@@ -42,6 +42,9 @@ try {
 
     if (!$user || !password_verify($password, $user['password_hash'])) {
         respond(401, ['ok' => false, 'message' => 'The username/email or password is incorrect.']);
+    }
+    if ((int) $user['is_active'] !== 1) {
+        respond(403, ['ok' => false, 'message' => 'Your account is blocked. Please contact an administrator.']);
     }
 
     $lifetime = $remember ? 60 * 60 * 24 * 30 : 0;

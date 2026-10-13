@@ -350,14 +350,10 @@ a {
   cursor: pointer;
 }
 
-.password-toggle svg {
+.password-toggle img {
   width: 22px;
   height: 22px;
-  fill: none;
-  stroke: currentColor;
-  stroke-width: 1.9;
-  stroke-linecap: round;
-  stroke-linejoin: round;
+  object-fit: contain;
 }
 
 .form-options {

@@ -13,6 +13,9 @@
     />
     <link rel="stylesheet" href="../assets/css/admin.css" />
     <script src="../assets/js/admin.js" defer></script>
+    <script src="../assets/js/reporters.js" defer></script>
+    <script src="../assets/js/admin-tables.js" defer></script>
+    <script src="../assets/js/sectors.js" defer></script>
   </head>
   <body>
     <div class="admin-shell">
@@ -59,9 +62,13 @@
           <a class="nav-item" href="#reporters"
             ><svg viewBox="0 0 24 24" aria-hidden="true">
               <circle cx="9" cy="8" r="3" />
-              <path d="M3.5 19v-1.5A4.5 4.5 0 0 1 8 13h2a4.5 4.5 0 0 1 4.5 4.5V19zM16 5.5a3 3 0 0 1 0 5.8M17 13h1a3.5 3.5 0 0 1 3.5 3.5V19H17" />
-            </svg><span>Reporter Account Management</span></a
+              <path
+                d="M3.5 19v-1.5A4.5 4.5 0 0 1 8 13h2a4.5 4.5 0 0 1 4.5 4.5V19zM16 5.5a3 3 0 0 1 0 5.8M17 13h1a3.5 3.5 0 0 1 3.5 3.5V19H17"
+              /></svg
+            ><span>Reporter Account Management</span></a
           >
+          <a class="nav-item" href="#sectors"
+            ><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 21h18M5 21V7l7-4 7 4v14M9 21v-6h6v6M8 9h2m4 0h2m-8 3h2m4 0h2" /></svg><span>Plant Sector Management</span></a>
           <a class="nav-item" href="login.html"
             ><svg viewBox="0 0 24 24" aria-hidden="true">
               <path
@@ -80,12 +87,13 @@
           </div>
           <div class="account-area">
             <button class="profile-button" type="button">
-              <span class="avatar">AD</span><span class="user-name">Administrator</span>
+              <span class="avatar">AD</span
+              ><span class="user-name">Administrator</span>
             </button>
           </div>
         </header>
 
-        <div class="dashboard-content">
+        <div class="dashboard-content" id="dashboard-overview">
           <section class="overview-grid" aria-label="Incident overview">
             <article class="panel chart-panel">
               <div class="chart-heading">
@@ -202,6 +210,17 @@
               <strong>228</strong
               ><span class="status-pill gray-pill">Closed</span>
             </article>
+            <article class="panel stat-card critical-stat-card">
+              <div class="stat-top">
+                <span>Total Critical</span
+                ><svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M12 3 2.8 20h18.4L12 3Z" />
+                  <path d="M12 9v5m0 3h.01" />
+                </svg>
+              </div>
+              <strong>1</strong
+              ><span class="status-pill red-pill">Needs attention</span>
+            </article>
           </section>
 
           <section class="panel incidents-panel" id="incidents">
@@ -229,7 +248,7 @@
               </div>
             </div>
             <div class="table-scroll">
-              <table>
+              <table class="admin-data-table">
                 <thead>
                   <tr>
                     <th>Incident ID</th>
@@ -302,15 +321,321 @@
                 </tbody>
               </table>
             </div>
-            <div class="table-footer">
-              <span>Showing 5 of 284 incidents</span>
-              <div class="pagination">
-                <button type="button">Previous</button><span>1 of 57</span
-                ><button type="button">Next</button>
-              </div>
-            </div>
           </section>
         </div>
+
+        <section class="sector-management" id="sectors" aria-labelledby="sectors-title" hidden>
+          <div class="sector-stats">
+            <article class="sector-stat"><span>Active Plant Sectors</span><strong id="sector-total">5</strong><small>Across 3 regional industrial zones</small></article>
+            <article class="sector-stat"><span>Operational Sub-Zones</span><strong>48</strong><small>High-pressure and heavy cargo grids</small></article>
+            <article class="sector-stat"><span>Assigned Responders</span><strong>64</strong><small>Active safety marshals</small></article>
+            <article class="sector-stat"><span>Geofence Compliance</span><strong>100%</strong><small>Perimeter sensors operational</small></article>
+          </div>
+          <section class="panel sector-form-panel" aria-labelledby="sectors-title">
+            <header class="sector-form-heading"><div><h1 id="sectors-title">Add New Site Plant Sector</h1><p>Step sequence: Add New Site Plant Sector → Input Name → Input Address → Confirm</p></div><span>FORM ID: SEC-REG-014</span></header>
+            <form id="sector-form" class="sector-form">
+              <label class="sector-span-1">Name of Plant Sector <b>*</b><input name="name" required maxlength="120" placeholder="e.g. Sector 5 - Cryogenic Processing Plant" /><small>Official alphanumeric descriptor displayed on dispatch alarms.</small></label>
+              <label class="sector-span-2">Address / Site Location of Plant Sector <b>*</b><input name="address" required maxlength="255" placeholder="Building 7, North Gate Industrial Park, San Jose Del Monte, Bulacan" /><small>Precise geographic address used for rapid ambulance and HAZMAT dispatch.</small></label>
+              <label>Sector Code / Identifier<input name="code" id="sector-code" readonly value="SEC-PLANT-06" /><small>System auto-assigned sequence code.</small></label>
+              <label>Assigned Facility Lead / Safety Supervisor<select name="lead"><option>Insp. Mateo Reyes (Chief Safety Officer)</option><option>Officer Maria Santos</option><option>Officer Alex Rivera</option></select><small>Responsible for weekly safety compliance sign-off.</small></label>
+              <label>Operational Risk Tier<select name="risk"><option>Tier 1 - High Risk (Chemical / Toxic Storage)</option><option>Tier 2 - Moderate Risk</option><option>Tier 3 - Low Risk</option></select><small>Determines automatic escalation rules and alarm levels.</small></label>
+              <div class="sector-form-actions"><p id="sector-message" role="status" aria-live="polite" hidden></p><button type="reset" class="reporter-reset">Reset Form</button><button type="submit" class="reporter-submit">Confirm &amp; Register Plant Sector</button></div>
+            </form>
+          </section>
+          <section class="panel sector-directory">
+            <header class="sector-directory-heading"><div><h2>Plant Sectors Directory</h2><p>Listing active sectors and instant edit controllers</p></div><input id="sector-search" type="search" placeholder="Search plant sector by name, code, address" aria-label="Search plant sectors" /><select id="sector-risk-filter" aria-label="Filter by risk tier"><option value="">All Risk Tiers</option><option>Tier 1</option><option>Tier 2</option><option>Tier 3</option></select><select id="sector-status-filter" aria-label="Filter by status"><option value="">Status: Active / Safe</option><option>ACTIVE</option><option>MAINTENANCE</option><option>CAUTION</option></select></header>
+            <div class="table-scroll"><table class="admin-data-table sector-table"><thead><tr><th>Sector Code</th><th>Plant Sector Name</th><th>Site Address &amp; Location</th><th>Staff &amp; Responders</th><th>Hazard &amp; Status</th><th>Actions</th></tr></thead><tbody id="sector-rows">
+              <tr data-risk="Tier 1" data-status="CAUTION"><td>#SEC-04</td><td><strong>Sector 4 - Chemical Storage Tank Farm</strong><small>Zone Alpha · Sub-grid B-10</small></td><td>Lot 12-B Industrial Corridor, Gate 3, SJDM, Bulacan</td><td>18 Staff · 4 Officers</td><td><span class="sector-status caution">ELEVATED CAUTION</span></td><td><button class="reporter-action" data-sector-action="edit" type="button">Edit Info</button> <button class="reporter-action" data-sector-action="view" type="button">View</button></td></tr>
+              <tr data-risk="Tier 2" data-status="ACTIVE"><td>#SEC-01</td><td><strong>Sector 1 - Central Power Turbines</strong><small>High Voltage Switchyard</small></td><td>Grid 1, East Valley Perimeter, Central Plant Complex</td><td>12 Staff · 3 Officers</td><td><span class="sector-status safe">ACTIVE · SAFE</span></td><td><button class="reporter-action" data-sector-action="edit" type="button">Edit Info</button> <button class="reporter-action" data-sector-action="view" type="button">View</button></td></tr>
+              <tr data-risk="Tier 2" data-status="MAINTENANCE"><td>#SEC-02</td><td><strong>Sector 2 - Petrochemical Cracking Unit</strong><small>Thermal Catalytic Tower 09</small></td><td>Block 4B, South Harbor Highway, Batangas Industrial Port</td><td>24 Staff · 6 Officers</td><td><span class="sector-status maintenance">MAINTENANCE</span></td><td><button class="reporter-action" data-sector-action="edit" type="button">Edit Info</button> <button class="reporter-action" data-sector-action="view" type="button">View</button></td></tr>
+              <tr data-risk="Tier 1" data-status="ACTIVE"><td>#SEC-03</td><td><strong>Sector 3 - High Pressure Boiler Array</strong><small>Steam Distribution Bay</small></td><td>Facility Bay 3, Inland Industrial Estate, Santa Rosa, Laguna</td><td>10 Staff · 2 Officers</td><td><span class="sector-status safe">ACTIVE · SAFE</span></td><td><button class="reporter-action" data-sector-action="edit" type="button">Edit Info</button> <button class="reporter-action" data-sector-action="view" type="button">View</button></td></tr>
+              <tr data-risk="Tier 3" data-status="ACTIVE"><td>#SEC-05</td><td><strong>Sector 5 - Automated Cargo Logistics Hub</strong><small>Terminal Yard &amp; Weigh Station</small></td><td>Pier 14 Pierhead, North Freight Corridor, Tondo Port Terminal</td><td>32 Staff · 5 Officers</td><td><span class="sector-status safe">ACTIVE · SAFE</span></td><td><button class="reporter-action" data-sector-action="edit" type="button">Edit Info</button> <button class="reporter-action" data-sector-action="view" type="button">View</button></td></tr>
+            </tbody></table></div>
+          </section>
+        </section>
+
+        <section
+          class="reporter-management"
+          id="reporters"
+          aria-labelledby="reporters-title"
+          hidden
+        >
+          <header class="reporter-page-heading"></header>
+
+          <div class="reporter-stats" aria-label="Reporter account totals">
+            <article class="reporter-stat">
+              <span>Total Reporters</span><strong data-stat="total">—</strong>
+            </article>
+            <article class="reporter-stat">
+              <span>Active Reporters</span><strong data-stat="active">—</strong>
+            </article>
+            <article class="reporter-stat">
+              <span>Inactive Reporters</span
+              ><strong data-stat="inactive">—</strong>
+            </article>
+          </div>
+
+          <section
+            class="panel provision-panel"
+            aria-labelledby="add-reporter-title"
+          >
+            <div class="provision-heading">
+              <div>
+                <h2 id="add-reporter-title">Add Reporter Account</h2>
+                <p>Enter the reporter’s details and account credentials.</p>
+              </div>
+              <span class="role-badge">REPORTER</span>
+            </div>
+            <form
+              class="reporter-form"
+              id="reporter-form"
+              action="../../backend/public/auth/reporters.php"
+              method="post"
+            >
+              <div class="reporter-fields">
+                <label
+                  >First Name <span>*</span
+                  ><input
+                    name="first_name"
+                    autocomplete="given-name"
+                    required
+                    minlength="2"
+                    maxlength="100"
+                    placeholder="e.g. Alex"
+                /></label>
+                <label
+                  >Last Name <span>*</span
+                  ><input
+                    name="last_name"
+                    autocomplete="family-name"
+                    required
+                    minlength="2"
+                    maxlength="100"
+                    placeholder="e.g. Rivera"
+                /></label>
+                <label
+                  >Work Email Address <span>*</span
+                  ><input
+                    name="email"
+                    type="email"
+                    autocomplete="email"
+                    required
+                    maxlength="254"
+                    placeholder="name@company.com"
+                /></label>
+                <label
+                  >System Username <span>*</span
+                  ><input
+                    name="username"
+                    autocomplete="username"
+                    required
+                    minlength="3"
+                    maxlength="50"
+                    pattern="[a-zA-Z0-9._-]+"
+                    placeholder="e.g. arivera"
+                /></label>
+                <label
+                  >Password <span>*</span
+                  ><input
+                    id="reporter-password"
+                    name="password"
+                    type="password"
+                    autocomplete="new-password"
+                    required
+                    minlength="8"
+                    placeholder="At least 8 characters" /><button
+                    class="password-toggle"
+                    type="button"
+                    aria-label="Show password"
+                    aria-pressed="false"
+                    data-target="reporter-password"
+                  >
+                    <img
+                      src="../assets/icons/closed-eyes.png"
+                      alt=""
+                      aria-hidden="true"
+                    /></button
+                ></label>
+                <label
+                  >Confirm Password <span>*</span
+                  ><input
+                    id="reporter-confirm-password"
+                    name="confirm_password"
+                    type="password"
+                    autocomplete="new-password"
+                    required
+                    minlength="8"
+                    placeholder="Re-enter password" /><button
+                    class="password-toggle"
+                    type="button"
+                    aria-label="Show password"
+                    aria-pressed="false"
+                    data-target="reporter-confirm-password"
+                  >
+                    <img
+                      src="../assets/icons/closed-eyes.png"
+                      alt=""
+                      aria-hidden="true"
+                    /></button
+                ></label>
+              </div>
+              <div class="reporter-form-actions">
+                <p
+                  class="reporter-form-message"
+                  role="status"
+                  aria-live="polite"
+                  hidden
+                ></p>
+                <button class="reporter-reset" type="reset">Reset Form</button
+                ><button class="reporter-submit" type="submit">
+                  Create Reporter Account
+                </button>
+              </div>
+            </form>
+          </section>
+
+          <section
+            class="panel reporter-directory"
+            aria-labelledby="reporter-directory-title"
+          >
+            <div class="reporter-directory-heading">
+              <div>
+                <h2 id="reporter-directory-title">
+                  Registered Reporters Directory
+                </h2>
+                <p>
+                  Accounts authorized to access the incident reporting portal.
+                </p>
+              </div>
+              <label class="reporter-search"
+                >Search reporters<input
+                  type="search"
+                  id="reporter-search"
+                  placeholder="Search name, username, or email"
+              /></label>
+            </div>
+            <div class="reporter-table-wrap">
+              <table class="reporter-table">
+                <thead>
+                  <tr>
+                    <th>Reporter Name</th>
+                    <th>Username</th>
+                    <th>Work Email</th>
+                    <th>Account ID</th>
+                    <th>Account Status</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="reporter-rows">
+                  <tr>
+                    <td colspan="6">Loading reporter accounts…</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <p
+              class="reporter-count"
+              id="reporter-count"
+              aria-live="polite"
+            ></p>
+          </section>
+          <dialog
+            class="reporter-edit-dialog"
+            id="reporter-edit-dialog"
+            aria-labelledby="edit-reporter-title"
+          >
+            <form id="reporter-edit-form" class="reporter-edit-form">
+              <h2 id="edit-reporter-title">Update Reporter Account</h2>
+              <input type="hidden" name="id" />
+              <label
+                >First Name<input
+                  name="first_name"
+                  required
+                  minlength="2"
+                  maxlength="100"
+              /></label>
+              <label
+                >Last Name<input
+                  name="last_name"
+                  required
+                  minlength="2"
+                  maxlength="100"
+              /></label>
+              <label
+                >Work Email<input
+                  name="email"
+                  type="email"
+                  required
+                  maxlength="254"
+              /></label>
+              <label
+                >Username<input
+                  name="username"
+                  required
+                  minlength="3"
+                  maxlength="50"
+                  pattern="[a-zA-Z0-9._-]+"
+              /></label>
+              <p
+                class="reporter-edit-message"
+                role="status"
+                aria-live="polite"
+                hidden
+              ></p>
+              <div class="reporter-edit-actions">
+                <button type="button" class="reporter-reset" data-close-edit>
+                  Cancel</button
+                ><button type="submit" class="reporter-submit">
+                  Save Changes
+                </button>
+              </div>
+            </form>
+          </dialog>
+          <dialog
+            class="reporter-delete-dialog"
+            id="reporter-delete-dialog"
+            aria-labelledby="delete-reporter-title"
+          >
+            <form method="dialog" class="reporter-delete-content">
+              <img class="delete-warning-icon" src="../assets/icons/exclamation.png" alt="" aria-hidden="true" />
+              <h2 id="delete-reporter-title">Delete Reporter Account?</h2>
+              <p id="delete-reporter-copy">This action cannot be undone.</p>
+              <div class="reporter-edit-actions">
+                <button type="submit" class="reporter-reset">Cancel</button>
+                <button
+                  type="button"
+                  class="reporter-delete-confirm"
+                  id="confirm-reporter-delete"
+                >
+                  Delete Account
+                </button>
+              </div>
+            </form>
+          </dialog>
+          <dialog
+            class="reporter-delete-dialog"
+            id="reporter-status-dialog"
+            aria-labelledby="reporter-status-title"
+          >
+            <form method="dialog" class="reporter-delete-content">
+              <img class="delete-warning-icon status-warning-icon" src="../assets/icons/exclamation.png" alt="" aria-hidden="true" />
+              <h2 id="reporter-status-title">Block Reporter Account?</h2>
+              <p id="reporter-status-copy">
+                The reporter will no longer be able to sign in.
+              </p>
+              <div class="reporter-edit-actions">
+                <button type="submit" class="reporter-reset">Cancel</button>
+                <button
+                  type="button"
+                  class="reporter-delete-confirm"
+                  id="confirm-reporter-status"
+                >
+                  Block Account
+                </button>
+              </div>
+            </form>
+          </dialog>
+        </section>
       </main>
     </div>
   </body>

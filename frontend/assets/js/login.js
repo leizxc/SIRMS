@@ -28,6 +28,8 @@
     if (!passwordInput) return;
     const showPassword = passwordInput.type === "password";
     passwordInput.type = showPassword ? "text" : "password";
+    const icon = passwordToggle.querySelector("img");
+    if (icon) icon.src = showPassword ? "../assets/icons/eye-close-up.png" : "../assets/icons/closed-eyes.png";
     passwordToggle.setAttribute("aria-pressed", String(showPassword));
     passwordToggle.setAttribute(
       "aria-label",

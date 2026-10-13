@@ -340,6 +340,13 @@ p.sec-desc {
     padding: 26px 20px;
     text-align: center;
     position: relative;
+    transition: transform .22s ease, box-shadow .22s ease, border-color .22s ease;
+}
+
+.step:hover {
+    transform: translateY(-8px);
+    border-color: rgba(29, 78, 216, .22);
+    box-shadow: 0 16px 32px rgba(15, 23, 42, .12);
 }
 
 .step .icon-badge {
@@ -440,16 +447,33 @@ p.sec-desc {
     border: 1px solid var(--line);
     border-radius: var(--radius);
     padding: 26px 22px;
+    transition: transform .22s ease, box-shadow .22s ease, border-color .22s ease;
+}
+
+.feat:hover {
+    transform: translateY(-8px);
+    border-color: rgba(29, 78, 216, .22);
+    box-shadow: 0 16px 32px rgba(15, 23, 42, .12);
 }
 
 .feat .fi {
-    width: 44px;
-    height: 44px;
-    border-radius: 11px;
-    margin-bottom: 16px;
+    width: 58px;
+    height: 58px;
+    border-radius: 14px;
+    margin-bottom: 18px;
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+.feat .fi img {
+    width: 34px;
+    height: 34px;
+    object-fit: contain;
+}
+
+.feat .fi img.officer-icon {
+    mix-blend-mode: multiply;
 }
 
 .feat h3 {
