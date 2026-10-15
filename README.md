@@ -1,4 +1,4 @@
-# SIRMS
+# SafeSite
 
 ## Local XAMPP setup
 

@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#f4f7fb" />
-    <title>Admin Dashboard | SIRMS</title>
+    <title>Admin Dashboard | SafeSite</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -12,6 +12,7 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="../assets/css/admin.css" />
+    <script src="../assets/js/uppercase-inputs.js" defer></script>
     <script src="../assets/js/admin.js" defer></script>
     <script src="../assets/js/reporters.js" defer></script>
     <script src="../assets/js/admin-tables.js" defer></script>
@@ -29,7 +30,7 @@
               <path class="brand-check" d="m8.8 11.8 2.1 2.1 4.5-4.7" /></svg
           ></span>
           <span class="brand-copy"
-            ><strong>SIRMS</strong
+            ><strong>SafeSite</strong
             ><small>Safety Operations<br />Management</small></span
           >
         </a>
@@ -68,7 +69,12 @@
             ><span>Reporter Account Management</span></a
           >
           <a class="nav-item" href="#sectors"
-            ><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 21h18M5 21V7l7-4 7 4v14M9 21v-6h6v6M8 9h2m4 0h2m-8 3h2m4 0h2" /></svg><span>Plant Sector Management</span></a>
+            ><svg viewBox="0 0 24 24" aria-hidden="true">
+              <path
+                d="M3 21h18M5 21V7l7-4 7 4v14M9 21v-6h6v6M8 9h2m4 0h2m-8 3h2m4 0h2"
+              /></svg
+            ><span>Plant Sector Management</span></a
+          >
           <a class="nav-item" href="login.html"
             ><svg viewBox="0 0 24 24" aria-hidden="true">
               <path
@@ -324,34 +330,234 @@
           </section>
         </div>
 
-        <section class="sector-management" id="sectors" aria-labelledby="sectors-title" hidden>
+        <section
+          class="sector-management"
+          id="sectors"
+          aria-labelledby="sectors-title"
+          hidden
+        >
           <div class="sector-stats">
-            <article class="sector-stat"><span>Active Plant Sectors</span><strong id="sector-total">5</strong><small>Across 3 regional industrial zones</small></article>
-            <article class="sector-stat"><span>Operational Sub-Zones</span><strong>48</strong><small>High-pressure and heavy cargo grids</small></article>
-            <article class="sector-stat"><span>Assigned Responders</span><strong>64</strong><small>Active safety marshals</small></article>
-            <article class="sector-stat"><span>Geofence Compliance</span><strong>100%</strong><small>Perimeter sensors operational</small></article>
+            <article class="sector-stat">
+              <span>Total Plant Sectors</span
+              ><strong id="sector-total">—</strong
+              ><small>Registered site locations</small>
+            </article>
+            <article class="sector-stat">
+              <span>Active Sectors</span><strong id="sector-active">—</strong
+              ><small>Available for operations</small>
+            </article>
+            <article class="sector-stat">
+              <span>Inactive Sectors</span
+              ><strong id="sector-inactive">—</strong
+              ><small>Currently unavailable</small>
+            </article>
+            <article class="sector-stat">
+              <span>Tier 1 High Risk</span
+              ><strong id="sector-high-risk">—</strong
+              ><small>Require elevated precautions</small>
+            </article>
           </div>
-          <section class="panel sector-form-panel" aria-labelledby="sectors-title">
-            <header class="sector-form-heading"><div><h1 id="sectors-title">Add New Site Plant Sector</h1><p>Step sequence: Add New Site Plant Sector → Input Name → Input Address → Confirm</p></div><span>FORM ID: SEC-REG-014</span></header>
+          <section
+            class="panel sector-form-panel"
+            aria-labelledby="sectors-title"
+          >
+            <header class="sector-form-heading">
+              <div>
+                <h1 id="sectors-title">Add New Site Plant Sector</h1>
+                <p>
+                  Step sequence: Add New Site Plant Sector → Input Name → Input
+                  Address → Confirm
+                </p>
+              </div>
+              <span>FORM ID: SEC-REG-014</span>
+            </header>
             <form id="sector-form" class="sector-form">
-              <label class="sector-span-1">Name of Plant Sector <b>*</b><input name="name" required maxlength="120" placeholder="e.g. Sector 5 - Cryogenic Processing Plant" /><small>Official alphanumeric descriptor displayed on dispatch alarms.</small></label>
-              <label class="sector-span-2">Address / Site Location of Plant Sector <b>*</b><input name="address" required maxlength="255" placeholder="Building 7, North Gate Industrial Park, San Jose Del Monte, Bulacan" /><small>Precise geographic address used for rapid ambulance and HAZMAT dispatch.</small></label>
-              <label>Sector Code / Identifier<input name="code" id="sector-code" readonly value="SEC-PLANT-06" /><small>System auto-assigned sequence code.</small></label>
-              <label>Assigned Facility Lead / Safety Supervisor<select name="lead"><option>Insp. Mateo Reyes (Chief Safety Officer)</option><option>Officer Maria Santos</option><option>Officer Alex Rivera</option></select><small>Responsible for weekly safety compliance sign-off.</small></label>
-              <label>Operational Risk Tier<select name="risk"><option>Tier 1 - High Risk (Chemical / Toxic Storage)</option><option>Tier 2 - Moderate Risk</option><option>Tier 3 - Low Risk</option></select><small>Determines automatic escalation rules and alarm levels.</small></label>
-              <div class="sector-form-actions"><p id="sector-message" role="status" aria-live="polite" hidden></p><button type="reset" class="reporter-reset">Reset Form</button><button type="submit" class="reporter-submit">Confirm &amp; Register Plant Sector</button></div>
+              <label class="sector-span-1"
+                >Name of Plant Sector <b>*</b
+                ><input
+                  name="sector_name"
+                  required
+                  maxlength="150"
+                  placeholder="e.g. Sector 5 - Cryogenic Processing Plant"
+                /><small
+                  >Official alphanumeric descriptor displayed on dispatch
+                  alarms.</small
+                ></label
+              >
+              <label class="sector-span-2"
+                >Address / Site Location of Plant Sector <b>*</b
+                ><input
+                  name="address"
+                  required
+                  maxlength="255"
+                  placeholder="Building 7, North Gate Industrial Park, San Jose Del Monte, Bulacan"
+                /><small
+                  >Precise geographic address used for rapid ambulance and
+                  HAZMAT dispatch.</small
+                ></label
+              >
+              <label
+                >Sector Code / Identifier<input
+                  id="sector-code"
+                  readonly
+                  value="Assigned after saving"
+                /><small>Generated from the database record ID.</small></label
+              >
+              <label
+                >Assigned Facility Lead / Safety Supervisor<input
+                  name="facility_lead"
+                  maxlength="150"
+                  placeholder="e.g. Insp. Mateo Reyes"
+                /><small>Responsible person for the site.</small></label
+              >
+              <label
+                >Operational Risk Tier<select name="risk_tier">
+                  <option value="TIER 1">
+                    TIER 1 - HIGH RISK (CHEMICAL / TOXIC STORAGE)
+                  </option>
+                  <option value="TIER 2" selected>
+                    TIER 2 - MODERATE RISK
+                  </option>
+                  <option value="TIER 3">TIER 3 - LOW RISK</option></select
+                ><small
+                  >Determines the site's operational risk classification.</small
+                ></label
+              >
+              <label class="sector-span-2"
+                >Description / Notes<textarea
+                  name="description"
+                  maxlength="5000"
+                  rows="2"
+                  placeholder="Add site details or safety notes (optional)"
+                ></textarea>
+              </label>
+              <div class="sector-form-actions">
+                <p
+                  id="sector-message"
+                  role="status"
+                  aria-live="polite"
+                  hidden
+                ></p>
+                <button type="reset" class="reporter-reset">Reset Form</button
+                ><button type="submit" class="reporter-submit">
+                  Confirm &amp; Register Plant Sector
+                </button>
+              </div>
             </form>
           </section>
           <section class="panel sector-directory">
-            <header class="sector-directory-heading"><div><h2>Plant Sectors Directory</h2><p>Listing active sectors and instant edit controllers</p></div><input id="sector-search" type="search" placeholder="Search plant sector by name, code, address" aria-label="Search plant sectors" /><select id="sector-risk-filter" aria-label="Filter by risk tier"><option value="">All Risk Tiers</option><option>Tier 1</option><option>Tier 2</option><option>Tier 3</option></select><select id="sector-status-filter" aria-label="Filter by status"><option value="">Status: Active / Safe</option><option>ACTIVE</option><option>MAINTENANCE</option><option>CAUTION</option></select></header>
-            <div class="table-scroll"><table class="admin-data-table sector-table"><thead><tr><th>Sector Code</th><th>Plant Sector Name</th><th>Site Address &amp; Location</th><th>Staff &amp; Responders</th><th>Hazard &amp; Status</th><th>Actions</th></tr></thead><tbody id="sector-rows">
-              <tr data-risk="Tier 1" data-status="CAUTION"><td>#SEC-04</td><td><strong>Sector 4 - Chemical Storage Tank Farm</strong><small>Zone Alpha · Sub-grid B-10</small></td><td>Lot 12-B Industrial Corridor, Gate 3, SJDM, Bulacan</td><td>18 Staff · 4 Officers</td><td><span class="sector-status caution">ELEVATED CAUTION</span></td><td><button class="reporter-action" data-sector-action="edit" type="button">Edit Info</button> <button class="reporter-action" data-sector-action="view" type="button">View</button></td></tr>
-              <tr data-risk="Tier 2" data-status="ACTIVE"><td>#SEC-01</td><td><strong>Sector 1 - Central Power Turbines</strong><small>High Voltage Switchyard</small></td><td>Grid 1, East Valley Perimeter, Central Plant Complex</td><td>12 Staff · 3 Officers</td><td><span class="sector-status safe">ACTIVE · SAFE</span></td><td><button class="reporter-action" data-sector-action="edit" type="button">Edit Info</button> <button class="reporter-action" data-sector-action="view" type="button">View</button></td></tr>
-              <tr data-risk="Tier 2" data-status="MAINTENANCE"><td>#SEC-02</td><td><strong>Sector 2 - Petrochemical Cracking Unit</strong><small>Thermal Catalytic Tower 09</small></td><td>Block 4B, South Harbor Highway, Batangas Industrial Port</td><td>24 Staff · 6 Officers</td><td><span class="sector-status maintenance">MAINTENANCE</span></td><td><button class="reporter-action" data-sector-action="edit" type="button">Edit Info</button> <button class="reporter-action" data-sector-action="view" type="button">View</button></td></tr>
-              <tr data-risk="Tier 1" data-status="ACTIVE"><td>#SEC-03</td><td><strong>Sector 3 - High Pressure Boiler Array</strong><small>Steam Distribution Bay</small></td><td>Facility Bay 3, Inland Industrial Estate, Santa Rosa, Laguna</td><td>10 Staff · 2 Officers</td><td><span class="sector-status safe">ACTIVE · SAFE</span></td><td><button class="reporter-action" data-sector-action="edit" type="button">Edit Info</button> <button class="reporter-action" data-sector-action="view" type="button">View</button></td></tr>
-              <tr data-risk="Tier 3" data-status="ACTIVE"><td>#SEC-05</td><td><strong>Sector 5 - Automated Cargo Logistics Hub</strong><small>Terminal Yard &amp; Weigh Station</small></td><td>Pier 14 Pierhead, North Freight Corridor, Tondo Port Terminal</td><td>32 Staff · 5 Officers</td><td><span class="sector-status safe">ACTIVE · SAFE</span></td><td><button class="reporter-action" data-sector-action="edit" type="button">Edit Info</button> <button class="reporter-action" data-sector-action="view" type="button">View</button></td></tr>
-            </tbody></table></div>
+            <header class="sector-directory-heading">
+              <div>
+                <h2>Plant Sectors Directory</h2>
+                <p>Listing active sectors and instant edit controllers</p>
+              </div>
+              <input
+                id="sector-search"
+                type="search"
+                placeholder="Search plant sector by name, code, address"
+                aria-label="Search plant sectors"
+              /><select
+                id="sector-risk-filter"
+                aria-label="Filter by risk tier"
+              >
+                <option value="">ALL RISK TIERS</option>
+                <option>TIER 1</option>
+                <option>TIER 2</option>
+                <option>TIER 3</option></select
+              ><select id="sector-status-filter" aria-label="Filter by status">
+                <option value="">ALL STATUSES</option>
+                <option>ACTIVE</option>
+                <option>INACTIVE</option>
+              </select>
+            </header>
+            <div class="table-scroll">
+              <table class="admin-data-table sector-table">
+                <thead>
+                  <tr>
+                    <th>Sector Code</th>
+                    <th>Plant Sector Name</th>
+                    <th>Site Address &amp; Location</th>
+                    <th>Facility Lead</th>
+                    <th>Risk &amp; Status</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="sector-rows">
+                  <tr>
+                    <td colspan="6">Loading plant sectors…</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
           </section>
+          <dialog
+            class="reporter-delete-dialog"
+            id="sector-delete-dialog"
+            aria-labelledby="sector-delete-title"
+          >
+            <form method="dialog" class="reporter-delete-content">
+              <img
+                class="delete-warning-icon"
+                src="../assets/icons/exclamation.png"
+                alt=""
+                aria-hidden="true"
+              />
+              <h2 id="sector-delete-title">Delete Plant Sector?</h2>
+              <p id="sector-delete-copy">This action cannot be undone.</p>
+              <p
+                id="sector-delete-message"
+                class="sector-delete-message"
+                role="status"
+                aria-live="polite"
+                hidden
+              ></p>
+              <div class="reporter-edit-actions">
+                <button type="submit" class="reporter-reset">Cancel</button
+                ><button
+                  type="button"
+                  class="reporter-delete-confirm"
+                  id="confirm-sector-delete"
+                >
+                  Delete Sector
+                </button>
+              </div>
+            </form>
+          </dialog>
+          <dialog
+            class="reporter-delete-dialog"
+            id="sector-status-dialog"
+            aria-labelledby="sector-status-title"
+          >
+            <form method="dialog" class="reporter-delete-content">
+              <img
+                class="delete-warning-icon"
+                src="../assets/icons/exclamation.png"
+                alt=""
+                aria-hidden="true"
+              />
+              <h2 id="sector-status-title">Deactivate Plant Sector?</h2>
+              <p id="sector-status-copy">
+                This sector will no longer be available for active operations.
+              </p>
+              <p
+                id="sector-status-message"
+                class="sector-delete-message"
+                role="status"
+                aria-live="polite"
+                hidden
+              ></p>
+              <div class="reporter-edit-actions">
+                <button type="submit" class="reporter-reset">Cancel</button
+                ><button
+                  type="button"
+                  class="reporter-delete-confirm"
+                  id="confirm-sector-status"
+                >
+                  Deactivate Sector
+                </button>
+              </div>
+            </form>
+          </dialog>
         </section>
 
         <section
@@ -597,7 +803,12 @@
             aria-labelledby="delete-reporter-title"
           >
             <form method="dialog" class="reporter-delete-content">
-              <img class="delete-warning-icon" src="../assets/icons/exclamation.png" alt="" aria-hidden="true" />
+              <img
+                class="delete-warning-icon"
+                src="../assets/icons/exclamation.png"
+                alt=""
+                aria-hidden="true"
+              />
               <h2 id="delete-reporter-title">Delete Reporter Account?</h2>
               <p id="delete-reporter-copy">This action cannot be undone.</p>
               <div class="reporter-edit-actions">
@@ -618,7 +829,12 @@
             aria-labelledby="reporter-status-title"
           >
             <form method="dialog" class="reporter-delete-content">
-              <img class="delete-warning-icon status-warning-icon" src="../assets/icons/exclamation.png" alt="" aria-hidden="true" />
+              <img
+                class="delete-warning-icon status-warning-icon"
+                src="../assets/icons/exclamation.png"
+                alt=""
+                aria-hidden="true"
+              />
               <h2 id="reporter-status-title">Block Reporter Account?</h2>
               <p id="reporter-status-copy">
                 The reporter will no longer be able to sign in.

@@ -63,8 +63,8 @@ try {
         if (($data['action'] ?? '') !== 'update') respond(422, ['ok' => false, 'message' => 'Invalid reporter account action.']);
         $firstName = mb_strtoupper(trim((string) ($data['first_name'] ?? '')), 'UTF-8');
         $lastName = mb_strtoupper(trim((string) ($data['last_name'] ?? '')), 'UTF-8');
-        $email = strtolower(trim((string) ($data['email'] ?? '')));
-        $username = ltrim(trim((string) ($data['username'] ?? '')), '@');
+        $email = mb_strtoupper(trim((string) ($data['email'] ?? '')), 'UTF-8');
+        $username = mb_strtoupper(ltrim(trim((string) ($data['username'] ?? '')), '@'), 'UTF-8');
         $errors = [];
         if (mb_strlen($firstName) < 2 || mb_strlen($firstName) > 100) $errors[] = 'First name must be between 2 and 100 characters.';
         if (mb_strlen($lastName) < 2 || mb_strlen($lastName) > 100) $errors[] = 'Last name must be between 2 and 100 characters.';
@@ -87,8 +87,8 @@ try {
     $data = $_POST;
     $firstName = mb_strtoupper(trim((string) ($data['first_name'] ?? '')), 'UTF-8');
     $lastName = mb_strtoupper(trim((string) ($data['last_name'] ?? '')), 'UTF-8');
-    $email = strtolower(trim((string) ($data['email'] ?? '')));
-    $username = ltrim(trim((string) ($data['username'] ?? '')), '@');
+    $email = mb_strtoupper(trim((string) ($data['email'] ?? '')), 'UTF-8');
+    $username = mb_strtoupper(ltrim(trim((string) ($data['username'] ?? '')), '@'), 'UTF-8');
     $password = (string) ($data['password'] ?? '');
     $confirm = (string) ($data['confirm_password'] ?? '');
 

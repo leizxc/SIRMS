@@ -25,8 +25,8 @@ if (!$data) {
 
 $firstName = mb_strtoupper(trim((string) ($data['first_name'] ?? '')), 'UTF-8');
 $lastName = mb_strtoupper(trim((string) ($data['last_name'] ?? '')), 'UTF-8');
-$email = strtolower(trim((string) ($data['email'] ?? '')));
-$username = ltrim(trim((string) ($data['username'] ?? '')), '@');
+$email = mb_strtoupper(trim((string) ($data['email'] ?? '')), 'UTF-8');
+$username = mb_strtoupper(ltrim(trim((string) ($data['username'] ?? '')), '@'), 'UTF-8');
 $password = (string) ($data['password'] ?? '');
 $confirm = (string) ($data['confirm_password'] ?? '');
 

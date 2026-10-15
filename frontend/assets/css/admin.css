@@ -596,6 +596,7 @@ td a {
 .sector-form label small { display: block; margin-top: 5px; color: var(--muted); font-size: 11px; font-weight: 400; line-height: 1.4; }
 .sector-form label input, .sector-form label select { display: block; margin-top: 7px; }
 .sector-form input, .sector-form select, .sector-directory-heading input, .sector-directory-heading select { width: 100%; min-width: 0; min-height: 43px; padding: 0 12px; border: 1px solid #e2e7ee; border-radius: 8px; outline: 0; background: #f5f6f8; color: var(--ink); font: 400 13px "Plus Jakarta Sans", system-ui, sans-serif; }
+.sector-form textarea { display: block; width: 100%; margin-top: 7px; padding: 11px 12px; border: 1px solid #e2e7ee; border-radius: 8px; outline: 0; background: #f5f6f8; color: var(--ink); font: 400 13px "Plus Jakarta Sans", system-ui, sans-serif; resize: vertical; }
 .sector-form input:focus, .sector-form select:focus, .sector-directory-heading input:focus, .sector-directory-heading select:focus { border-color: var(--blue); box-shadow: 0 0 0 3px #1769f51a; }
 .sector-form input[readonly] { color: #3e4a60; font-family: ui-monospace, monospace; }
 .sector-span-1 { grid-column: span 1; }
@@ -612,10 +613,15 @@ td a {
 .sector-table td { height: auto; padding: 13px 14px; font-size: 12px; }
 .sector-table td small { display: block; margin-top: 4px; color: #79849a; font-size: 10px; }
 .sector-table .reporter-action { padding: 7px 8px; }
+.sector-actions { display: flex; flex-wrap: wrap; gap: 5px; }
+.sector-actions .reporter-action.delete { color: #b42332; border-color: #f1c8cd; }
+.sector-delete-message { color: #bd2835 !important; }
 .sector-status { display: inline-flex; padding: 6px 9px; border-radius: 999px; font-size: 10px; font-weight: 800; white-space: nowrap; }
 .sector-status.safe { background: #cdf8e8; color: #087450; }
 .sector-status.maintenance { background: #dce7ff; color: #40577f; }
 .sector-status.caution { background: #ffe0dd; color: #b42332; }
+.sector-status.inactive { background: #edf0f3; color: #59677e; }
+.sector-form-actions p.is-error { color: #bd2835; }
 .table-footer {
   min-height: 74px;
   display: flex;

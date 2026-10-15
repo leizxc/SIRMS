@@ -6,7 +6,7 @@
       name="viewport"
       content="width=device-width, initial-scale=1, viewport-fit=cover"
     />
-    <title>SIRMS — Safety Incident Reporting Management System</title>
+    <title>SafeSite — Safety Incident Reporting Management System</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -35,13 +35,53 @@
               />
             </svg>
           </span>
-          <span>SIRMS<span class="sub">SAFETY INCIDENT REPORTING</span></span>
+          <span>SafeSite<span class="sub">SAFETY INCIDENT REPORTING</span></span>
         </div>
         <nav class="links">
           <a href="#home" class="active">Home</a>
-          <a href="#how">How It Works</a>
-          <a href="#features">Features</a>
-          <a href="#contact">Contact</a>
+          <div class="nav-menu">
+            <button class="menu-trigger" type="button" aria-expanded="false" aria-controls="how-menu-panel">
+              How It Works
+              <svg aria-hidden="true" viewBox="0 0 20 20" fill="none"><path d="m5 7.5 5 5 5-5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+            <div class="mega-menu" id="how-menu-panel" hidden>
+              <div class="mega-grid">
+                <a class="mega-item" href="#how"><span class="mega-icon"><img src="../assets/icons/reporting.png" alt="" /></span><span><strong>Incident Reporting</strong><small>Submit hazards, injuries, and near misses with supporting details.</small></span></a>
+                <a class="mega-item" href="#features"><span class="mega-icon"><img src="../assets/icons/quality-control.png" alt="" /></span><span><strong>Review &amp; Validation</strong><small>Review reports, assess severity, and set response priority.</small></span></a>
+                <a class="mega-item" href="#features"><span class="mega-icon"><img src="../assets/icons/pen.png" alt="" /></span><span><strong>Incident Investigation</strong><small>Assign officers to investigate and document findings.</small></span></a>
+                <a class="mega-item" href="#features"><span class="mega-icon"><img src="../assets/icons/contract.png" alt="" /></span><span><strong>Corrective Actions</strong><small>Record follow-up actions and keep ownership clear.</small></span></a>
+                <a class="mega-item" href="#features"><span class="mega-icon"><img src="../assets/icons/check.png" alt="" /></span><span><strong>Status Tracking</strong><small>Follow each report from submission through closure.</small></span></a>
+                <a class="mega-item" href="#features"><span class="mega-icon"><img src="../assets/icons/security-helmet.png" alt="" /></span><span><strong>Safety Dashboard</strong><small>See incident activity and safety trends in one place.</small></span></a>
+              </div>
+              <div class="mega-footer"><a href="#how">View the 5-step process <span aria-hidden="true">→</span></a><a href="#features">Explore all features <span aria-hidden="true">→</span></a></div>
+            </div>
+          </div>
+          <div class="nav-menu">
+            <button class="menu-trigger" type="button" aria-expanded="false" aria-controls="features-menu-panel">Features <svg aria-hidden="true" viewBox="0 0 20 20" fill="none"><path d="m5 7.5 5 5 5-5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+            <div class="mega-menu" id="features-menu-panel" hidden>
+              <div class="mega-grid">
+                <a class="mega-item" href="#features"><span class="mega-icon"><img src="../assets/icons/reporting.png" alt="" /></span><span><strong>Incident Reporting</strong><small>Capture injuries, hazards, and near misses in one report.</small></span></a>
+                <a class="mega-item" href="#features"><span class="mega-icon"><img src="../assets/icons/quality-control.png" alt="" /></span><span><strong>Evidence &amp; History</strong><small>Keep supporting files and incident records organized.</small></span></a>
+                <a class="mega-item" href="#features"><span class="mega-icon"><img src="../assets/icons/pen.png" alt="" /></span><span><strong>Investigation</strong><small>Document findings, causes, and follow-up actions.</small></span></a>
+                <a class="mega-item" href="#features"><span class="mega-icon"><img src="../assets/icons/businessman.png" alt="" /></span><span><strong>Officer Assignment</strong><small>Coordinate who responds to each incident.</small></span></a>
+                <a class="mega-item" href="#features"><span class="mega-icon"><img src="../assets/icons/check.png" alt="" /></span><span><strong>Status Tracking</strong><small>Monitor progress from report submission to closure.</small></span></a>
+                <a class="mega-item" href="#features"><span class="mega-icon"><img src="../assets/icons/security-helmet.png" alt="" /></span><span><strong>Safety Dashboard</strong><small>Review incident activity and safety trends.</small></span></a>
+              </div>
+              <div class="mega-footer"><a href="#features">See all SafeSite features <span aria-hidden="true">→</span></a></div>
+            </div>
+          </div>
+          <div class="nav-menu">
+            <button class="menu-trigger" type="button" aria-expanded="false" aria-controls="contact-menu-panel">Contact <svg aria-hidden="true" viewBox="0 0 20 20" fill="none"><path d="m5 7.5 5 5 5-5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+            <div class="mega-menu contact-menu" id="contact-menu-panel" hidden>
+              <div class="contact-menu-content"><span class="contact-menu-tag">SAFE SITE SUPPORT</span><h3>How can we help?</h3><p>Contact the SafeSite team for safety reporting and system assistance.</p><a href="mailto:dispatch@sirms-safety.org">dispatch@sirms-safety.org</a><a href="#contact">View contact details <span aria-hidden="true">→</span></a></div>
+            </div>
+          </div>
+          <div class="nav-menu">
+            <button class="menu-trigger" type="button" aria-expanded="false" aria-controls="compliances-menu-panel">Compliances <svg aria-hidden="true" viewBox="0 0 20 20" fill="none"><path d="m5 7.5 5 5 5-5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+            <div class="mega-menu contact-menu compliances-menu" id="compliances-menu-panel" hidden>
+              <div class="contact-menu-content"><span class="contact-menu-tag">SAFETY &amp; RECORD KEEPING</span><h3>Compliances</h3><a href="#osha-standard-logs">OSHA Standard Logs</a><a href="#iso-45001">ISO 45001 Framework</a><a href="#incident-taxonomy">Incident Taxonomy</a><a href="#data-privacy">Data Privacy &amp; GDPR</a></div>
+            </div>
+          </div>
         </nav>
         <div class="nav-actions">
           <a class="btn btn-primary" href="login.html">Portal Login</a>
@@ -58,13 +98,13 @@
           Safety Compliance<br /><span class="accent">Made Easy</span>
         </h1>
         <p class="hero-lede">
-          See for yourself how SIRMS Safety Incident Reporting Management
+          See for yourself how SafeSite Safety Incident Reporting Management
           Software helps make every aspect of your workplace safety compliance
           easier, faster, and better.
         </p>
         <div class="hero-ctas">
           <a class="btn btn-primary" href="login.html">Report an Incident</a>
-          <a class="btn btn-ghost" href="login.html">Login to SIRMS</a>
+          <a class="btn btn-ghost" href="login.html">Login to SafeSite</a>
         </div>
       </div>
     </section>
@@ -233,6 +273,51 @@
       </div>
     </section>
 
+    <section class="tinted compliance-section" id="compliance">
+      <div class="wrap">
+        <div class="sec-head">
+          <span class="sec-tag">COMPLIANCE SUPPORT</span>
+          <h2 class="sec-title">How SafeSite Supports Your Safety Program</h2>
+          <p class="sec-desc">See which workflows SafeSite can help organize today, and where your organization still needs formal procedures, review, or additional system features.</p>
+        </div>
+        <p class="compliance-scope"><strong>Scope:</strong> SafeSite helps document and coordinate safety work. It does not certify an organization or automatically determine legal compliance.</p>
+        <div class="compliance-grid">
+          <article class="compliance-card" id="osha-standard-logs">
+            <span class="compliance-number">01</span>
+            <h3>OSHA Standard Logs</h3>
+            <p class="compliance-summary">Organize incident information for review and follow-up.</p>
+            <h4>What SafeSite supports</h4>
+            <ul><li>The reporter portal displays a five-step incident reporting guide, including category, location, description, and evidence steps.</li><li>Reporter and officer pages show example report statuses and response stages for workflow reference.</li><li>Plant sector records can store site names, addresses, risk tiers, and facility leads for context.</li></ul>
+            <p class="compliance-note"><strong>Current scope:</strong> Incident examples and workflow screens are not yet connected to a persistent incident API, and SafeSite does not generate OSHA Forms 300, 301, or 300A. A qualified safety administrator must decide recordability and maintain required official logs.</p>
+          </article>
+          <article class="compliance-card" id="iso-45001">
+            <span class="compliance-number">02</span>
+            <h3>ISO 45001 Framework</h3>
+            <p class="compliance-summary">Support parts of an occupational health and safety management workflow.</p>
+            <h4>What SafeSite supports</h4>
+            <ul><li>The working plant sector module stores operating locations, risk tiers, facility leads, and active status in the database.</li><li>Reporter guidance outlines reporting, categorization, description, evidence, and status tracking stages.</li><li>Separate reporter, officer, and administrator views communicate role-specific workflows.</li></ul>
+            <p class="compliance-note"><strong>Current scope:</strong> These tools do not implement the full ISO 45001 management system, internal audit program, worker consultation records, or certification process. Your organization must maintain those processes and evidence separately.</p>
+          </article>
+          <article class="compliance-card" id="incident-taxonomy">
+            <span class="compliance-number">03</span>
+            <h3>Incident Taxonomy</h3>
+            <p class="compliance-summary">Use clear categories to make incident reports easier to review consistently.</p>
+            <h4>What SafeSite supports</h4>
+            <ul><li>The reporter guidance presents example hazard categories such as chemical, slip/trip, structural, and equipment.</li><li>Consistent labels can help teams route reports and review recurring types of hazards.</li><li>Plant sector risk tiers provide additional site context for safety review.</li></ul>
+            <p class="compliance-note"><strong>Current scope:</strong> The category examples are guidance in the interface; there is not yet a centrally managed taxonomy saved with persistent incident records. Administrators should define and maintain the categories used by their organization.</p>
+          </article>
+          <article class="compliance-card" id="data-privacy">
+            <span class="compliance-number">04</span>
+            <h3>Data Privacy &amp; GDPR</h3>
+            <p class="compliance-summary">Apply account controls to help protect access to the portal.</p>
+            <h4>What SafeSite supports</h4>
+            <ul><li>Passwords are stored as password hashes rather than readable passwords.</li><li>Administrative endpoints check the signed-in account's role before allowing reporter or plant-sector management.</li><li>Reporter accounts can be blocked, and login sessions use HttpOnly and SameSite cookie settings.</li></ul>
+            <p class="compliance-note"><strong>Current scope:</strong> These safeguards alone do not establish GDPR compliance. Privacy notices, lawful processing decisions, retention and deletion procedures, data-subject request handling, and a full security review are still needed.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
     <section class="tinted" id="contact">
       <div class="wrap">
         <div class="cta">
@@ -240,7 +325,7 @@
             <div class="cta-tag">READY TO TRANSFORM SAFETY?</div>
             <h2>Protect your workforce with intelligent incident reporting.</h2>
             <p>
-              Deploy SIRMS across your plant, warehouse, or corporate site
+              Deploy SafeSite across your plant, warehouse, or corporate site
               today. Eliminate paper hazards and reduce risk exposure.
             </p>
             <div class="cta-actions">
@@ -265,7 +350,7 @@
                     fill="#fff"
                   /></svg
               ></span>
-              SIRMS
+              SafeSite
             </div>
             <p class="foot-desc">
               Empowering safer organizations with instant accident prevention,
@@ -282,10 +367,10 @@
           </div>
           <div class="foot-col">
             <h4>COMPLIANCE</h4>
-            <a href="#">OSHA Standard Logs</a>
-            <a href="#">ISO 45001 Framework</a>
-            <a href="#">Incident Taxonomy</a>
-            <a href="#">Data Privacy &amp; GDPR</a>
+            <a href="#osha-standard-logs">OSHA Standard Logs</a>
+            <a href="#iso-45001">ISO 45001 Framework</a>
+            <a href="#incident-taxonomy">Incident Taxonomy</a>
+            <a href="#data-privacy">Data Privacy &amp; GDPR</a>
           </div>
           <div class="foot-col">
             <h4>EMERGENCY HOTLINE NI LELEI</h4>

@@ -21,7 +21,7 @@ if (!is_array($payload)) {
     respond(400, ['ok' => false, 'message' => 'Invalid request.']);
 }
 
-$identifier = trim((string) ($payload['username'] ?? ''));
+$identifier = mb_strtoupper(trim((string) ($payload['username'] ?? '')), 'UTF-8');
 $password = (string) ($payload['password'] ?? '');
 $remember = filter_var($payload['remember'] ?? false, FILTER_VALIDATE_BOOLEAN);
 
@@ -34,7 +34,7 @@ try {
     $pdo = database_connection();
     $query = $pdo->prepare(
         'SELECT id, username, email, password_hash, role, is_active FROM users
-         WHERE username = :username OR email = :email
+         WHERE UPPER(username) = :username OR UPPER(email) = :email
          LIMIT 1'
     );
     $query->execute(['username' => $identifier, 'email' => $identifier]);
