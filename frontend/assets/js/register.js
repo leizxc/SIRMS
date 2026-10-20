@@ -5,6 +5,33 @@
   const submit = form?.querySelector('[type="submit"]');
   if (!form || !message || !submit) return;
 
+  const email = form.querySelector('#email');
+  const username = form.querySelector('#username');
+  const validateField = (input) => {
+    if (!input) return true;
+    const error = document.getElementById(`${input.id}-error`);
+    const wrap = input.closest('.input-wrap');
+    let text = '';
+    input.setCustomValidity('');
+    if (input.value.trim()) {
+      if (input.id === 'email' && !input.validity.valid) {
+        text = 'Enter a valid email address (for example, name@example.com).';
+      } else if (input.id === 'username' && input.value.trim().replace(/^@+/, '').length < 6) {
+        text = 'Username must be at least 6 characters.';
+      }
+    }
+    input.setCustomValidity(text);
+    if (error) error.textContent = text;
+    wrap?.classList.toggle('is-invalid', Boolean(text));
+    input.setAttribute('aria-invalid', String(Boolean(text)));
+    return !text;
+  };
+
+  [email, username].forEach((input) => {
+    input?.addEventListener('input', () => validateField(input));
+    input?.addEventListener('blur', () => validateField(input));
+  });
+
   form.querySelectorAll(".password-toggle").forEach((toggle) => {
     toggle.addEventListener("click", () => {
       const input = document.getElementById(toggle.dataset.target);
@@ -19,6 +46,12 @@
   });
 
   form.addEventListener("submit", async (event) => {
+    const fieldsValid = [email, username].every(validateField);
+    if (!fieldsValid || !form.checkValidity()) {
+      event.preventDefault();
+      form.reportValidity();
+      return;
+    }
     event.preventDefault();
     message.hidden = false;
     message.className = "register-message";

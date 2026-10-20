@@ -7,7 +7,10 @@
     <title>Officer Dashboard | SafeSite</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="../assets/css/user.css" />
     <link rel="stylesheet" href="../assets/css/officer.css" />
     <script src="../assets/js/officer.js" defer></script>
@@ -15,38 +18,199 @@
   <body>
     <div class="reporter-shell officer-shell">
       <aside class="reporter-sidebar">
-        <a class="reporter-brand" href="#dashboard" aria-label="Officer dashboard">
-          <span class="reporter-mark"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.5 4.5 5.4v5.2c0 5.1 3.1 8.9 7.5 10.9 4.4-2 7.5-5.8 7.5-10.9V5.4L12 2.5Z"/><path d="m8.8 11.8 2.1 2.1 4.5-4.7"/></svg></span>
-          <span class="reporter-brand-copy"><strong>SafeSite</strong><small>Officer Portal</small></span>
+        <a
+          class="reporter-brand"
+          href="#dashboard"
+          aria-label="Officer dashboard"
+        >
+          <span class="reporter-mark"
+            ><img src="../assets/icons/icon_cons.png" alt=""
+          /></span>
+          <span class="reporter-brand-copy"
+            ><strong>SafeSite</strong><small>Officer Portal</small></span
+          >
         </a>
         <nav class="reporter-nav" aria-label="Officer navigation">
-          <a class="reporter-nav-link is-active" href="#dashboard"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg><span>Dashboard</span></a>
-          <a class="reporter-nav-link" href="#assignments"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="5" width="16" height="16" rx="2"/><path d="M8 3v4m8-4v4M8 11h8m-8 4h5"/></svg><span>Assigned Reports</span></a>
-          <a class="reporter-nav-link" href="#guidelines"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5.5A3.5 3.5 0 0 1 7.5 2H20v17H7.5A3.5 3.5 0 0 0 4 22zM4 5.5v16.2M8 6h8M8 10h8M8 14h5"/></svg><span>Safety Guidelines</span></a>
+          <a class="reporter-nav-link is-active" href="#dashboard"
+            ><svg viewBox="0 0 24 24" aria-hidden="true">
+              <rect x="3" y="3" width="7" height="7" rx="1" />
+              <rect x="14" y="3" width="7" height="7" rx="1" />
+              <rect x="3" y="14" width="7" height="7" rx="1" />
+              <rect x="14" y="14" width="7" height="7" rx="1" /></svg
+            ><span>Dashboard</span></a
+          >
+          <a class="reporter-nav-link" href="#assignments"
+            ><svg viewBox="0 0 24 24" aria-hidden="true">
+              <rect x="4" y="5" width="16" height="16" rx="2" />
+              <path d="M8 3v4m8-4v4M8 11h8m-8 4h5" /></svg
+            ><span>Assigned Reports</span></a
+          >
+          <a class="reporter-nav-link" href="#guidelines"
+            ><svg viewBox="0 0 24 24" aria-hidden="true">
+              <path
+                d="M4 5.5A3.5 3.5 0 0 1 7.5 2H20v17H7.5A3.5 3.5 0 0 0 4 22zM4 5.5v16.2M8 6h8M8 10h8M8 14h5"
+              /></svg
+            ><span>Safety Guidelines</span></a
+          >
         </nav>
-        <a class="reporter-logout" href="login.html"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 4H5a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h5M16 16l4-4-4-4m4 4H9"/></svg><span>Log Out</span></a>
+        <a class="reporter-logout" href="login.html"
+          ><svg viewBox="0 0 24 24" aria-hidden="true">
+            <path
+              d="M10 4H5a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h5M16 16l4-4-4-4m4 4H9"
+            /></svg
+          ><span>Log Out</span></a
+        >
       </aside>
 
       <main class="reporter-main" id="dashboard">
-        <header class="reporter-topbar"><h1>OFFICER DASHBOARD</h1><div class="reporter-user"><span class="reporter-avatar">O</span><span class="reporter-user-name">Officer</span></div></header>
+        <header class="reporter-topbar">
+          <h1>OFFICER DASHBOARD</h1>
+          <div class="reporter-user">
+            <span class="reporter-avatar">O</span
+            ><span class="reporter-user-name">Officer</span>
+          </div>
+        </header>
         <div class="reporter-content">
-          <section class="reporter-stats officer-stats" aria-label="Officer workload overview">
-            <article class="reporter-card officer-stat"><span class="eyebrow">MY WORKLOAD</span><h2>Assigned Reports</h2><strong>8</strong><span class="officer-stat-note">Reports assigned to you</span></article>
-            <article class="reporter-card officer-stat"><span class="eyebrow red-text">URGENT RESPONSE</span><h2>Critical Cases</h2><strong class="red-number">2</strong><span class="officer-stat-note">Require immediate attention</span></article>
-            <article class="reporter-card officer-stat"><span class="eyebrow blue-text">IN PROGRESS</span><h2>Under Investigation</h2><strong class="blue-number">4</strong><span class="officer-stat-note">Currently being reviewed</span></article>
-            <article class="reporter-card officer-stat"><span class="eyebrow green-text">COMPLETED</span><h2>Resolved Reports</h2><strong class="green-number">12</strong><span class="officer-stat-note">Closed assignments</span></article>
+          <section
+            class="reporter-stats officer-stats"
+            aria-label="Officer workload overview"
+          >
+            <article class="reporter-card officer-stat">
+              <span class="eyebrow">MY WORKLOAD</span>
+              <h2>Assigned Reports</h2>
+              <strong>8</strong
+              ><span class="officer-stat-note">Reports assigned to you</span>
+            </article>
+            <article class="reporter-card officer-stat">
+              <span class="eyebrow red-text">URGENT RESPONSE</span>
+              <h2>Critical Cases</h2>
+              <strong class="red-number">2</strong
+              ><span class="officer-stat-note"
+                >Require immediate attention</span
+              >
+            </article>
+            <article class="reporter-card officer-stat">
+              <span class="eyebrow blue-text">IN PROGRESS</span>
+              <h2>Under Investigation</h2>
+              <strong class="blue-number">4</strong
+              ><span class="officer-stat-note">Currently being reviewed</span>
+            </article>
+            <article class="reporter-card officer-stat">
+              <span class="eyebrow green-text">COMPLETED</span>
+              <h2>Resolved Reports</h2>
+              <strong class="green-number">12</strong
+              ><span class="officer-stat-note">Closed assignments</span>
+            </article>
           </section>
 
           <section class="reporter-card officer-queue" id="assignments">
-            <div class="reports-heading"><div><h2>Assigned Reports</h2><p>Review current reports assigned to your account.</p></div><span class="queue-count">8 Active</span></div>
+            <div class="reports-heading">
+              <div>
+                <h2>Assigned Reports</h2>
+                <p>Review current reports assigned to your account.</p>
+              </div>
+              <span class="queue-count">8 Active</span>
+            </div>
             <div class="report-list">
-              <article class="report-item"><div class="report-main"><div class="report-badges"><span class="ticket-id">#REP-2026-042</span><span class="report-status status-investigating"><i></i>CRITICAL</span></div><h3>Chemical Vapor Leak <span class="priority">PRIORITY 1</span></h3><p class="location"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/></svg>Sector 4 Tank B (Cooling Junction 2)</p></div><div class="report-detail"><time>Reported Oct 11, 2026 • 10:15 AM</time><p>Reporter<br /><strong>Lei Librora</strong></p></div><button class="timeline-button" type="button">Review Report ›</button></article>
-              <article class="report-item"><div class="report-main"><div class="report-badges"><span class="ticket-id neutral-ticket">#REP-2026-039</span><span class="report-status status-pending"><i></i>PENDING REVIEW</span></div><h3>Broken Safety Railing <span class="category-tag">FACILITY HAZARD</span></h3><p class="location"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/></svg>Stairwell B3 (Floor 2 to Mezzanine)</p></div><div class="report-detail"><time>Reported Oct 08, 2026 • 02:40 PM</time><p>Reporter<br /><strong>Juan Dela Cruz</strong></p></div><button class="timeline-button" type="button">Review Report ›</button></article>
-              <article class="report-item"><div class="report-main"><div class="report-badges"><span class="ticket-id resolved-ticket">#REP-2026-031</span><span class="report-status status-resolved"><i></i>RESOLVED &amp; CLOSED</span></div><h3>Oil Spill on Walkway <span class="cleaned-tag">CLEANED</span></h3><p class="location"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/></svg>Loading Dock 4 (Bay C Corridor)</p></div><div class="report-detail"><time>Reported Oct 02, 2026 • 08:20 AM</time><p>Reporter<br /><strong>M. Danvers</strong></p></div><button class="timeline-button resolved-action" type="button">View Report ›</button></article>
+              <article class="report-item">
+                <div class="report-main">
+                  <div class="report-badges">
+                    <span class="ticket-id">#REP-2026-042</span
+                    ><span class="report-status status-investigating"
+                      ><i></i>CRITICAL</span
+                    >
+                  </div>
+                  <h3>
+                    Chemical Vapor Leak <span class="priority">PRIORITY 1</span>
+                  </h3>
+                  <p class="location">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                      <path
+                        d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0Z"
+                      />
+                      <circle cx="12" cy="10" r="2.5" /></svg
+                    >Sector 4 Tank B (Cooling Junction 2)
+                  </p>
+                </div>
+                <div class="report-detail">
+                  <time>Reported Oct 11, 2026 • 10:15 AM</time>
+                  <p>Reporter<br /><strong>Lei Librora</strong></p>
+                </div>
+                <button class="timeline-button" type="button">
+                  Review Report ›
+                </button>
+              </article>
+              <article class="report-item">
+                <div class="report-main">
+                  <div class="report-badges">
+                    <span class="ticket-id neutral-ticket">#REP-2026-039</span
+                    ><span class="report-status status-pending"
+                      ><i></i>PENDING REVIEW</span
+                    >
+                  </div>
+                  <h3>
+                    Broken Safety Railing
+                    <span class="category-tag">FACILITY HAZARD</span>
+                  </h3>
+                  <p class="location">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                      <path
+                        d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0Z"
+                      />
+                      <circle cx="12" cy="10" r="2.5" /></svg
+                    >Stairwell B3 (Floor 2 to Mezzanine)
+                  </p>
+                </div>
+                <div class="report-detail">
+                  <time>Reported Oct 08, 2026 • 02:40 PM</time>
+                  <p>Reporter<br /><strong>Juan Dela Cruz</strong></p>
+                </div>
+                <button class="timeline-button" type="button">
+                  Review Report ›
+                </button>
+              </article>
+              <article class="report-item">
+                <div class="report-main">
+                  <div class="report-badges">
+                    <span class="ticket-id resolved-ticket">#REP-2026-031</span
+                    ><span class="report-status status-resolved"
+                      ><i></i>RESOLVED &amp; CLOSED</span
+                    >
+                  </div>
+                  <h3>
+                    Oil Spill on Walkway
+                    <span class="cleaned-tag">CLEANED</span>
+                  </h3>
+                  <p class="location">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                      <path
+                        d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0Z"
+                      />
+                      <circle cx="12" cy="10" r="2.5" /></svg
+                    >Loading Dock 4 (Bay C Corridor)
+                  </p>
+                </div>
+                <div class="report-detail">
+                  <time>Reported Oct 02, 2026 • 08:20 AM</time>
+                  <p>Reporter<br /><strong>M. Danvers</strong></p>
+                </div>
+                <button class="timeline-button resolved-action" type="button">
+                  View Report ›
+                </button>
+              </article>
             </div>
           </section>
 
-          <section class="reporter-card officer-guidelines" id="guidelines"><div><h2>Safety Guidelines</h2><p>Follow the standard incident response steps and document each action taken.</p></div><span class="guideline-mark">✓</span></section>
+          <section class="reporter-card officer-guidelines" id="guidelines">
+            <div>
+              <h2>Safety Guidelines</h2>
+              <p>
+                Follow the standard incident response steps and document each
+                action taken.
+              </p>
+            </div>
+            <span class="guideline-mark">✓</span>
+          </section>
         </div>
       </main>
     </div>

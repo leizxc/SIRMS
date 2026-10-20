@@ -64,10 +64,10 @@
         currentPage = 1;
         render();
       }).observe(body, { childList: true });
-      render();
-    });
-    body.addEventListener("admin-table-filter", () => {
-      currentPage = 1;
+      body.addEventListener("admin-table-filter", () => {
+        currentPage = 1;
+        render();
+      });
       render();
     });
 })();

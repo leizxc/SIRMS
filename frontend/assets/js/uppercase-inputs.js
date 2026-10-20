@@ -10,7 +10,13 @@
   document.addEventListener("input", (event) => {
     const field = event.target;
     if (!(field instanceof HTMLInputElement || field instanceof HTMLTextAreaElement)) return;
-    if (field instanceof HTMLInputElement && excludedTypes.has(field.type)) return;
+    if (
+      field instanceof HTMLInputElement &&
+      (excludedTypes.has(field.type) ||
+        field.type === "email" ||
+        field.name.toLowerCase() === "username" ||
+        field.autocomplete.toLowerCase() === "username")
+    ) return;
     const cursorStart = field.selectionStart;
     const cursorEnd = field.selectionEnd;
     const upperValue = field.value.toLocaleUpperCase("en-US");

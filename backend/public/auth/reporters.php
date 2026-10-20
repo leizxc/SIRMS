@@ -27,7 +27,7 @@ try {
     }
 
     if ($_SERVER['REQUEST_METHOD'] === 'GET') {
-        $query = $pdo->query("SELECT id, first_name, last_name, username, email, is_active FROM users WHERE UPPER(role) IN ('USER', 'USERS', 'REPORTER') ORDER BY id DESC");
+        $query = $pdo->query("SELECT id, first_name, last_name, username, email, is_active, created_at FROM users WHERE UPPER(role) IN ('USER', 'USERS', 'REPORTER') ORDER BY id DESC");
         respond(200, ['ok' => true, 'reporters' => $query->fetchAll()]);
     }
     if (!in_array($_SERVER['REQUEST_METHOD'], ['POST', 'PATCH', 'DELETE'], true)) {
@@ -69,7 +69,7 @@ try {
         if (mb_strlen($firstName) < 2 || mb_strlen($firstName) > 100) $errors[] = 'First name must be between 2 and 100 characters.';
         if (mb_strlen($lastName) < 2 || mb_strlen($lastName) > 100) $errors[] = 'Last name must be between 2 and 100 characters.';
         if (!filter_var($email, FILTER_VALIDATE_EMAIL) || strlen($email) > 254) $errors[] = 'Enter a valid email address.';
-        if (!preg_match('/^[a-zA-Z0-9._-]{3,50}$/', $username)) $errors[] = 'Username must be 3–50 characters and use only letters, numbers, dots, underscores, or hyphens.';
+        if (!preg_match('/^[a-zA-Z0-9._-]{6,50}$/', $username)) $errors[] = 'Username must be 6–50 characters and use only letters, numbers, dots, underscores, or hyphens.';
         if ($errors) respond(422, ['ok' => false, 'message' => implode(' ', $errors)]);
 
         $check = $pdo->prepare('SELECT username, email FROM users WHERE id <> :id AND (username = :username OR email = :email) LIMIT 1');
@@ -96,7 +96,7 @@ try {
     if (mb_strlen($firstName) < 2 || mb_strlen($firstName) > 100) $errors[] = 'First name must be between 2 and 100 characters.';
     if (mb_strlen($lastName) < 2 || mb_strlen($lastName) > 100) $errors[] = 'Last name must be between 2 and 100 characters.';
     if (!filter_var($email, FILTER_VALIDATE_EMAIL) || strlen($email) > 254) $errors[] = 'Enter a valid email address.';
-    if (!preg_match('/^[a-zA-Z0-9._-]{3,50}$/', $username)) $errors[] = 'Username must be 3–50 characters and use only letters, numbers, dots, underscores, or hyphens.';
+    if (!preg_match('/^[a-zA-Z0-9._-]{6,50}$/', $username)) $errors[] = 'Username must be 6–50 characters and use only letters, numbers, dots, underscores, or hyphens.';
     if (strlen($password) < 8) $errors[] = 'Password must be at least 8 characters.';
     if ($password !== $confirm) $errors[] = 'Passwords do not match.';
     if ($errors) respond(422, ['ok' => false, 'message' => implode(' ', $errors)]);

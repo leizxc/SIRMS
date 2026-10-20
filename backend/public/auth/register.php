@@ -34,7 +34,7 @@ $errors = [];
 if (mb_strlen($firstName) < 2 || mb_strlen($firstName) > 100) $errors[] = 'First name must be between 2 and 100 characters.';
 if (mb_strlen($lastName) < 2 || mb_strlen($lastName) > 100) $errors[] = 'Last name must be between 2 and 100 characters.';
 if (!filter_var($email, FILTER_VALIDATE_EMAIL) || strlen($email) > 254) $errors[] = 'Enter a valid email address.';
-if (!preg_match('/^[a-zA-Z0-9._-]{3,50}$/', $username)) $errors[] = 'Username must be 3–50 characters and use only letters, numbers, dots, underscores, or hyphens.';
+if (!preg_match('/^[a-zA-Z0-9._-]{6,50}$/', $username)) $errors[] = 'Username must be 6–50 characters and use only letters, numbers, dots, underscores, or hyphens.';
 if (strlen($password) < 8) $errors[] = 'Password must be at least 8 characters.';
 if ($password !== $confirm) $errors[] = 'Passwords do not match.';
 if ($errors) respond(422, ['ok' => false, 'message' => implode(' ', $errors)]);

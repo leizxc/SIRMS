@@ -29,6 +29,7 @@
             class="register-form"
             action="../../backend/public/auth/register.php"
             method="post"
+            novalidate
           >
             <!-- First Name + Last Name -->
             <div class="field-row">
@@ -102,6 +103,7 @@
                   required
                 />
               </label>
+              <small class="field-error" id="email-error" aria-live="polite"></small>
             </div>
 
             <!-- Username -->
@@ -121,9 +123,12 @@
                   name="username"
                   placeholder="@ vance_ehs_officer"
                   autocomplete="username"
+                  minlength="6"
+                  maxlength="50"
                   required
                 />
               </label>
+              <small class="field-error" id="username-error" aria-live="polite"></small>
             </div>
 
             <!-- Password + Confirm Password -->
@@ -157,7 +162,11 @@
                     aria-pressed="false"
                     data-target="reg-password"
                   >
-                    <img src="../assets/icons/closed-eyes.png" alt="" aria-hidden="true" />
+                    <img
+                      src="../assets/icons/closed-eyes.png"
+                      alt=""
+                      aria-hidden="true"
+                    />
                   </button>
                 </label>
               </div>
@@ -190,7 +199,11 @@
                     aria-pressed="false"
                     data-target="reg-confirm-password"
                   >
-                    <img src="../assets/icons/closed-eyes.png" alt="" aria-hidden="true" />
+                    <img
+                      src="../assets/icons/closed-eyes.png"
+                      alt=""
+                      aria-hidden="true"
+                    />
                   </button>
                 </label>
               </div>
@@ -227,13 +240,8 @@
         <div class="welcome-overlay"></div>
         <div class="welcome-content">
           <a class="brand" href="login.html" aria-label="SafeSite home">
-            <span class="brand-mark" aria-hidden="true">
-              <svg viewBox="0 0 32 32">
-                <path
-                  d="M16 3 5 7v8c0 7 4.7 11.7 11 15 6.3-3.3 11-8 11-15V7L16 3Z"
-                />
-                <path d="m11 16 3.5 3.5L21.5 12" />
-              </svg>
+            <span class="brand-mark" aria-hidden="true"
+              ><img src="../assets/icons/icon_cons.png" alt="" />
             </span>
             <span class="brand-copy">
               <strong>SafeSite</strong>
@@ -250,13 +258,8 @@
           </div>
 
           <div class="safety-note">
-            <span class="safety-icon" aria-hidden="true">
-              <svg viewBox="0 0 32 32">
-                <path
-                  d="M16 3 5 7v8c0 7 4.7 11.7 11 15 6.3-3.3 11-8 11-15V7L16 3Z"
-                />
-                <path d="m11 16 3.5 3.5L21.5 12" />
-              </svg>
+            <span class="safety-icon" aria-hidden="true"
+              ><img src="../assets/icons/icon_cons.png" alt="" />
             </span>
             <strong>Safety<br />Starts with<br />You</strong>
           </div>

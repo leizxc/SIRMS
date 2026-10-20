@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#f4f7fb" />
-    <title>Admin Dashboard | SafeSite</title>
+    <title>SafeSite</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -13,22 +13,22 @@
     />
     <link rel="stylesheet" href="../assets/css/admin.css" />
     <script src="../assets/js/uppercase-inputs.js" defer></script>
+    <script src="../assets/js/admin-notifications.js" defer></script>
     <script src="../assets/js/admin.js" defer></script>
     <script src="../assets/js/reporters.js" defer></script>
+    <script src="../assets/js/officers.js" defer></script>
     <script src="../assets/js/admin-tables.js" defer></script>
     <script src="../assets/js/sectors.js" defer></script>
+    <script src="../assets/js/incidents.js" defer></script>
+    <script src="../assets/js/dashboard.js" defer></script>
   </head>
   <body>
     <div class="admin-shell">
       <aside class="sidebar">
         <a class="brand" href="#dashboard" aria-label="Admin dashboard">
           <span class="brand-mark"
-            ><svg viewBox="0 0 24 24" aria-hidden="true">
-              <path
-                d="M12 2.5 4.5 5.4v5.2c0 5.1 3.1 8.9 7.5 10.9 4.4-2 7.5-5.8 7.5-10.9V5.4L12 2.5Z"
-              />
-              <path class="brand-check" d="m8.8 11.8 2.1 2.1 4.5-4.7" /></svg
-          ></span>
+            ><img src="../assets/icons/icon_cons.png" alt=""
+          /></span>
           <span class="brand-copy"
             ><strong>SafeSite</strong
             ><small>Safety Operations<br />Management</small></span
@@ -37,50 +37,52 @@
 
         <nav class="side-nav" aria-label="Admin navigation">
           <a class="nav-item selected" href="#dashboard"
-            ><svg viewBox="0 0 24 24" aria-hidden="true">
-              <rect x="3" y="3" width="7" height="7" rx="1" />
-              <rect x="14" y="3" width="7" height="7" rx="1" />
-              <rect x="3" y="14" width="7" height="7" rx="1" />
-              <rect x="14" y="14" width="7" height="7" rx="1" /></svg
-            ><span>Dashboard</span></a
+            ><img
+              class="nav-icon"
+              src="../assets/icons/dashboard.png"
+              alt=""
+              aria-hidden="true"
+            /><span>Dashboard</span></a
           >
           <a class="nav-item" href="#incidents"
-            ><svg viewBox="0 0 24 24" aria-hidden="true">
-              <path d="M12 3v18M4.2 7.5l15.6 9M4.2 16.5l15.6-9" />
-              <path
-                d="m9 4 3 3 3-3M9 20l3-3 3 3M3.5 10l4 .8-.8-4M20.5 14l-4-.8.8 4M3.5 14l4-.8-.8 4M20.5 10l-4 .8.8-4"
-              /></svg
-            ><span>Incidents</span></a
+            ><img
+              class="nav-icon"
+              src="../assets/icons/warning.png"
+              alt=""
+              aria-hidden="true"
+            /><span>Incidents</span></a
           >
           <a class="nav-item" href="#officers"
-            ><svg viewBox="0 0 24 24" aria-hidden="true">
-              <rect x="3" y="6" width="18" height="15" rx="2" />
-              <path
-                d="M8 6V4h8v2M12 10l1 2 2 .3-1.5 1.5.4 2.2-1.9-1-1.9 1 .4-2.2L8 12.3 10 12l1-2ZM7 19h10"
-              /></svg
-            ><span>Officers Account Management</span></a
+            ><img
+              class="nav-icon"
+              src="../assets/icons/accountant.png"
+              alt=""
+              aria-hidden="true"
+            /><span>Officers Account Management</span></a
           >
           <a class="nav-item" href="#reporters"
-            ><svg viewBox="0 0 24 24" aria-hidden="true">
-              <circle cx="9" cy="8" r="3" />
-              <path
-                d="M3.5 19v-1.5A4.5 4.5 0 0 1 8 13h2a4.5 4.5 0 0 1 4.5 4.5V19zM16 5.5a3 3 0 0 1 0 5.8M17 13h1a3.5 3.5 0 0 1 3.5 3.5V19H17"
-              /></svg
-            ><span>Reporter Account Management</span></a
+            ><img
+              class="nav-icon"
+              src="../assets/icons/reporter.png"
+              alt=""
+              aria-hidden="true"
+            /><span>Reporter Account Management</span></a
           >
           <a class="nav-item" href="#sectors"
-            ><svg viewBox="0 0 24 24" aria-hidden="true">
-              <path
-                d="M3 21h18M5 21V7l7-4 7 4v14M9 21v-6h6v6M8 9h2m4 0h2m-8 3h2m4 0h2"
-              /></svg
-            ><span>Plant Sector Management</span></a
+            ><img
+              class="nav-icon"
+              src="../assets/icons/factory.png"
+              alt=""
+              aria-hidden="true"
+            /><span>Plant Sector Management</span></a
           >
           <a class="nav-item" href="login.html"
-            ><svg viewBox="0 0 24 24" aria-hidden="true">
-              <path
-                d="M10 4H5a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h5M16 16l4-4-4-4m4 4H9"
-              /></svg
-            ><span>Log Out</span></a
+            ><img
+              class="nav-icon"
+              src="../assets/icons/logout.png"
+              alt=""
+              aria-hidden="true"
+            /><span>Log Out</span></a
           >
         </nav>
       </aside>
@@ -100,86 +102,141 @@
         </header>
 
         <div class="dashboard-content" id="dashboard-overview">
-          <section class="overview-grid" aria-label="Incident overview">
+          <section class="overview-grid" aria-label="SafeSite management overview">
             <article class="panel chart-panel">
               <div class="chart-heading">
                 <div>
-                  <h2>Total Incidents</h2>
-                  <p>Logged safety issues and current responses</p>
+                  <h2>Incident Reports by Severity</h2>
+                  <p>Current report breakdown from the incident register</p>
                 </div>
-                <div class="segmented" aria-label="Chart time range">
-                  <button class="chosen" type="button">Today</button
-                  ><button type="button">Week</button
-                  ><button type="button">Month</button>
-                </div>
+                <a class="view-button" href="#incidents">View incidents</a>
               </div>
-              <div
-                class="chart-wrap"
-                role="img"
-                aria-label="Line chart showing incidents rising toward midday and declining in the afternoon"
-              >
-                <svg
-                  class="chart"
-                  viewBox="0 0 620 190"
-                  preserveAspectRatio="none"
-                  aria-hidden="true"
-                >
-                  <defs>
-                    <linearGradient id="chartFill" x1="0" x2="0" y1="0" y2="1">
-                      <stop offset="0" stop-color="#2878f0" stop-opacity=".2" />
-                      <stop offset="1" stop-color="#2878f0" stop-opacity="0" />
-                    </linearGradient>
-                  </defs>
-                  <g class="grid-lines">
-                    <path
-                      d="M40 18H610M40 55H610M40 92H610M40 129H610M40 166H610"
-                    />
-                    <path d="M40 18V166M255 18V166M470 18V166M610 18V166" />
-                  </g>
-                  <g class="axis-labels">
-                    <text x="4" y="22">40</text>
-                    <text x="4" y="59">30</text>
-                    <text x="4" y="96">20</text>
-                    <text x="4" y="133">10</text>
-                    <text x="12" y="170">0</text>
-                    <text x="26" y="187">12 AM</text>
-                    <text x="145" y="187">4 AM</text>
-                    <text x="250" y="187">8 AM</text>
-                    <text x="358" y="187">12 PM</text>
-                    <text x="463" y="187">4 PM</text>
-                    <text x="568" y="187">8 PM</text>
-                  </g>
-                  <path
-                    class="chart-area"
-                    d="M40 147 70 143 120 130 147 134 176 130 229 113 256 110 285 96 335 75 361 64 374 60 389 65 442 81 470 95 500 110 530 108 578 96 610 95V166H40Z"
-                  />
-                  <path
-                    class="chart-line"
-                    d="M40 147 70 143 120 130 147 134 176 130 229 113 256 110 285 96 335 75 361 64 374 60 389 65 442 81 470 95 500 110 530 108 578 96 610 95"
-                  />
-                  <g class="chart-dots">
-                    <circle cx="40" cy="147" r="3.5" />
-                    <circle cx="70" cy="143" r="3.5" />
-                    <circle cx="120" cy="130" r="3.5" />
-                    <circle cx="147" cy="134" r="3.5" />
-                    <circle cx="176" cy="130" r="3.5" />
-                    <circle cx="229" cy="113" r="3.5" />
-                    <circle cx="256" cy="110" r="3.5" />
-                    <circle cx="285" cy="96" r="3.5" />
-                    <circle cx="335" cy="75" r="3.5" />
-                    <circle cx="361" cy="64" r="3.5" />
-                    <circle cx="374" cy="60" r="3.5" />
-                    <circle cx="389" cy="65" r="3.5" />
-                    <circle cx="442" cy="81" r="3.5" />
-                    <circle cx="470" cy="95" r="3.5" />
-                    <circle cx="500" cy="110" r="3.5" />
-                    <circle cx="530" cy="108" r="3.5" />
-                    <circle cx="578" cy="96" r="3.5" />
-                    <circle cx="610" cy="95" r="3.5" />
-                  </g>
-                </svg>
+              <div class="severity-chart" id="dashboard-severity-summary">
+                <div class="severity-donut" id="dashboard-severity-donut" role="img" aria-label="Incident count by severity">
+                  <div class="severity-donut-center"><strong id="dashboard-severity-total">0</strong><span>Reports</span></div>
+                </div>
+                <div class="severity-legend">
+                  <div class="severity-legend-item" data-severity="Low"><i></i><span>Low</span><strong>0</strong></div>
+                  <div class="severity-legend-item" data-severity="Moderate"><i></i><span>Moderate</span><strong>0</strong></div>
+                  <div class="severity-legend-item" data-severity="High"><i></i><span>High</span><strong>0</strong></div>
+                  <div class="severity-legend-item critical" data-severity="Critical"><i></i><span>Critical</span><strong>0</strong></div>
+                </div>
               </div>
             </article>
+            <article class="panel status-overview-panel">
+              <div class="chart-heading">
+                <div>
+                  <h2>Incident Status Overview</h2>
+                  <p>Current progress of all reported incidents</p>
+                </div>
+                <a class="view-button" href="#incidents">Manage reports</a>
+              </div>
+              <div class="incident-status-summary" id="dashboard-status-summary">
+                <div class="incident-status-row pending" data-status="Pending">
+                  <div class="incident-status-label"><i></i><span>Pending</span></div>
+                  <div class="incident-status-track"><i></i></div><strong>0</strong>
+                </div>
+                <div class="incident-status-row review" data-status="Under Review">
+                  <div class="incident-status-label"><i></i><span>Under Review</span></div>
+                  <div class="incident-status-track"><i></i></div><strong>0</strong>
+                </div>
+                <div class="incident-status-row progress" data-status="In Progress">
+                  <div class="incident-status-label"><i></i><span>In Progress</span></div>
+                  <div class="incident-status-track"><i></i></div><strong>0</strong>
+                </div>
+                <div class="incident-status-row resolved" data-status="Resolved">
+                  <div class="incident-status-label"><i></i><span>Resolved</span></div>
+                  <div class="incident-status-track"><i></i></div><strong>0</strong>
+                </div>
+              </div>
+            </article>
+            <article class="panel stat-card">
+              <div class="stat-top">
+                <span>Incident Reports</span
+                ><svg viewBox="0 0 24 24" aria-hidden="true">
+                  <rect x="4" y="5" width="16" height="16" rx="2" />
+                  <path d="M8 3v4m8-4v4M8 11h8m-8 4h4" />
+                  <circle cx="18" cy="17" r="4" />
+                </svg>
+              </div>
+              <strong id="dashboard-stat-incidents">0</strong
+              ><span class="status-pill blue-pill">All submissions</span>
+            </article>
+            <article class="panel stat-card">
+              <div class="stat-top">
+                <span>Active Officers</span
+                ><svg viewBox="0 0 24 24" aria-hidden="true">
+                  <rect x="3" y="6" width="18" height="15" rx="2" />
+                  <path
+                    d="M8 6V4h8v2m-4 4 1 2 2 .3-1.5 1.5.4 2.2-1.9-1-1.9 1 .4-2.2L9 12.3l2-.3 1-2Z"
+                  />
+                </svg>
+              </div>
+              <strong id="dashboard-stat-officers">0</strong
+              ><span class="status-pill green-pill">Officer accounts</span>
+            </article>
+            <article class="panel stat-card">
+              <div class="stat-top">
+                <span>Active Reporters</span
+                ><svg viewBox="0 0 24 24" aria-hidden="true">
+                  <circle cx="12" cy="12" r="9" />
+                  <path d="m8 12 2.5 2.5L16.5 9" />
+                </svg>
+              </div>
+              <strong id="dashboard-stat-reporters">0</strong
+              ><span class="status-pill gray-pill">Reporter accounts</span>
+            </article>
+            <article class="panel stat-card critical-stat-card">
+              <div class="stat-top">
+                <span>Active Plant Sectors</span
+                ><svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M12 3 2.8 20h18.4L12 3Z" />
+                  <path d="M12 9v5m0 3h.01" />
+                </svg>
+              </div>
+              <strong id="dashboard-stat-sectors">0</strong
+              ><span class="status-pill red-pill">Registered locations</span>
+            </article>
+          </section>
+
+          <section
+            class="panel incidents-panel"
+            id="dashboard-recent-incidents"
+          >
+            <div class="incidents-heading">
+              <div>
+                <h2>Recent Incidents</h2>
+                  <p>Latest reports submitted by reporters</p>
+              </div>
+                <a class="view-button" href="#incidents">View all incidents</a>
+            </div>
+            <div class="table-scroll">
+              <table class="admin-data-table">
+                <thead>
+                  <tr>
+                    <th>Incident ID</th>
+                    <th>Category</th>
+                    <th>Plant Sector</th>
+                    <th>Reported By</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody id="dashboard-recent-incident-rows">
+                  <tr><td colspan="6">Loading recent incidents...</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+        </div>
+
+        <section
+          class="incident-management"
+          id="incidents"
+          aria-label="Incident management"
+          hidden
+        >
+          <div class="incident-stats" aria-label="Incident summary">
             <article class="panel stat-card">
               <div class="stat-top">
                 <span>Active / Pending</span
@@ -189,12 +246,12 @@
                   <circle cx="18" cy="17" r="4" />
                 </svg>
               </div>
-              <strong>38</strong
-              ><span class="status-pill blue-pill">In Progress</span>
+              <strong id="management-stat-open">0</strong
+              ><span class="status-pill blue-pill">Open reports</span>
             </article>
             <article class="panel stat-card">
               <div class="stat-top">
-                <span>Dispatched Officers</span
+                <span>Total Reports</span
                 ><svg viewBox="0 0 24 24" aria-hidden="true">
                   <rect x="3" y="6" width="18" height="15" rx="2" />
                   <path
@@ -202,8 +259,8 @@
                   />
                 </svg>
               </div>
-              <strong>18</strong
-              ><span class="status-pill green-pill">Active</span>
+              <strong id="management-stat-dispatched">0</strong
+              ><span class="status-pill green-pill">All reports</span>
             </article>
             <article class="panel stat-card">
               <div class="stat-top">
@@ -213,7 +270,7 @@
                   <path d="m8 12 2.5 2.5L16.5 9" />
                 </svg>
               </div>
-              <strong>228</strong
+              <strong id="management-stat-resolved">0</strong
               ><span class="status-pill gray-pill">Closed</span>
             </article>
             <article class="panel stat-card critical-stat-card">
@@ -224,32 +281,41 @@
                   <path d="M12 9v5m0 3h.01" />
                 </svg>
               </div>
-              <strong>1</strong
-              ><span class="status-pill red-pill">Needs attention</span>
+              <strong id="management-stat-critical">0</strong
+              ><span class="status-pill red-pill" id="management-stat-critical-label">Needs attention</span>
             </article>
-          </section>
-
-          <section class="panel incidents-panel" id="incidents">
+          </div>
+          <section class="panel incidents-panel" id="incident-list">
             <div class="incidents-heading">
               <div>
-                <h2>Recent Incidents</h2>
-                <p>Logged safety issues and current responses</p>
+                <h2>Incoming Incident Reports</h2>
+                <p>
+                  Review newly submitted reports and assign them to a safety
+                  officer.
+                </p>
               </div>
               <div class="table-tools">
-                <label class="search-box"
-                  ><svg viewBox="0 0 24 24" aria-hidden="true">
-                    <circle cx="10.8" cy="10.8" r="6.3" />
-                    <path d="m16 16 4.5 4.5" /></svg
-                  ><input
-                    type="search"
-                    placeholder="Filter incidents..."
-                    aria-label="Filter incidents"
-                /></label>
-                <div class="filters" aria-label="Incident status">
-                  <button class="chosen" type="button">All</button
-                  ><button type="button">Critical</button
-                  ><button type="button">Pending</button
-                  ><button type="button">Resolved</button>
+                <div class="incident-date-filters" aria-label="Filter by report month and day">
+                  <label>Month<input type="month" id="incident-date-month" aria-label="Report month" /></label>
+                  <label>Day<select id="incident-date-day" aria-label="Report day" disabled><option value="">All days</option></select></label>
+                  <button class="clear-date-filter" id="clear-incident-dates" type="button">Clear</button>
+                </div>
+                <div class="incident-search-group">
+                  <label class="search-box"
+                    ><svg viewBox="0 0 24 24" aria-hidden="true">
+                      <circle cx="10.8" cy="10.8" r="6.3" />
+                      <path d="m16 16 4.5 4.5" /></svg
+                    ><input
+                      type="search"
+                      placeholder="Filter incidents..."
+                      aria-label="Filter incidents"
+                  /></label>
+                  <div class="filters" aria-label="Incident status">
+                    <button class="chosen" type="button">All</button
+                    ><button type="button">Critical</button
+                    ><button type="button">Pending</button
+                    ><button type="button">Resolved</button>
+                  </div>
                 </div>
               </div>
             </div>
@@ -259,77 +325,19 @@
                   <tr>
                     <th>Incident ID</th>
                     <th>Category</th>
-                    <th>Location</th>
+                    <th>Plant Sector</th>
                     <th>Reported By</th>
                     <th>Status</th>
                     <th>Action</th>
                   </tr>
                 </thead>
-                <tbody>
-                  <tr>
-                    <td><a href="#incident-089">#SIR-2026-089</a></td>
-                    <td>Chemical Spill</td>
-                    <td class="muted-cell">Sector 4 - Tank B</td>
-                    <td class="muted-cell">K. Bradley</td>
-                    <td><span class="status-pill red-pill">Critical</span></td>
-                    <td>
-                      <button class="view-button" type="button">View</button>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td><a href="#incident-088">#SIR-2026-088</a></td>
-                    <td>Equipment Malfunction</td>
-                    <td class="muted-cell">Turbine Hall C</td>
-                    <td class="muted-cell">M. Danvers</td>
-                    <td>
-                      <span class="status-pill blue-pill">In Progress</span>
-                    </td>
-                    <td>
-                      <button class="view-button" type="button">View</button>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td><a href="#incident-087">#SIR-2026-087</a></td>
-                    <td>Workplace Injury</td>
-                    <td class="muted-cell">Loading Dock 4</td>
-                    <td class="muted-cell">J. Thorne</td>
-                    <td>
-                      <span class="status-pill blue-pill">Pending Officer</span>
-                    </td>
-                    <td>
-                      <button class="view-button" type="button">View</button>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td><a href="#incident-086">#SIR-2026-086</a></td>
-                    <td>Hazard Observation</td>
-                    <td class="muted-cell">Main Yard</td>
-                    <td class="muted-cell">A. Geller</td>
-                    <td>
-                      <span class="status-pill gray-pill">Under Review</span>
-                    </td>
-                    <td>
-                      <button class="view-button" type="button">View</button>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td><a href="#incident-085">#SIR-2026-085</a></td>
-                    <td>Maintenance Request</td>
-                    <td class="muted-cell">Admin Complex</td>
-                    <td class="muted-cell">R. Sterling</td>
-                    <td>
-                      <span class="status-pill green-pill">Resolved</span>
-                    </td>
-                    <td>
-                      <button class="view-button" type="button">View</button>
-                    </td>
-                  </tr>
+                <tbody id="admin-incident-rows">
+                  <tr><td colspan="6">Loading incident reports...</td></tr>
                 </tbody>
               </table>
             </div>
           </section>
-        </div>
-
+        </section>
         <section
           class="sector-management"
           id="sectors"
@@ -561,6 +569,325 @@
         </section>
 
         <section
+          class="reporter-management officer-management"
+          id="officers"
+          aria-labelledby="officers-title"
+          hidden
+        >
+          <div class="reporter-stats" aria-label="Officer account totals">
+            <article class="reporter-stat">
+              <span>Total Officers</span
+              ><strong data-officer-stat="total">—</strong>
+            </article>
+            <article class="reporter-stat">
+              <span>New This Month</span
+              ><strong data-officer-stat="new">—</strong>
+            </article>
+            <article class="reporter-stat">
+              <span>Inactive Officers</span
+              ><strong data-officer-stat="inactive">—</strong>
+            </article>
+          </div>
+          <section
+            class="panel provision-panel"
+            aria-labelledby="add-officer-title"
+          >
+            <div class="provision-heading">
+              <div>
+                <h2 id="add-officer-title">Add Officer Account</h2>
+                <p>
+                  Set the account credentials, officer role, assigned sector,
+                  and specialties.
+                </p>
+              </div>
+              <span class="role-badge">OFFICER</span>
+            </div>
+            <form
+              class="reporter-form"
+              id="officer-form"
+              action="../../backend/public/auth/officers.php"
+              method="post"
+            >
+              <div class="reporter-fields">
+                <label
+                  >First Name <span>*</span
+                  ><input
+                    name="first_name"
+                    required
+                    minlength="2"
+                    maxlength="100"
+                    autocomplete="given-name"
+                    placeholder="e.g. Alex"
+                /></label>
+                <label
+                  >Last Name <span>*</span
+                  ><input
+                    name="last_name"
+                    required
+                    minlength="2"
+                    maxlength="100"
+                    autocomplete="family-name"
+                    placeholder="e.g. Rivera"
+                /></label>
+                <label
+                  >Work Email Address <span>*</span
+                  ><input
+                    name="email"
+                    type="email"
+                    required
+                    maxlength="254"
+                    autocomplete="email"
+                    placeholder="name@company.com" /><small
+                    class="field-validation-error"
+                    data-error-for="email"
+                    aria-live="polite"
+                  ></small
+                ></label>
+                <label
+                  >System Username <span>*</span
+                  ><input
+                    name="username"
+                    required
+                    minlength="6"
+                    maxlength="50"
+                    pattern="[a-zA-Z0-9._\-]+"
+                    autocomplete="username"
+                    placeholder="e.g. arivera" /><small
+                    class="field-validation-error"
+                    data-error-for="username"
+                    aria-live="polite"
+                  ></small
+                ></label>
+                <label
+                  >Contact Number<input
+                    name="contact_number"
+                    type="tel"
+                    maxlength="30"
+                    placeholder="Optional phone number"
+                /></label>
+                <label
+                  >Officer Role <span>*</span
+                  ><select name="officer_role_id" id="officer-role" required>
+                    <option value="">Loading roles…</option>
+                  </select></label
+                >
+                <label
+                  >Assigned Plant Sector<select
+                    name="plant_sector_id"
+                    id="officer-sector"
+                  >
+                    <option value="">No sector assigned</option>
+                  </select></label
+                >
+                <label
+                  >Password <span>*</span
+                  ><input
+                    name="password"
+                    type="password"
+                    required
+                    minlength="8"
+                    autocomplete="new-password"
+                    placeholder="At least 8 characters"
+                /></label>
+                <label
+                  >Confirm Password <span>*</span
+                  ><input
+                    name="confirm_password"
+                    type="password"
+                    required
+                    minlength="8"
+                    autocomplete="new-password"
+                    placeholder="Re-enter password"
+                /></label>
+                <fieldset class="officer-specialty-field">
+                  <legend>Response Specialties</legend>
+                  <div
+                    id="officer-specialty-options"
+                    class="officer-specialty-options"
+                  >
+                    <span>Loading specialties…</span>
+                  </div>
+                </fieldset>
+              </div>
+              <div class="reporter-form-actions">
+                <p
+                  class="reporter-form-message officer-form-message"
+                  id="officer-form-message"
+                  role="status"
+                  aria-live="polite"
+                  hidden
+                ></p>
+                <button class="reporter-reset" type="reset">Reset Form</button
+                ><button class="reporter-submit" type="submit">
+                  Create Officer Account
+                </button>
+              </div>
+            </form>
+          </section>
+          <section
+            class="panel reporter-directory"
+            aria-labelledby="officer-directory-title"
+          >
+            <div class="reporter-directory-heading">
+              <div>
+                <h2 id="officer-directory-title">
+                  Registered Officers Directory
+                </h2>
+                <p>Manage officer accounts, roles, specialties, and access.</p>
+              </div>
+              <div class="account-directory-tools">
+                <div class="account-view-actions">
+                  <button class="reporter-action" type="button" data-account-view="officer-history">Registered History</button>
+                  <button class="reporter-action" type="button" data-account-view="officer-blocked">Blocked Accounts</button>
+                </div>
+                <label class="reporter-search"
+                  >Search officers<input
+                    type="search"
+                    id="officer-search"
+                    placeholder="Search name, role, sector, or email"
+                /></label>
+              </div>
+            </div>
+            <div class="reporter-table-wrap">
+              <table class="reporter-table officer-table">
+                <thead>
+                  <tr>
+                    <th>Account ID</th>
+                    <th>Name</th>
+                    <th>Username</th>
+                    <th>Role</th>
+                    <th>Sector</th>
+                    <th>Specialties</th>
+                    <th>Email</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="officer-rows">
+                  <tr>
+                    <td colspan="8">Loading officer accounts…</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <p class="reporter-count" id="officer-count" aria-live="polite"></p>
+          </section>
+          <dialog
+            class="reporter-edit-dialog officer-edit-dialog"
+            id="officer-edit-dialog"
+            aria-labelledby="edit-officer-title"
+          >
+            <form
+              id="officer-edit-form"
+              class="reporter-edit-form officer-edit-form"
+            >
+              <h2 id="edit-officer-title">Update Officer Account</h2>
+              <input type="hidden" name="id" />
+              <label
+                >First Name<input
+                  name="first_name"
+                  required
+                  minlength="2"
+                  maxlength="100"
+              /></label>
+              <label
+                >Last Name<input
+                  name="last_name"
+                  required
+                  minlength="2"
+                  maxlength="100"
+              /></label>
+              <label
+                >Work Email<input
+                  name="email"
+                  type="email"
+                  required
+                  maxlength="254"
+              /></label>
+              <label
+                >Username<input
+                  name="username"
+                  required
+                  minlength="6"
+                  maxlength="50"
+                  pattern="[a-zA-Z0-9._\-]+"
+              /></label>
+              <label
+                >Contact Number<input
+                  name="contact_number"
+                  type="tel"
+                  maxlength="30"
+              /></label>
+              <label
+                >Officer Role<select
+                  name="officer_role_id"
+                  id="officer-edit-role"
+                  required
+                ></select
+              ></label>
+              <label
+                >Assigned Plant Sector<select
+                  name="plant_sector_id"
+                  id="officer-edit-sector"
+                >
+                  <option value="">No sector assigned</option>
+                </select></label
+              >
+              <fieldset class="officer-specialty-field">
+                <legend>Response Specialties</legend>
+                <div
+                  id="officer-edit-specialty-options"
+                  class="officer-specialty-options"
+                ></div>
+              </fieldset>
+              <p
+                class="reporter-edit-message"
+                id="officer-edit-message"
+                role="status"
+                aria-live="polite"
+                hidden
+              ></p>
+              <div class="reporter-edit-actions">
+                <button
+                  type="button"
+                  class="reporter-reset"
+                  data-close-officer-edit
+                >
+                  Cancel</button
+                ><button type="submit" class="reporter-submit">
+                  Save Changes
+                </button>
+              </div>
+            </form>
+          </dialog>
+          <dialog
+            class="reporter-delete-dialog"
+            id="officer-action-dialog"
+            aria-labelledby="officer-action-title"
+          >
+            <form method="dialog" class="reporter-delete-content">
+              <img
+                class="delete-warning-icon"
+                src="../assets/icons/exclamation.png"
+                alt=""
+                aria-hidden="true"
+              />
+              <h2 id="officer-action-title">Confirm Officer Action</h2>
+              <p id="officer-action-copy"></p>
+              <div class="reporter-edit-actions">
+                <button type="submit" class="reporter-reset">Cancel</button
+                ><button
+                  type="button"
+                  class="reporter-delete-confirm"
+                  id="confirm-officer-action"
+                >
+                  Confirm
+                </button>
+              </div>
+            </form>
+          </dialog>
+        </section>
+
+        <section
           class="reporter-management"
           id="reporters"
           aria-labelledby="reporters-title"
@@ -573,7 +900,7 @@
               <span>Total Reporters</span><strong data-stat="total">—</strong>
             </article>
             <article class="reporter-stat">
-              <span>Active Reporters</span><strong data-stat="active">—</strong>
+              <span>New This Month</span><strong data-stat="new">—</strong>
             </article>
             <article class="reporter-stat">
               <span>Inactive Reporters</span
@@ -627,19 +954,27 @@
                     autocomplete="email"
                     required
                     maxlength="254"
-                    placeholder="name@company.com"
-                /></label>
+                    placeholder="name@company.com" /><small
+                    class="field-validation-error"
+                    data-error-for="email"
+                    aria-live="polite"
+                  ></small
+                ></label>
                 <label
                   >System Username <span>*</span
                   ><input
                     name="username"
                     autocomplete="username"
                     required
-                    minlength="3"
+                    minlength="6"
                     maxlength="50"
-                    pattern="[a-zA-Z0-9._-]+"
-                    placeholder="e.g. arivera"
-                /></label>
+                    pattern="[a-zA-Z0-9._\-]+"
+                    placeholder="e.g. arivera" /><small
+                    class="field-validation-error"
+                    data-error-for="username"
+                    aria-live="polite"
+                  ></small
+                ></label>
                 <label
                   >Password <span>*</span
                   ><input
@@ -713,28 +1048,33 @@
                   Accounts authorized to access the incident reporting portal.
                 </p>
               </div>
-              <label class="reporter-search"
-                >Search reporters<input
-                  type="search"
-                  id="reporter-search"
-                  placeholder="Search name, username, or email"
-              /></label>
+              <div class="account-directory-tools">
+                <div class="account-view-actions">
+                  <button class="reporter-action" type="button" data-account-view="reporter-history">Registered History</button>
+                  <button class="reporter-action" type="button" data-account-view="reporter-blocked">Blocked Accounts</button>
+                </div>
+                <label class="reporter-search"
+                  >Search reporters<input
+                    type="search"
+                    id="reporter-search"
+                    placeholder="Search name, username, or email"
+                /></label>
+              </div>
             </div>
             <div class="reporter-table-wrap">
               <table class="reporter-table">
                 <thead>
                   <tr>
+                    <th>Account ID</th>
                     <th>Reporter Name</th>
                     <th>Username</th>
                     <th>Work Email</th>
-                    <th>Account ID</th>
-                    <th>Account Status</th>
                     <th>Actions</th>
                   </tr>
                 </thead>
                 <tbody id="reporter-rows">
                   <tr>
-                    <td colspan="6">Loading reporter accounts…</td>
+                    <td colspan="5">Loading reporter accounts…</td>
                   </tr>
                 </tbody>
               </table>
@@ -778,9 +1118,9 @@
                 >Username<input
                   name="username"
                   required
-                  minlength="3"
+                  minlength="6"
                   maxlength="50"
-                  pattern="[a-zA-Z0-9._-]+"
+                  pattern="[a-zA-Z0-9._\-]+"
               /></label>
               <p
                 class="reporter-edit-message"

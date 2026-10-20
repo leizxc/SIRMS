@@ -24,12 +24,8 @@
           aria-label="Reporter dashboard"
         >
           <span class="reporter-mark"
-            ><svg viewBox="0 0 24 24" aria-hidden="true">
-              <path
-                d="M12 2.5 4.5 5.4v5.2c0 5.1 3.1 8.9 7.5 10.9 4.4-2 7.5-5.8 7.5-10.9V5.4L12 2.5Z"
-              />
-              <path d="m8.8 11.8 2.1 2.1 4.5-4.7" /></svg
-          ></span>
+            ><img src="../assets/icons/icon_cons.png" alt=""
+          /></span>
           <span class="reporter-brand-copy"
             ><strong>SafeSite</strong><small>Reporter Portal</small></span
           >
@@ -41,7 +37,7 @@
               <rect x="14" y="3" width="7" height="7" rx="1" />
               <rect x="3" y="14" width="7" height="7" rx="1" />
               <rect x="14" y="14" width="7" height="7" rx="1" /></svg
-            ><span>Dashboard</span></a
+            ><span>My Reports / Dashboard</span></a
           >
           <a class="reporter-nav-link" href="#new-report"
             ><svg viewBox="0 0 24 24" aria-hidden="true">
@@ -82,305 +78,611 @@
         </header>
 
         <div class="reporter-content">
-          <section class="reporter-stats" aria-label="Report activity overview">
-            <article class="reporter-card stat-overview">
-              <div class="stat-heading">
-                <div>
-                  <span class="eyebrow">ACTIVITY OVERVIEW</span>
-                  <h2>Total Reports<br />Submitted</h2>
+          <div id="dashboard-view" class="reporter-view">
+            <section
+              class="reporter-stats"
+              aria-label="Report activity overview"
+            >
+              <article class="reporter-card stat-overview">
+                <div class="stat-heading">
+                  <div>
+                    <span class="eyebrow">ACTIVITY OVERVIEW</span>
+                    <h2>Total Reports<br />Submitted</h2>
+                  </div>
+                  <span class="stat-icon blue-icon"
+                    ><svg viewBox="0 0 24 24" aria-hidden="true">
+                      <rect x="5" y="4" width="14" height="17" rx="2" />
+                      <path d="M9 4V2h6v2M9 9h6M9 13h6M9 17h3" /></svg
+                  ></span>
                 </div>
-                <span class="stat-icon blue-icon"
-                  ><svg viewBox="0 0 24 24" aria-hidden="true">
-                    <rect x="5" y="4" width="14" height="17" rx="2" />
-                    <path d="M9 4V2h6v2M9 9h6M9 13h6M9 17h3" /></svg
-                ></span>
-              </div>
-              <div class="stat-value-row">
-                <strong>12</strong><span class="trend">↗ +3 this month</span>
-              </div>
-              <svg
-                class="sparkline"
-                viewBox="0 0 250 42"
-                preserveAspectRatio="none"
-                aria-hidden="true"
-              >
-                <path
-                  d="M2 30 C35 19 45 20 68 25 S105 29 132 17 S172 4 184 19 S207 34 224 22 S239 10 248 4"
-                />
-                <circle cx="248" cy="4" r="4" />
-              </svg>
-            </article>
-            <article class="reporter-card stat-progress">
-              <div class="stat-heading">
-                <div>
-                  <span class="eyebrow blue-text">IN PROCESS</span>
-                  <h2>Under<br />Investigation</h2>
+                <div class="stat-value-row">
+                  <strong>12</strong><span class="trend">↗ +3 this month</span>
                 </div>
-                <span class="stat-icon indigo-icon"
-                  ><svg viewBox="0 0 24 24" aria-hidden="true">
-                    <rect x="4" y="5" width="16" height="16" rx="2" />
-                    <path d="M8 3v4m8-4v4M8 11h8m-8 4h5" />
-                    <circle cx="18" cy="18" r="4" /></svg
-                ></span>
-              </div>
-              <div class="metric-line">
-                <strong>3</strong
-                ><span class="small-pill blue-pill">2 Active Desk</span>
-              </div>
-              <div class="progress-track">
-                <span class="progress-blue"></span>
-              </div>
-            </article>
-            <article class="reporter-card stat-resolved">
-              <div class="stat-heading">
-                <div>
-                  <span class="eyebrow green-text">SAFE &amp; SIGNED-OFF</span>
-                  <h2>Resolved &amp;<br />Closed</h2>
-                </div>
-                <span class="stat-icon mint-icon"
-                  ><svg viewBox="0 0 24 24" aria-hidden="true">
-                    <path
-                      d="m12 2 2.2 2 3-.2 1.1 2.8 2.6 1.4-.7 2.9 1.1 2.8-2.3 1.9-.4 3-3 .5L12 21l-2.6-1.7-3-.5-.4-3-2.3-1.9 1.1-2.8-.7-2.9 2.6-1.4 1.1-2.8 3 .2z"
-                    />
-                    <path d="m8.7 12 2.1 2.1 4.6-4.7" /></svg
-                ></span>
-              </div>
-              <div class="metric-line">
-                <strong>9</strong><span class="trend">75% Cleared</span>
-              </div>
-              <div class="progress-track">
-                <span class="progress-green"></span>
-              </div>
-            </article>
-            <article class="reporter-card stat-sla">
-              <div class="stat-heading">
-                <div>
-                  <span class="eyebrow">DISPATCH SLA</span>
-                  <h2>Avg.<br />Response Time</h2>
-                </div>
-                <span class="stat-icon gray-icon"
-                  ><svg viewBox="0 0 24 24" aria-hidden="true">
-                    <circle cx="12" cy="13" r="8" />
-                    <path d="M12 9v4l2.5 1.5M9 2h6M12 2v3" /></svg
-                ></span>
-              </div>
-              <div class="response-row">
-                <strong>18</strong><span>mins</span
-                ><span class="trend">↓4m faster</span>
-              </div>
-              <p class="sla-note"><i></i>Target compliance &lt; 30 mins</p>
-            </article>
-          </section>
-
-          <section class="reporter-card roadmap" id="guidelines">
-            <div class="section-title">
-              <span class="roadmap-icon"
-                ><svg viewBox="0 0 24 24" aria-hidden="true">
+                <svg
+                  class="sparkline"
+                  viewBox="0 0 250 42"
+                  preserveAspectRatio="none"
+                  aria-hidden="true"
+                >
                   <path
-                    d="M5 5v14m0-10h6m0 0-3-3m3 3-3 3M19 19V5m0 10h-6m0 0 3 3m-3-3 3-3"
-                  /></svg
-              ></span>
-              <div>
-                <h2>Reporting Lifecycle Roadmap</h2>
-                <p>
-                  Standard Operating Procedure for reporting hazards across
-                  Sector 4
-                </p>
-              </div>
-            </div>
-            <div class="roadmap-grid">
-              <article class="roadmap-step first-step">
-                <div class="step-meta">
-                  <span class="step-number">1</span
+                    d="M2 30 C35 19 45 20 68 25 S105 29 132 17 S172 4 184 19 S207 34 224 22 S239 10 248 4"
+                  />
+                  <circle cx="248" cy="4" r="4" />
+                </svg>
+              </article>
+              <article class="reporter-card stat-progress">
+                <div class="stat-heading">
+                  <div>
+                    <span class="eyebrow blue-text">IN PROCESS</span>
+                    <h2>Under<br />Investigation</h2>
+                  </div>
+                  <span class="stat-icon indigo-icon"
+                    ><svg viewBox="0 0 24 24" aria-hidden="true">
+                      <rect x="4" y="5" width="16" height="16" rx="2" />
+                      <path d="M8 3v4m8-4v4M8 11h8m-8 4h5" />
+                      <circle cx="18" cy="18" r="4" /></svg
+                  ></span>
+                </div>
+                <div class="metric-line">
+                  <strong>3</strong
+                  ><span class="small-pill blue-pill">2 Active Desk</span>
+                </div>
+                <div class="progress-track">
+                  <span class="progress-blue"></span>
+                </div>
+              </article>
+              <article class="reporter-card stat-resolved">
+                <div class="stat-heading">
+                  <div>
+                    <span class="eyebrow green-text"
+                      >SAFE &amp; SIGNED-OFF</span
+                    >
+                    <h2>Resolved &amp;<br />Closed</h2>
+                  </div>
+                  <span class="stat-icon mint-icon"
+                    ><svg viewBox="0 0 24 24" aria-hidden="true">
+                      <path
+                        d="m12 2 2.2 2 3-.2 1.1 2.8 2.6 1.4-.7 2.9 1.1 2.8-2.3 1.9-.4 3-3 .5L12 21l-2.6-1.7-3-.5-.4-3-2.3-1.9 1.1-2.8-.7-2.9 2.6-1.4 1.1-2.8 3 .2z"
+                      />
+                      <path d="m8.7 12 2.1 2.1 4.6-4.7" /></svg
+                  ></span>
+                </div>
+                <div class="metric-line">
+                  <strong>9</strong><span class="trend">75% Cleared</span>
+                </div>
+                <div class="progress-track">
+                  <span class="progress-green"></span>
+                </div>
+              </article>
+              <article class="reporter-card stat-sla">
+                <div class="stat-heading">
+                  <div>
+                    <span class="eyebrow">DISPATCH SLA</span>
+                    <h2>Avg.<br />Response Time</h2>
+                  </div>
+                  <span class="stat-icon gray-icon"
+                    ><svg viewBox="0 0 24 24" aria-hidden="true">
+                      <circle cx="12" cy="13" r="8" />
+                      <path d="M12 9v4l2.5 1.5M9 2h6M12 2v3" /></svg
+                  ></span>
+                </div>
+                <div class="response-row">
+                  <strong>18</strong><span>mins</span
+                  ><span class="trend">↓4m faster</span>
+                </div>
+                <p class="sla-note"><i></i>Target compliance &lt; 30 mins</p>
+              </article>
+            </section>
+
+            <section class="reporter-card roadmap" id="guidelines">
+              <div class="section-title">
+                <span class="roadmap-icon"
                   ><svg viewBox="0 0 24 24" aria-hidden="true">
                     <path
-                      d="M12 3a5 5 0 0 0-5 5v4l-2 3h14l-2-3V8a5 5 0 0 0-5-5ZM10 19a2 2 0 0 0 4 0"
-                    />
-                  </svg>
+                      d="M5 5v14m0-10h6m0 0-3-3m3 3-3 3M19 19V5m0 10h-6m0 0 3 3m-3-3 3-3"
+                    /></svg
+                ></span>
+                <div>
+                  <h2>Reporting Lifecycle Roadmap</h2>
+                  <p>
+                    Standard Operating Procedure for reporting hazards across
+                    Sector 4
+                  </p>
                 </div>
-                <h3>1. Report Issue</h3>
-                <p>
-                  Initiate report ticket upon noticing any unsafe condition or
-                  incident.
-                </p>
-              </article>
-              <article class="roadmap-step">
-                <div class="step-meta">
-                  <span class="step-number">2</span
-                  ><svg viewBox="0 0 24 24" aria-hidden="true">
-                    <path d="m12 3 4 7H8l4-7ZM5 14h5v7H5zM14 14h5l2 7h-9z" />
-                  </svg>
-                </div>
-                <h3>2. Select Category</h3>
-                <p>
-                  Classify hazard: Chemical, Slip/Trip, Structural, or
-                  Equipment.
-                </p>
-              </article>
-              <article class="roadmap-step">
-                <div class="step-meta">
-                  <span class="step-number">3</span
-                  ><svg viewBox="0 0 24 24" aria-hidden="true">
-                    <path d="M4 6h13M4 11h10M4 16h7m5 3 5-5-2-2-5 5-1 3z" />
-                  </svg>
-                </div>
-                <h3>3. Tell What Happened</h3>
-                <p>
-                  Provide precise location, time noticed, and a brief hazard
-                  description.
-                </p>
-              </article>
-              <article class="roadmap-step">
-                <div class="step-meta">
-                  <span class="step-number">4</span
-                  ><svg viewBox="0 0 24 24" aria-hidden="true">
-                    <rect x="3" y="6" width="18" height="15" rx="2" />
-                    <path d="M8 6V4h8v2m-4 4v6m-3-3h6" />
-                  </svg>
-                </div>
-                <h3>4. Upload Evidence</h3>
-                <p>
-                  Attach photos, a short audio note, or barcode of damaged
-                  equipment.
-                </p>
-              </article>
-              <article class="roadmap-step">
-                <div class="step-meta">
-                  <span class="step-number">5</span
-                  ><svg viewBox="0 0 24 24" aria-hidden="true">
-                    <path d="M4 12a8 8 0 1 1 2.3 5.7M4 17v-5h5" />
-                    <path d="M12 7v5l3 2" />
-                  </svg>
-                </div>
-                <h3>5. Track &amp; Sign-off</h3>
-                <p>
-                  Monitor the assigned officer response until resolution
-                  approval.
-                </p>
-              </article>
-            </div>
-          </section>
+              </div>
+              <div class="roadmap-grid">
+                <article class="roadmap-step first-step">
+                  <div class="step-meta">
+                    <span class="step-number">1</span
+                    ><svg viewBox="0 0 24 24" aria-hidden="true">
+                      <path
+                        d="M12 3a5 5 0 0 0-5 5v4l-2 3h14l-2-3V8a5 5 0 0 0-5-5ZM10 19a2 2 0 0 0 4 0"
+                      />
+                    </svg>
+                  </div>
+                  <h3>1. Report Issue</h3>
+                  <p>
+                    Initiate report ticket upon noticing any unsafe condition or
+                    incident.
+                  </p>
+                </article>
+                <article class="roadmap-step">
+                  <div class="step-meta">
+                    <span class="step-number">2</span
+                    ><svg viewBox="0 0 24 24" aria-hidden="true">
+                      <path d="m12 3 4 7H8l4-7ZM5 14h5v7H5zM14 14h5l2 7h-9z" />
+                    </svg>
+                  </div>
+                  <h3>2. Select Category</h3>
+                  <p>
+                    Classify hazard: Chemical, Slip/Trip, Structural, or
+                    Equipment.
+                  </p>
+                </article>
+                <article class="roadmap-step">
+                  <div class="step-meta">
+                    <span class="step-number">3</span
+                    ><svg viewBox="0 0 24 24" aria-hidden="true">
+                      <path d="M4 6h13M4 11h10M4 16h7m5 3 5-5-2-2-5 5-1 3z" />
+                    </svg>
+                  </div>
+                  <h3>3. Tell What Happened</h3>
+                  <p>
+                    Provide precise location, time noticed, and a brief hazard
+                    description.
+                  </p>
+                </article>
+                <article class="roadmap-step">
+                  <div class="step-meta">
+                    <span class="step-number">4</span
+                    ><svg viewBox="0 0 24 24" aria-hidden="true">
+                      <rect x="3" y="6" width="18" height="15" rx="2" />
+                      <path d="M8 6V4h8v2m-4 4v6m-3-3h6" />
+                    </svg>
+                  </div>
+                  <h3>4. Upload Evidence</h3>
+                  <p>
+                    Attach photos, a short audio note, or barcode of damaged
+                    equipment.
+                  </p>
+                </article>
+                <article class="roadmap-step">
+                  <div class="step-meta">
+                    <span class="step-number">5</span
+                    ><svg viewBox="0 0 24 24" aria-hidden="true">
+                      <path d="M4 12a8 8 0 1 1 2.3 5.7M4 17v-5h5" />
+                      <path d="M12 7v5l3 2" />
+                    </svg>
+                  </div>
+                  <h3>5. Track &amp; Sign-off</h3>
+                  <p>
+                    Monitor the assigned officer response until resolution
+                    approval.
+                  </p>
+                </article>
+              </div>
+            </section>
 
-          <section class="reporter-card submitted-reports" id="reports">
-            <div class="reports-heading">
+            <section class="reporter-card submitted-reports" id="reports">
+              <div class="reports-heading">
+                <div>
+                  <h2>My Submitted Reports</h2>
+                  <p>
+                    Track status updates and safety officer comments on your
+                    filed tickets.
+                  </p>
+                </div>
+                <button class="export-button" type="button">
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M12 3v12m0 0 4-4m-4 4-4-4M5 17v4h14v-4" /></svg
+                  >Export Log
+                </button>
+              </div>
+              <div class="report-tools">
+                <label class="report-search"
+                  ><svg viewBox="0 0 24 24" aria-hidden="true">
+                    <circle cx="10.8" cy="10.8" r="6.3" />
+                    <path d="m16 16 4.5 4.5" /></svg
+                  ><input
+                    type="search"
+                    placeholder="Search by Ticket ID, Category, or Location..."
+                    aria-label="Search submitted reports"
+                /></label>
+                <div class="report-filters" aria-label="Filter reports">
+                  <button class="selected" type="button" data-report-filter="all">ALL</button
+                  ><button type="button" data-report-filter="pending">PENDING CONFIRMATION</button
+                  ><button type="button" data-report-filter="investigating">UNDER INVESTIGATION</button
+                  ><button type="button" data-report-filter="resolved">RESOLVED</button>
+                </div>
+              </div>
+              <div class="report-list">
+                <article class="report-item in-review">
+                  <div class="report-main">
+                    <div class="report-badges">
+                      <span class="ticket-id">#REP-2026-042</span
+                      ><span class="report-status status-investigating"
+                        ><i></i>UNDER INVESTIGATION</span
+                      >
+                    </div>
+                    <h3>
+                      Chemical Vapor Leak
+                      <span class="priority">PRIORITY 1</span>
+                    </h3>
+                    <p class="location">
+                      <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path
+                          d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0Z"
+                        />
+                        <circle cx="12" cy="10" r="2.5" /></svg
+                      >Sector 4 Tank B (Cooling Junction 2)
+                    </p>
+                  </div>
+                  <div class="report-detail">
+                    <time>◷ Oct 11, 2026 • 10:15 AM</time>
+                    <p>Safety Lead<br /><strong>Officer M. Reyes</strong></p>
+                  </div>
+                  <button class="timeline-button" type="button">
+                    View Timeline &amp; Updates ›
+                  </button>
+                </article>
+                <article class="report-item">
+                  <div class="report-main">
+                    <div class="report-badges">
+                      <span class="ticket-id neutral-ticket">#REP-2026-039</span
+                      ><span class="report-status status-pending"
+                        ><i></i>PENDING OFFICER CONFIRMATION</span
+                      >
+                    </div>
+                    <h3>
+                      Broken Safety Railing
+                      <span class="category-tag">FACILITY HAZARD</span>
+                    </h3>
+                    <p class="location">
+                      <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path
+                          d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0Z"
+                        />
+                        <circle cx="12" cy="10" r="2.5" /></svg
+                      >Stairwell B3 (Floor 2 to Mezzanine)
+                    </p>
+                  </div>
+                  <div class="report-detail">
+                    <time>◷ Oct 08, 2026 • 02:40 PM</time>
+                    <p>Assigned EHS<br /><strong>Officer K. Bradley</strong></p>
+                  </div>
+                  <button class="timeline-button" type="button">
+                    View Timeline ›
+                  </button>
+                </article>
+                <article class="report-item">
+                  <div class="report-main">
+                    <div class="report-badges">
+                      <span class="ticket-id resolved-ticket"
+                        >#REP-2026-031</span
+                      ><span class="report-status status-resolved"
+                        ><i></i>RESOLVED &amp; CLOSED</span
+                      >
+                    </div>
+                    <h3>
+                      Oil Spill on Walkway
+                      <span class="cleaned-tag">CLEANED</span>
+                    </h3>
+                    <p class="location">
+                      <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path
+                          d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0Z"
+                        />
+                        <circle cx="12" cy="10" r="2.5" /></svg
+                      >Loading Dock 4 (Bay C Corridor)
+                    </p>
+                  </div>
+                  <div class="report-detail">
+                    <time>◷ Oct 02, 2026 • 08:20 AM</time>
+                    <p>Cleared By<br /><strong>Officer D. Vance</strong></p>
+                  </div>
+                  <button class="timeline-button resolved-action" type="button">
+                    View Report ›
+                  </button>
+                </article>
+              </div>
+            </section>
+          </div>
+
+          <section
+            class="reporter-view new-report-view"
+            id="new-report-view"
+            hidden
+          >
+            <div class="reporter-card form-intro">
               <div>
-                <h2>My Submitted Reports</h2>
+                <span class="eyebrow blue-text"
+                  >STEP 1 OF 4 · FORM PROTOCOL EHS-2026</span
+                >
+                <h2>File Safety Incident Report</h2>
+              </div>
+              <ol class="report-steps" aria-label="Report steps">
+                <li class="current"><span>1</span> Category</li>
+                <li><span>2</span> Details</li>
+                <li><span>3</span> Evidence</li>
+                <li><span>4</span> Verification</li>
+              </ol>
+            </div>
+
+            <form class="reporter-card incident-form" id="incident-report-form">
+              <section class="form-stage" aria-labelledby="category-heading">
+                <div class="form-stage-heading">
+                  <div>
+                    <span class="stage-label">◈ STAGE 01</span>
+                    <h2 id="category-heading">Select Incident Category</h2>
+                  </div>
+                  <p>
+                    Choose the classification that best reflects the reported
+                    hazard.
+                  </p>
+                </div>
+                <div class="category-grid">
+                  <label class="category-option"
+                    ><input
+                      type="radio"
+                      name="category"
+                      value="Equipment Malfunction"
+                      required
+                    /><span class="category-symbol">⚙</span
+                    ><span
+                      ><strong>Equipment Malfunction</strong
+                      ><small
+                        >Conveyor failure, pressure gauge fault, sensor
+                        trip</small
+                      ></span
+                    ></label
+                  >
+                  <label class="category-option"
+                    ><input
+                      type="radio"
+                      name="category"
+                      value="Chemical / Hazardous Spill"
+                      required
+                    /><span class="category-symbol">♧</span
+                    ><span
+                      ><strong>Chemical / Hazardous Spill</strong
+                      ><small
+                        >Toxic vapor, corrosive fluid, cylinder breach</small
+                      ></span
+                    ></label
+                  >
+                  <label class="category-option"
+                    ><input
+                      type="radio"
+                      name="category"
+                      value="Slip, Trip & Fall Hazard"
+                      required
+                    /><span class="category-symbol">⌁</span
+                    ><span
+                      ><strong>Slip, Trip &amp; Fall Hazard</strong
+                      ><small
+                        >Wet walkway, exposed cabling, uneven surface</small
+                      ></span
+                    ></label
+                  >
+                  <label class="category-option"
+                    ><input
+                      type="radio"
+                      name="category"
+                      value="Fire & Electrical Safety"
+                      required
+                    /><span class="category-symbol">♨</span
+                    ><span
+                      ><strong>Fire &amp; Electrical Safety</strong
+                      ><small
+                        >Sparking panel, extinguisher depleted, burning
+                        odor</small
+                      ></span
+                    ></label
+                  >
+                  <label class="category-option"
+                    ><input
+                      type="radio"
+                      name="category"
+                      value="PPE Non-Compliance"
+                      required
+                    /><span class="category-symbol">◇</span
+                    ><span
+                      ><strong>PPE Non-Compliance</strong
+                      ><small
+                        >Unshielded welding, missing respirator, unprotected
+                        work</small
+                      ></span
+                    ></label
+                  >
+                  <label class="category-option"
+                    ><input
+                      type="radio"
+                      name="category"
+                      value="Structural Damage / Exit Block"
+                      required
+                    /><span class="category-symbol">▤</span
+                    ><span
+                      ><strong>Structural Damage / Exit Block</strong
+                      ><small
+                        >Damaged railing, blocked emergency exit door</small
+                      ></span
+                    ></label
+                  >
+                </div>
+              </section>
+
+              <section class="form-stage" aria-labelledby="details-heading">
+                <div class="form-stage-heading">
+                  <div>
+                    <span class="stage-label">▤ STAGE 02</span>
+                    <h2 id="details-heading">Tell Us What Happened</h2>
+                  </div>
+                  <p>Fields marked <b>*</b> are required.</p>
+                </div>
+                <div class="report-fields">
+                  <label
+                    >Plant Sector <b>*</b
+                    ><select name="plant_sector_id" id="report-plant-sector" required>
+                      <option value="">Loading plant sectors...</option>
+                    </select><small>Select the plant sector where the incident occurred.</small></label
+                  >
+                  <label
+                    >Date &amp; Time of Occurrence <b>*</b
+                    ><input
+                      name="occurred_at"
+                      type="datetime-local"
+                      required
+                    /><small
+                      >Enter when the incident occurred or was first
+                      noticed.</small
+                    ></label
+                  >
+                  <fieldset class="severity-field field-wide">
+                    <legend>Severity Level Assessment <b>*</b></legend>
+                    <div class="severity-options">
+                      <label
+                        ><input
+                          type="radio"
+                          name="severity"
+                          value="Low"
+                          required
+                        /><span
+                          ><strong>Low</strong
+                          ><small
+                            >Minor scrape or near-miss observation</small
+                          ></span
+                        ></label
+                      ><label
+                        ><input
+                          type="radio"
+                          name="severity"
+                          value="Moderate"
+                          required
+                        /><span
+                          ><strong>Moderate</strong
+                          ><small
+                            >Equipment downtime or localized hazard</small
+                          ></span
+                        ></label
+                      ><label
+                        ><input
+                          type="radio"
+                          name="severity"
+                          value="High"
+                          required
+                        /><span
+                          ><strong>High</strong
+                          ><small
+                            >Medical attention or partial evacuation</small
+                          ></span
+                        ></label
+                      ><label class="critical"
+                        ><input
+                          type="radio"
+                          name="severity"
+                          value="Critical"
+                          required
+                        /><span
+                          ><strong>Critical (Urgent)</strong
+                          ><small
+                            >Immediate active hazard or spreading danger</small
+                          ></span
+                        ></label
+                      >
+                    </div>
+                  </fieldset>
+                  <label class="field-wide narrative-label"
+                    >Detailed Narrative Description <b>*</b
+                    ><span class="character-count"
+                      ><span id="narrative-count">0</span> / 1000
+                      characters</span
+                    ><textarea
+                      name="description"
+                      id="report-narrative"
+                      maxlength="1000"
+                      rows="5"
+                      placeholder="Describe what happened, the hazard, and any immediate action taken..."
+                      required
+                    ></textarea>
+                  </label>
+                  <label class="field-wide"
+                    >Involved Persons / Witnesses
+                    <span class="optional-label">Optional</span
+                    ><input
+                      name="witnesses"
+                      type="text"
+                      placeholder="Names and roles of people who witnessed the incident"
+                    /><small
+                      >Include safety officers, employees, or contractors
+                      present.</small
+                    ></label
+                  >
+                </div>
+              </section>
+
+              <section class="form-stage" aria-labelledby="evidence-heading">
+                <div class="form-stage-heading">
+                  <div>
+                    <span class="stage-label">▧ STAGE 03</span>
+                    <h2 id="evidence-heading">
+                      Upload Evidence (Media &amp; Proof)
+                    </h2>
+                  </div>
+                  <p>PNG, JPG, MP4, MP3 · Up to 5 files, 50 MB each</p>
+                </div>
+                <label class="evidence-drop" for="report-evidence"
+                  ><span class="upload-symbol">⇧</span
+                  ><strong>Choose photos, videos, or audio evidence</strong
+                  ><small>Click to browse files from your device.</small
+                  ><span class="upload-button">＋ Add Photos / Documents</span
+                  ><input
+                    id="report-evidence"
+                    name="evidence[]"
+                    type="file"
+                    accept="image/png,image/jpeg,video/mp4,audio/mpeg"
+                    multiple
+                /></label>
+                <ul
+                  class="evidence-file-list"
+                  id="evidence-file-list"
+                  aria-live="polite"
+                ></ul>
+              </section>
+
+              <section
+                class="form-submit-stage"
+                aria-label="Verify and submit report"
+              >
+                <label class="accuracy-check"
+                  ><input type="checkbox" name="accuracy" required /><span
+                    ><strong
+                      >I confirm the details provided are accurate to the best
+                      of my knowledge.</strong
+                    ><small
+                      >Reports are reviewed by the safety team. Provide complete
+                      information to help with a timely response.</small
+                    ></span
+                  ></label
+                >
+                <div class="form-submit-actions">
+                  <p id="report-form-message" role="status"></p>
+                  <button class="draft-button" type="reset">Clear Form</button
+                  ><button class="submit-report-button" type="submit">
+                    ➤ &nbsp; Submit Incident Report
+                  </button>
+                </div>
+              </section>
+            </form>
+            <aside class="report-next-note">
+              <span>✓</span>
+              <div>
+                <strong>What happens next?</strong>
                 <p>
-                  Track status updates and safety officer comments on your filed
-                  tickets.
+                  After submission, the safety team will review the report and
+                  update its status in My Reports.
                 </p>
               </div>
-              <button class="export-button" type="button">
-                <svg viewBox="0 0 24 24" aria-hidden="true">
-                  <path d="M12 3v12m0 0 4-4m-4 4-4-4M5 17v4h14v-4" /></svg
-                >Export Log
-              </button>
-            </div>
-            <div class="report-tools">
-              <label class="report-search"
-                ><svg viewBox="0 0 24 24" aria-hidden="true">
-                  <circle cx="10.8" cy="10.8" r="6.3" />
-                  <path d="m16 16 4.5 4.5" /></svg
-                ><input
-                  type="search"
-                  placeholder="Search by Ticket ID, Category, or Location..."
-                  aria-label="Search submitted reports"
-              /></label>
-              <div class="report-filters" aria-label="Filter reports">
-                <button class="selected" type="button">ALL (3)</button
-                ><button type="button">PENDING CONFIRMATION</button
-                ><button type="button">UNDER INVESTIGATION</button
-                ><button type="button">RESOLVED</button>
-              </div>
-            </div>
-            <div class="report-list">
-              <article class="report-item in-review">
-                <div class="report-main">
-                  <div class="report-badges">
-                    <span class="ticket-id">#REP-2026-042</span
-                    ><span class="report-status status-investigating"
-                      ><i></i>UNDER INVESTIGATION</span
-                    >
-                  </div>
-                  <h3>
-                    Chemical Vapor Leak <span class="priority">PRIORITY 1</span>
-                  </h3>
-                  <p class="location">
-                    <svg viewBox="0 0 24 24" aria-hidden="true">
-                      <path
-                        d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0Z"
-                      />
-                      <circle cx="12" cy="10" r="2.5" /></svg
-                    >Sector 4 Tank B (Cooling Junction 2)
-                  </p>
-                </div>
-                <div class="report-detail">
-                  <time>◷ Oct 11, 2026 • 10:15 AM</time>
-                  <p>Safety Lead<br /><strong>Officer M. Reyes</strong></p>
-                </div>
-                <button class="timeline-button" type="button">
-                  View Timeline &amp; Updates ›
-                </button>
-              </article>
-              <article class="report-item">
-                <div class="report-main">
-                  <div class="report-badges">
-                    <span class="ticket-id neutral-ticket">#REP-2026-039</span
-                    ><span class="report-status status-pending"
-                      ><i></i>PENDING OFFICER CONFIRMATION</span
-                    >
-                  </div>
-                  <h3>
-                    Broken Safety Railing
-                    <span class="category-tag">FACILITY HAZARD</span>
-                  </h3>
-                  <p class="location">
-                    <svg viewBox="0 0 24 24" aria-hidden="true">
-                      <path
-                        d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0Z"
-                      />
-                      <circle cx="12" cy="10" r="2.5" /></svg
-                    >Stairwell B3 (Floor 2 to Mezzanine)
-                  </p>
-                </div>
-                <div class="report-detail">
-                  <time>◷ Oct 08, 2026 • 02:40 PM</time>
-                  <p>Assigned EHS<br /><strong>Officer K. Bradley</strong></p>
-                </div>
-                <button class="timeline-button" type="button">
-                  View Timeline ›
-                </button>
-              </article>
-              <article class="report-item">
-                <div class="report-main">
-                  <div class="report-badges">
-                    <span class="ticket-id resolved-ticket">#REP-2026-031</span
-                    ><span class="report-status status-resolved"
-                      ><i></i>RESOLVED &amp; CLOSED</span
-                    >
-                  </div>
-                  <h3>
-                    Oil Spill on Walkway
-                    <span class="cleaned-tag">CLEANED</span>
-                  </h3>
-                  <p class="location">
-                    <svg viewBox="0 0 24 24" aria-hidden="true">
-                      <path
-                        d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0Z"
-                      />
-                      <circle cx="12" cy="10" r="2.5" /></svg
-                    >Loading Dock 4 (Bay C Corridor)
-                  </p>
-                </div>
-                <div class="report-detail">
-                  <time>◷ Oct 02, 2026 • 08:20 AM</time>
-                  <p>Cleared By<br /><strong>Officer D. Vance</strong></p>
-                </div>
-                <button class="timeline-button resolved-action" type="button">
-                  View Report ›
-                </button>
-              </article>
-            </div>
+            </aside>
           </section>
         </div>
       </main>
