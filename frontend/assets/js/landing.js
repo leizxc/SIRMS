@@ -46,7 +46,6 @@
   scheduleUpdate();
 
   const navMenus = [...document.querySelectorAll(".nav-menu")];
-  let closeTimer;
 
   function setMenuOpen(menu, open) {
     const trigger = menu.querySelector(".menu-trigger");
@@ -64,18 +63,6 @@
 
   navMenus.forEach((menu) => {
     const trigger = menu.querySelector(".menu-trigger");
-    let timer;
-
-    menu.addEventListener("mouseenter", () => {
-      window.clearTimeout(timer);
-      window.clearTimeout(closeTimer);
-      closeMenus(menu);
-      setMenuOpen(menu, true);
-    });
-
-    menu.addEventListener("mouseleave", () => {
-      timer = window.setTimeout(() => setMenuOpen(menu, false), 180);
-    });
 
     trigger?.addEventListener("click", () => {
       const open = trigger.getAttribute("aria-expanded") === "true";
@@ -83,15 +70,8 @@
       setMenuOpen(menu, !open);
     });
 
-    trigger?.addEventListener("focus", () => {
-      closeMenus(menu);
-      setMenuOpen(menu, true);
-    });
-
     menu.addEventListener("focusout", (event) => {
-      if (!menu.contains(event.relatedTarget)) {
-        timer = window.setTimeout(() => setMenuOpen(menu, false), 180);
-      }
+      if (!menu.contains(event.relatedTarget)) setMenuOpen(menu, false);
     });
 
     menu.querySelectorAll(".mega-menu a").forEach((link) => {
@@ -102,6 +82,25 @@
   document.addEventListener("pointerdown", (event) => {
     if (!navMenus.some((menu) => menu.contains(event.target))) closeMenus();
   });
+
+  const demoDialog = document.getElementById("demo-dialog");
+  const demoVideo = document.getElementById("demo-video");
+  document.getElementById("demo-open")?.addEventListener("click", () => {
+    if (!demoDialog?.showModal) return;
+    demoDialog.showModal();
+    demoVideo?.play().catch(() => {});
+  });
+
+  function resetDemo() {
+    demoVideo?.pause();
+    if (demoVideo) demoVideo.currentTime = 0;
+  }
+
+  document.getElementById("demo-close")?.addEventListener("click", () => demoDialog?.close());
+  demoDialog?.addEventListener("click", (event) => {
+    if (event.target === demoDialog) demoDialog.close();
+  });
+  demoDialog?.addEventListener("close", resetDemo);
 
   document.addEventListener("keydown", (event) => {
     if (event.key === "Escape") {

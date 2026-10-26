@@ -105,29 +105,33 @@
 
   function render() {
     const term = search.value.trim().toLocaleLowerCase();
-    const visible = officers.filter((officer) => Number(officer.is_active) === 1).filter((officer) =>
-      [
-        officer.id,
-        `#${officer.id}`,
-        fullName(officer),
-        officer.username,
-        officer.email,
-        officer.role_name,
-        officer.sector_name,
-        ...(officer.specialties || []).map((skill) => skill.specialty_name),
-      ].some((value) =>
-        String(value ?? "")
-          .toLocaleLowerCase()
-          .includes(term),
-      ),
-    );
+    const visible = officers
+      .filter((officer) => Number(officer.is_active) === 1)
+      .filter((officer) =>
+        [
+          officer.id,
+          `#${officer.id}`,
+          fullName(officer),
+          officer.username,
+          officer.email,
+          officer.role_name,
+          officer.sector_name,
+          ...(officer.specialties || []).map((skill) => skill.specialty_name),
+        ].some((value) =>
+          String(value ?? "")
+            .toLocaleLowerCase()
+            .includes(term),
+        ),
+      );
 
     document.querySelector('[data-officer-stat="total"]').textContent =
       officers.length;
     const now = new Date();
     const thisMonth = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, "0")}`;
     document.querySelector('[data-officer-stat="new"]').textContent =
-      officers.filter((item) => String(item.created_at || "").slice(0, 7) === thisMonth).length;
+      officers.filter(
+        (item) => String(item.created_at || "").slice(0, 7) === thisMonth,
+      ).length;
     document.querySelector('[data-officer-stat="inactive"]').textContent =
       officers.filter((item) => Number(item.is_active) !== 1).length;
     rows.innerHTML = visible.length
@@ -215,36 +219,57 @@
   }
 
   search.addEventListener("input", render);
-  document.querySelectorAll('[data-account-view^="officer-"]').forEach((button) => {
-    button.addEventListener("click", () => {
-      const blockedOnly = button.dataset.accountView === "officer-blocked";
-      const accounts = blockedOnly
-        ? officers.filter((officer) => Number(officer.is_active) !== 1)
-        : officers;
-      window.showAccountHistory({
-        title: blockedOnly ? "Blocked Officer Accounts" : "Officer Account History",
-        columns: ["Account ID", "Name", "Username", "Role", "Sector", "Email", "Registered", "Status"],
-        rows: accounts.map((officer) => [
-          `#${officer.id}`,
-          fullName(officer),
-          String(officer.username || "").toLocaleLowerCase(),
-          officer.role_name,
-          officer.sector_name || "No sector assigned",
-          String(officer.email || "").toLocaleLowerCase(),
-          officer.created_at || "—",
-          Number(officer.is_active) === 1 ? "Active" : "Blocked",
-        ]),
-        actionLabel: blockedOnly ? "Unblock" : "",
-        actionIds: accounts.map((officer) => officer.id),
-        onAction: blockedOnly ? async (id) => {
-          const result = await sendJson("PATCH", { action: "status", id, is_active: 1 });
-          await loadOfficers();
-          window.showAdminToast(result.message, "success");
-        } : null,
-        emptyText: blockedOnly ? "There are no blocked officer accounts." : "No officer account history is available.",
+  document
+    .querySelectorAll('[data-account-view^="officer-"]')
+    .forEach((button) => {
+      button.addEventListener("click", () => {
+        const blockedOnly = button.dataset.accountView === "officer-blocked";
+        const accounts = blockedOnly
+          ? officers.filter((officer) => Number(officer.is_active) !== 1)
+          : officers;
+        window.showAccountHistory({
+          title: blockedOnly
+            ? "Blocked Officer Accounts"
+            : "Officer Account History",
+          columns: [
+            "Account ID",
+            "Name",
+            "Username",
+            "Role",
+            "Sector",
+            "Email",
+            "Registered",
+            "Status",
+          ],
+          rows: accounts.map((officer) => [
+            `#${officer.id}`,
+            fullName(officer),
+            String(officer.username || "").toLocaleLowerCase(),
+            officer.role_name,
+            officer.sector_name || "No sector assigned",
+            String(officer.email || "").toLocaleLowerCase(),
+            officer.created_at || "—",
+            Number(officer.is_active) === 1 ? "Active" : "Blocked",
+          ]),
+          actionLabel: blockedOnly ? "Unblock" : "",
+          actionIds: accounts.map((officer) => officer.id),
+          onAction: blockedOnly
+            ? async (id) => {
+                const result = await sendJson("PATCH", {
+                  action: "status",
+                  id,
+                  is_active: 1,
+                });
+                await loadOfficers();
+                window.showAdminToast(result.message, "success");
+              }
+            : null,
+          emptyText: blockedOnly
+            ? "There are no blocked officer accounts."
+            : "No officer account history is available.",
+        });
       });
     });
-  });
   rows.addEventListener("click", (event) => {
     const button = event.target.closest("button[data-action]");
     if (!button) return;
@@ -391,7 +416,10 @@
     } catch (error) {
       actionDialog.close();
       pendingAction = null;
-      window.showAdminToast(error.message || "Unable to process officer account.", "error");
+      window.showAdminToast(
+        error.message || "Unable to process officer account.",
+        "error",
+      );
     } finally {
       confirmAction.disabled = false;
     }
