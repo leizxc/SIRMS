@@ -1,20 +1,262 @@
-.officer-stat { min-height: 170px; display: flex; flex-direction: column; align-items: flex-start; padding: 18px; }
-.officer-stat h2 { margin: 0 0 15px; font-size: 14px; font-weight: 600; }
-.officer-stat > strong { font-size: 34px; line-height: 1; letter-spacing: -.05em; }
-.officer-stat-note { margin-top: auto; padding-top: 14px; color: #677286; font-size: 11px; }
-.red-text, .red-number { color: #cc3946; }
-.blue-number { color: #0755d4; }
-.green-number { color: #087954; }
-.officer-queue { padding: 18px; }
-.officer-queue .reports-heading { margin-bottom: 16px; }
-.queue-count { padding: 6px 11px; border-radius: 99px; color: #0755d4; background: #e0e9ff; font-size: 11px; font-weight: 700; white-space: nowrap; }
-.officer-guidelines { display: flex; align-items: center; justify-content: space-between; padding: 18px 20px; }
-.officer-guidelines h2 { margin: 0 0 4px; font-size: 16px; }
-.officer-guidelines p { margin: 0; color: #5d687d; font-size: 12px; }
-.guideline-mark { display: grid; place-items: center; width: 34px; height: 34px; border-radius: 50%; color: #087954; background: #c9f8e7; font-size: 19px; font-weight: 700; }
+.officer-stat {
+  min-height: 170px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 18px;
+}
+.officer-stat h2 {
+  margin: 0 0 15px;
+  font-size: 14px;
+  font-weight: 600;
+}
+.officer-stat > strong {
+  font-size: 34px;
+  line-height: 1;
+  letter-spacing: -0.05em;
+}
+.officer-stat-note {
+  margin-top: auto;
+  padding-top: 14px;
+  color: #677286;
+  font-size: 11px;
+}
+.red-text,
+.red-number {
+  color: #cc3946;
+}
+.blue-number {
+  color: #0755d4;
+}
+.green-number {
+  color: #087954;
+}
+.officer-queue {
+  padding: 18px;
+}
+.officer-queue .reports-heading {
+  margin-bottom: 16px;
+}
+.queue-count {
+  padding: 6px 11px;
+  border-radius: 99px;
+  color: #0755d4;
+  background: #e0e9ff;
+  font-size: 11px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+.officer-guidelines {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 20px;
+}
+.officer-guidelines h2 {
+  margin: 0 0 4px;
+  font-size: 16px;
+}
+.officer-guidelines p {
+  margin: 0;
+  color: #5d687d;
+  font-size: 12px;
+}
+.guideline-mark {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  color: #087954;
+  background: #c9f8e7;
+  font-size: 19px;
+  font-weight: 700;
+}
+.officer-empty-state {
+  margin: 0;
+  padding: 24px 12px;
+  color: #657186;
+  font-size: 13px;
+  text-align: center;
+}
+.officer-empty-state.is-error {
+  color: #b42332;
+}
+.officer-queue .timeline-button {
+  cursor: pointer;
+}
+.officer-queue .timeline-button:hover {
+  border-color: #b9cff5;
+  background: #f4f7ff;
+}
+.officer-incident-dialog {
+  width: min(680px, calc(100% - 28px));
+  max-height: min(90vh, 760px);
+  padding: 0;
+  overflow: auto;
+  border: 0;
+  border-radius: 16px;
+  color: #253247;
+  box-shadow: 0 24px 70px #17243740;
+}
+.officer-incident-dialog::backdrop {
+  background: #17243780;
+  backdrop-filter: blur(2px);
+}
+.officer-dialog-content {
+  position: relative;
+  display: grid;
+  gap: 12px;
+  padding: 26px;
+}
+.officer-dialog-content > .eyebrow {
+  margin: 0;
+  color: #1d4ed8;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+}
+.officer-dialog-content h2 {
+  margin: 0;
+  padding-right: 36px;
+  color: #17243a;
+  font-size: 22px;
+}
+.officer-dialog-close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 34px;
+  height: 34px;
+  border: 1px solid #e0e6ef;
+  border-radius: 50%;
+  background: #fff;
+  color: #46546a;
+  font-size: 22px;
+  cursor: pointer;
+}
+.officer-dialog-content dl {
+  display: grid;
+  grid-template-columns: minmax(100px, 130px) minmax(0, 1fr);
+  gap: 8px 14px;
+  margin: 4px 0;
+  font-size: 12px;
+}
+.officer-dialog-content dt {
+  color: #647188;
+  font-weight: 700;
+}
+.officer-dialog-content dd {
+  min-width: 0;
+  margin: 0;
+  overflow-wrap: anywhere;
+  white-space: pre-wrap;
+}
+.officer-dialog-content label {
+  display: grid;
+  gap: 6px;
+  color: #344258;
+  font-size: 12px;
+  font-weight: 700;
+}
+.officer-dialog-content select {
+  width: 100%;
+  height: 40px;
+  padding: 0 10px;
+  border: 1px solid #dce3ec;
+  border-radius: 8px;
+  background: #fff;
+  color: #253247;
+  font: inherit;
+}
+.officer-evidence {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.officer-evidence-link {
+  padding: 7px 10px;
+  border-radius: 7px;
+  background: #edf3ff;
+  color: #1d4ed8;
+  font-size: 11px;
+  overflow-wrap: anywhere;
+}
+.officer-dialog-message {
+  min-height: 16px;
+  margin: 0;
+  color: #52627a;
+  font-size: 12px;
+}
+.officer-status-save {
+  justify-self: end;
+  min-height: 40px;
+  padding: 0 16px;
+  border: 0;
+  border-radius: 8px;
+  background: #1d4ed8;
+  color: #fff;
+  font: inherit;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+}
+.officer-status-save:disabled {
+  opacity: 0.65;
+  cursor: wait;
+}
 @media (max-width: 600px) {
-  .officer-stats { grid-template-columns: 1fr 1fr; }
-  .officer-stat { min-height: 150px; padding: 13px; }
-  .officer-stat > strong { font-size: 29px; }
-  .officer-queue { padding: 13px 11px; }
+  .officer-stats {
+    grid-template-columns: 1fr 1fr;
+  }
+  .officer-stat {
+    min-height: 150px;
+    padding: 13px;
+  }
+  .officer-stat > strong {
+    font-size: 29px;
+  }
+  .officer-queue {
+    padding: 13px 11px;
+  }
+  .officer-dialog-content {
+    padding: 21px 17px;
+  }
+  .officer-dialog-content dl {
+    grid-template-columns: 1fr;
+    gap: 4px;
+  }
+  .officer-dialog-content dd + dt {
+    margin-top: 7px;
+  }
+}
+
+@media (max-width: 420px) {
+  .officer-stats {
+    grid-template-columns: 1fr 1fr;
+    gap: 7px;
+  }
+  .officer-stat {
+    min-height: 138px;
+    padding: 11px 9px;
+  }
+  .officer-stat h2 {
+    font-size: 12px;
+  }
+  .officer-stat > strong {
+    font-size: 26px;
+  }
+  .officer-stat-note {
+    font-size: 10px;
+  }
+  .officer-queue .reports-heading {
+    gap: 8px;
+  }
+  .queue-count {
+    padding: 5px 8px;
+    font-size: 10px;
+  }
+  .officer-dialog-content h2 {
+    font-size: 19px;
+  }
 }

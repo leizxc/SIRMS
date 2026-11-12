@@ -78,13 +78,13 @@
             <article class="reporter-card officer-stat">
               <span class="eyebrow">MY WORKLOAD</span>
               <h2>Assigned Reports</h2>
-              <strong>8</strong
+              <strong id="officer-stat-assigned">0</strong
               ><span class="officer-stat-note">Reports assigned to you</span>
             </article>
             <article class="reporter-card officer-stat">
               <span class="eyebrow red-text">URGENT RESPONSE</span>
               <h2>Critical Cases</h2>
-              <strong class="red-number">2</strong
+              <strong class="red-number" id="officer-stat-critical">0</strong
               ><span class="officer-stat-note"
                 >Require immediate attention</span
               >
@@ -92,13 +92,13 @@
             <article class="reporter-card officer-stat">
               <span class="eyebrow blue-text">IN PROGRESS</span>
               <h2>Under Investigation</h2>
-              <strong class="blue-number">4</strong
+              <strong class="blue-number" id="officer-stat-progress">0</strong
               ><span class="officer-stat-note">Currently being reviewed</span>
             </article>
             <article class="reporter-card officer-stat">
               <span class="eyebrow green-text">COMPLETED</span>
               <h2>Resolved Reports</h2>
-              <strong class="green-number">12</strong
+              <strong class="green-number" id="officer-stat-resolved">0</strong
               ><span class="officer-stat-note">Closed assignments</span>
             </article>
           </section>
@@ -109,9 +109,13 @@
                 <h2>Assigned Reports</h2>
                 <p>Review current reports assigned to your account.</p>
               </div>
-              <span class="queue-count">8 Active</span>
+              <span class="queue-count" id="officer-queue-count">0 Active</span>
             </div>
-            <div class="report-list">
+            <div
+              class="report-list"
+              id="officer-report-list"
+              aria-live="polite"
+            >
               <article class="report-item">
                 <div class="report-main">
                   <div class="report-badges">

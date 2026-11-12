@@ -38,7 +38,10 @@
         text = "Enter a valid email address, such as name@example.com.";
       } else if (input.name === "username" && value.length < 6) {
         text = "Username must be at least 6 characters.";
-      } else if (input.name === "username" && !/^[a-zA-Z0-9._-]+$/.test(value)) {
+      } else if (
+        input.name === "username" &&
+        !/^[a-zA-Z0-9._-]+$/.test(value)
+      ) {
         text = "Use only letters, numbers, dots, underscores, or hyphens.";
       }
     }
@@ -52,15 +55,17 @@
     input.addEventListener("input", () => validateReporterAccountField(input));
     input.addEventListener("blur", () => validateReporterAccountField(input));
   });
-  form.addEventListener("reset", () => window.setTimeout(() => {
-    [reporterEmail, reporterUsername].forEach((input) => {
-      input.setCustomValidity("");
-      input.classList.remove("is-invalid");
-      input.removeAttribute("aria-invalid");
-      const error = form.querySelector(`[data-error-for="${input.name}"]`);
-      if (error) error.textContent = "";
-    });
-  }, 0));
+  form.addEventListener("reset", () =>
+    window.setTimeout(() => {
+      [reporterEmail, reporterUsername].forEach((input) => {
+        input.setCustomValidity("");
+        input.classList.remove("is-invalid");
+        input.removeAttribute("aria-invalid");
+        const error = form.querySelector(`[data-error-for="${input.name}"]`);
+        if (error) error.textContent = "";
+      });
+    }, 0),
+  );
 
   form.querySelectorAll(".password-toggle").forEach((toggle) => {
     toggle.addEventListener("click", () => {
@@ -69,9 +74,15 @@
       const show = input.type === "password";
       input.type = show ? "text" : "password";
       const icon = toggle.querySelector("img");
-      if (icon) icon.src = show ? "../assets/icons/eye-close-up.png" : "../assets/icons/closed-eyes.png";
+      if (icon)
+        icon.src = show
+          ? "../assets/icons/eye-close-up.png"
+          : "../assets/icons/closed-eyes.png";
       toggle.setAttribute("aria-pressed", String(show));
-      toggle.setAttribute("aria-label", show ? "Hide password" : "Show password");
+      toggle.setAttribute(
+        "aria-label",
+        show ? "Hide password" : "Show password",
+      );
     });
   });
 
@@ -96,14 +107,37 @@
     management.hidden = !onReporters;
     officerManagement.hidden = !onOfficers;
     document.getElementById("sectors").hidden = !onSectors;
-    pageTitle.textContent = onIncidents ? "Incident Management" : onReporters ? "Reporter Account Management" : onOfficers ? "Officer Account Management" : onSectors ? "Plant Sector Management" : "Admin Dashboard";
+    pageTitle.textContent = onIncidents
+      ? "Incident Management"
+      : onReporters
+        ? "Reporter Account Management"
+        : onOfficers
+          ? "Officer Account Management"
+          : onSectors
+            ? "Plant Sector Management"
+            : "Admin Dashboard";
     pageDescription.textContent = onReporters
       ? "Create reporter accounts and manage registered reporters."
-      : onOfficers ? "Create officer accounts and manage roles, specialties, and access."
-      : onIncidents ? "Review reported incidents and monitor response status."
-      : onSectors ? "Manage plant locations, operating risks, and assigned safety leads." : "Overview of incidents and safety operations.";
+      : onOfficers
+        ? "Create officer accounts and manage roles, specialties, and access."
+        : onIncidents
+          ? "Review reported incidents and monitor response status."
+          : onSectors
+            ? "Manage plant locations, operating risks, and assigned safety leads."
+            : "Overview of incidents and safety operations.";
     document.querySelectorAll(".side-nav .nav-item").forEach((link) => {
-      link.classList.toggle("selected", onIncidents ? link.hash === "#incidents" : onReporters ? link.hash === "#reporters" : onOfficers ? link.hash === "#officers" : onSectors ? link.hash === "#sectors" : link.hash === "#dashboard");
+      link.classList.toggle(
+        "selected",
+        onIncidents
+          ? link.hash === "#incidents"
+          : onReporters
+            ? link.hash === "#reporters"
+            : onOfficers
+              ? link.hash === "#officers"
+              : onSectors
+                ? link.hash === "#sectors"
+                : link.hash === "#dashboard",
+      );
     });
   }
   window.addEventListener("hashchange", syncPageView);
@@ -127,35 +161,70 @@
   let reporters = [];
   let reporterPendingDelete = null;
   let reporterPendingStatus = null;
-  const escapeHtml = (value) => String(value ?? "").replace(/[&<>"']/g, (char) => ({
-    "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;",
-  })[char]);
+  const escapeHtml = (value) =>
+    String(value ?? "").replace(
+      /[&<>"']/g,
+      (char) =>
+        ({
+          "&": "&amp;",
+          "<": "&lt;",
+          ">": "&gt;",
+          '"': "&quot;",
+          "'": "&#39;",
+        })[char],
+    );
 
   function render() {
     const term = search.value.trim().toLocaleLowerCase();
-    const visible = reporters.filter((reporter) => Number(reporter.is_active) === 1).filter((reporter) => [reporter.id, `#${reporter.id}`, reporter.first_name, reporter.last_name, reporter.username, reporter.email]
-      .some((value) => String(value ?? "").toLocaleLowerCase().includes(term)));
-    const active = reporters.filter((reporter) => Number(reporter.is_active) === 1).length;
-    document.querySelector('[data-stat="total"]').textContent = reporters.length;
+    const visible = reporters
+      .filter((reporter) => Number(reporter.is_active) === 1)
+      .filter((reporter) =>
+        [
+          reporter.id,
+          `#${reporter.id}`,
+          reporter.first_name,
+          reporter.last_name,
+          reporter.username,
+          reporter.email,
+        ].some((value) =>
+          String(value ?? "")
+            .toLocaleLowerCase()
+            .includes(term),
+        ),
+      );
+    const active = reporters.filter(
+      (reporter) => Number(reporter.is_active) === 1,
+    ).length;
+    document.querySelector('[data-stat="total"]').textContent =
+      reporters.length;
     const now = new Date();
     const thisMonth = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, "0")}`;
     document.querySelector('[data-stat="new"]').textContent = reporters.filter(
       (reporter) => String(reporter.created_at || "").slice(0, 7) === thisMonth,
     ).length;
-    document.querySelector('[data-stat="inactive"]').textContent = reporters.length - active;
-    rows.innerHTML = visible.length ? visible.map((reporter) => {
-      const isActive = Number(reporter.is_active) === 1;
-      return `<tr><td data-label="Account ID">#${escapeHtml(reporter.id)}</td><td data-label="Reporter Name"><strong>${escapeHtml(`${reporter.first_name} ${reporter.last_name}`.trim())}</strong></td><td data-label="Username">${escapeHtml(String(reporter.username || "").toLocaleLowerCase())}</td><td data-label="Work Email">${escapeHtml(String(reporter.email || "").toLocaleLowerCase())}</td><td data-label="Actions"><div class="reporter-actions"><button class="reporter-action" type="button" data-action="edit" data-id="${escapeHtml(reporter.id)}">Edit</button><button class="reporter-action ${isActive ? "block" : "unblock"}" type="button" data-action="status" data-id="${escapeHtml(reporter.id)}" data-active="${isActive ? "0" : "1"}">${isActive ? "Block" : "Unblock"}</button><button class="reporter-action delete" type="button" data-action="delete" data-id="${escapeHtml(reporter.id)}">Delete</button></div></td></tr>`;
-    }).join("") : '<tr><td colspan="5">No active reporter accounts found. Check Blocked Accounts to review blocked records.</td></tr>';
+    document.querySelector('[data-stat="inactive"]').textContent =
+      reporters.length - active;
+    rows.innerHTML = visible.length
+      ? visible
+          .map((reporter) => {
+            const isActive = Number(reporter.is_active) === 1;
+            return `<tr><td data-label="Account ID">#${escapeHtml(reporter.id)}</td><td data-label="Reporter Name"><strong>${escapeHtml(`${reporter.first_name} ${reporter.last_name}`.trim())}</strong></td><td data-label="Username">${escapeHtml(String(reporter.username || "").toLocaleLowerCase())}</td><td data-label="Work Email">${escapeHtml(String(reporter.email || "").toLocaleLowerCase())}</td><td data-label="Actions"><div class="reporter-actions"><button class="reporter-action" type="button" data-action="edit" data-id="${escapeHtml(reporter.id)}">Edit</button><button class="reporter-action ${isActive ? "block" : "unblock"}" type="button" data-action="status" data-id="${escapeHtml(reporter.id)}" data-active="${isActive ? "0" : "1"}">${isActive ? "Block" : "Unblock"}</button><button class="reporter-action delete" type="button" data-action="delete" data-id="${escapeHtml(reporter.id)}">Delete</button></div></td></tr>`;
+          })
+          .join("")
+      : '<tr><td colspan="5">No active reporter accounts found. Check Blocked Accounts to review blocked records.</td></tr>';
     count.textContent = `Showing ${visible.length} of ${reporters.length} reporter accounts`;
   }
 
   async function loadReporters() {
     rows.innerHTML = '<tr><td colspan="5">Loading reporter accounts…</td></tr>';
     try {
-      const response = await fetch(endpoint, { credentials: "same-origin", headers: { Accept: "application/json" } });
+      const response = await fetch(endpoint, {
+        credentials: "same-origin",
+        headers: { Accept: "application/json" },
+      });
       const result = await response.json();
-      if (!response.ok || !result.ok) throw new Error(result.message || "Unable to load reporter accounts.");
+      if (!response.ok || !result.ok)
+        throw new Error(result.message || "Unable to load reporter accounts.");
       reporters = result.reporters || [];
       render();
     } catch (error) {
@@ -165,45 +234,68 @@
   }
 
   search.addEventListener("input", render);
-  document.querySelectorAll('[data-account-view^="reporter-"]').forEach((button) => {
-    button.addEventListener("click", () => {
-      const blockedOnly = button.dataset.accountView === "reporter-blocked";
-      const accounts = blockedOnly
-        ? reporters.filter((reporter) => Number(reporter.is_active) !== 1)
-        : reporters;
-      window.showAccountHistory({
-        title: blockedOnly ? "Blocked Reporter Accounts" : "Reporter Account History",
-        columns: ["Account ID", "Name", "Username", "Email", "Registered", "Status"],
-        rows: accounts.map((reporter) => [
-          `#${reporter.id}`,
-          `${reporter.first_name} ${reporter.last_name}`.trim(),
-          String(reporter.username || "").toLocaleLowerCase(),
-          String(reporter.email || "").toLocaleLowerCase(),
-          reporter.created_at || "—",
-          Number(reporter.is_active) === 1 ? "Active" : "Blocked",
-        ]),
-        actionLabel: blockedOnly ? "Unblock" : "",
-        actionIds: accounts.map((reporter) => reporter.id),
-        onAction: blockedOnly ? async (id) => {
-          const response = await fetch(endpoint, {
-            method: "PATCH",
-            credentials: "same-origin",
-            headers: { Accept: "application/json", "Content-Type": "application/json" },
-            body: JSON.stringify({ action: "status", id, is_active: 1 }),
-          });
-          const result = await response.json();
-          if (!response.ok || !result.ok) throw new Error(result.message || "Unable to unblock reporter account.");
-          await loadReporters();
-          window.showAdminToast(result.message, "success");
-        } : null,
-        emptyText: blockedOnly ? "There are no blocked reporter accounts." : "No reporter account history is available.",
+  document
+    .querySelectorAll('[data-account-view^="reporter-"]')
+    .forEach((button) => {
+      button.addEventListener("click", () => {
+        const blockedOnly = button.dataset.accountView === "reporter-blocked";
+        const accounts = blockedOnly
+          ? reporters.filter((reporter) => Number(reporter.is_active) !== 1)
+          : reporters;
+        window.showAccountHistory({
+          title: blockedOnly
+            ? "Blocked Reporter Accounts"
+            : "Reporter Account History",
+          columns: [
+            "Account ID",
+            "Name",
+            "Username",
+            "Email",
+            "Registered",
+            "Status",
+          ],
+          rows: accounts.map((reporter) => [
+            `#${reporter.id}`,
+            `${reporter.first_name} ${reporter.last_name}`.trim(),
+            String(reporter.username || "").toLocaleLowerCase(),
+            String(reporter.email || "").toLocaleLowerCase(),
+            reporter.created_at || "—",
+            Number(reporter.is_active) === 1 ? "Active" : "Blocked",
+          ]),
+          actionLabel: blockedOnly ? "Unblock" : "",
+          actionIds: accounts.map((reporter) => reporter.id),
+          onAction: blockedOnly
+            ? async (id) => {
+                const response = await fetch(endpoint, {
+                  method: "PATCH",
+                  credentials: "same-origin",
+                  headers: {
+                    Accept: "application/json",
+                    "Content-Type": "application/json",
+                  },
+                  body: JSON.stringify({ action: "status", id, is_active: 1 }),
+                });
+                const result = await response.json();
+                if (!response.ok || !result.ok)
+                  throw new Error(
+                    result.message || "Unable to unblock reporter account.",
+                  );
+                await loadReporters();
+                window.showAdminToast(result.message, "success");
+              }
+            : null,
+          emptyText: blockedOnly
+            ? "There are no blocked reporter accounts."
+            : "No reporter account history is available.",
+        });
       });
     });
-  });
   rows.addEventListener("click", async (event) => {
     const button = event.target.closest("button[data-action]");
     if (!button) return;
-    const reporter = reporters.find((item) => String(item.id) === button.dataset.id);
+    const reporter = reporters.find(
+      (item) => String(item.id) === button.dataset.id,
+    );
     if (!reporter) return;
     if (button.dataset.action === "delete") {
       const name = `${reporter.first_name} ${reporter.last_name}`.trim();
@@ -217,8 +309,12 @@
       editForm.elements.id.value = reporter.id;
       editForm.elements.first_name.value = reporter.first_name || "";
       editForm.elements.last_name.value = reporter.last_name || "";
-      editForm.elements.email.value = (reporter.email || "").toLocaleLowerCase();
-      editForm.elements.username.value = (reporter.username || "").toLocaleLowerCase();
+      editForm.elements.email.value = (
+        reporter.email || ""
+      ).toLocaleLowerCase();
+      editForm.elements.username.value = (
+        reporter.username || ""
+      ).toLocaleLowerCase();
       editMessage.hidden = true;
       editDialog.showModal();
       return;
@@ -227,7 +323,9 @@
     const name = `${reporter.first_name} ${reporter.last_name}`.trim();
     reporterPendingStatus = { reporter, active };
     const unblock = active === 1;
-    statusTitle.textContent = unblock ? "Unblock Reporter Account?" : "Block Reporter Account?";
+    statusTitle.textContent = unblock
+      ? "Unblock Reporter Account?"
+      : "Block Reporter Account?";
     statusCopy.textContent = unblock
       ? `Restore sign-in access for ${name}?`
       : `Block ${name} from signing in? They will lose access until unblocked.`;
@@ -248,24 +346,31 @@
       const response = await fetch(endpoint, {
         method: "PATCH",
         credentials: "same-origin",
-        headers: { Accept: "application/json", "Content-Type": "application/json" },
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
         body: JSON.stringify(values),
       });
       const result = await response.json();
-      if (!response.ok || !result.ok) throw new Error(result.message || "Unable to update reporter account.");
+      if (!response.ok || !result.ok)
+        throw new Error(result.message || "Unable to update reporter account.");
       editDialog.close();
       await loadReporters();
       message.hidden = false;
       message.className = "reporter-form-message is-success";
       message.textContent = result.message;
     } catch (error) {
-      editMessage.textContent = error.message || "Unable to update reporter account.";
+      editMessage.textContent =
+        error.message || "Unable to update reporter account.";
       editMessage.hidden = false;
     } finally {
       save.disabled = false;
     }
   });
-  editForm.querySelector("[data-close-edit]").addEventListener("click", () => editDialog.close());
+  editForm
+    .querySelector("[data-close-edit]")
+    .addEventListener("click", () => editDialog.close());
   confirmDelete.addEventListener("click", async () => {
     if (!reporterPendingDelete) return;
     confirmDelete.disabled = true;
@@ -274,11 +379,15 @@
       const response = await fetch(endpoint, {
         method: "DELETE",
         credentials: "same-origin",
-        headers: { Accept: "application/json", "Content-Type": "application/json" },
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
         body: JSON.stringify({ id: reporterId }),
       });
       const result = await response.json();
-      if (!response.ok || !result.ok) throw new Error(result.message || "Unable to delete reporter account.");
+      if (!response.ok || !result.ok)
+        throw new Error(result.message || "Unable to delete reporter account.");
       deleteDialog.close();
       reporterPendingDelete = null;
       await loadReporters();
@@ -288,7 +397,10 @@
     } catch (error) {
       deleteDialog.close();
       reporterPendingDelete = null;
-      window.showAdminToast(error.message || "Unable to delete reporter account.", "error");
+      window.showAdminToast(
+        error.message || "Unable to delete reporter account.",
+        "error",
+      );
     } finally {
       confirmDelete.disabled = false;
     }
@@ -301,11 +413,19 @@
       const response = await fetch(endpoint, {
         method: "PATCH",
         credentials: "same-origin",
-        headers: { Accept: "application/json", "Content-Type": "application/json" },
-        body: JSON.stringify({ action: "status", id: reporter.id, is_active: active }),
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          action: "status",
+          id: reporter.id,
+          is_active: active,
+        }),
       });
       const result = await response.json();
-      if (!response.ok || !result.ok) throw new Error(result.message || "Unable to update account status.");
+      if (!response.ok || !result.ok)
+        throw new Error(result.message || "Unable to update account status.");
       statusDialog.close();
       reporterPendingStatus = null;
       await loadReporters();
@@ -315,7 +435,10 @@
     } catch (error) {
       statusDialog.close();
       reporterPendingStatus = null;
-      window.showAdminToast(error.message || "Unable to update account status.", "error");
+      window.showAdminToast(
+        error.message || "Unable to update account status.",
+        "error",
+      );
     } finally {
       confirmStatus.disabled = false;
     }
@@ -339,14 +462,16 @@
         headers: { Accept: "application/json" },
       });
       const result = await response.json();
-      message.textContent = result.message || "Unable to create reporter account.";
+      message.textContent =
+        result.message || "Unable to create reporter account.";
       message.classList.add(result.ok ? "is-success" : "is-error");
       if (result.ok) {
         form.reset();
         await loadReporters();
       }
     } catch {
-      message.textContent = "Cannot reach the reporter account service. Check that Apache and PHP are running.";
+      message.textContent =
+        "Cannot reach the reporter account service. Check that Apache and PHP are running.";
       message.classList.add("is-error");
     } finally {
       submit.disabled = false;

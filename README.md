@@ -4,7 +4,8 @@
 
 1. Start Apache and MySQL.
 2. Import `backend/config/schema.sql` for a new database. If the older `users` table is already present, run `backend/config/migrations/20261010_add_user_names.sql` once.
-3. Open `http://localhost/SIRMS/frontend/pages/login.html` to sign in, or register at `register.html`.
+3. Run `backend/config/migrations/20261106_create_incident_assignments.sql` once to enable officer assignment on admin incident reports.
+4. Open `http://localhost/SIRMS/frontend/pages/login.html` to sign in, or register at `register.html`.
 
 Login routes users according to the `users.role` value:
 

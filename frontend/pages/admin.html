@@ -102,7 +102,10 @@
         </header>
 
         <div class="dashboard-content" id="dashboard-overview">
-          <section class="overview-grid" aria-label="SafeSite management overview">
+          <section
+            class="overview-grid"
+            aria-label="SafeSite management overview"
+          >
             <article class="panel chart-panel">
               <div class="chart-heading">
                 <div>
@@ -112,14 +115,33 @@
                 <a class="view-button" href="#incidents">View incidents</a>
               </div>
               <div class="severity-chart" id="dashboard-severity-summary">
-                <div class="severity-donut" id="dashboard-severity-donut" role="img" aria-label="Incident count by severity">
-                  <div class="severity-donut-center"><strong id="dashboard-severity-total">0</strong><span>Reports</span></div>
+                <div
+                  class="severity-donut"
+                  id="dashboard-severity-donut"
+                  role="img"
+                  aria-label="Incident count by severity"
+                >
+                  <div class="severity-donut-center">
+                    <strong id="dashboard-severity-total">0</strong
+                    ><span>Reports</span>
+                  </div>
                 </div>
                 <div class="severity-legend">
-                  <div class="severity-legend-item" data-severity="Low"><i></i><span>Low</span><strong>0</strong></div>
-                  <div class="severity-legend-item" data-severity="Moderate"><i></i><span>Moderate</span><strong>0</strong></div>
-                  <div class="severity-legend-item" data-severity="High"><i></i><span>High</span><strong>0</strong></div>
-                  <div class="severity-legend-item critical" data-severity="Critical"><i></i><span>Critical</span><strong>0</strong></div>
+                  <div class="severity-legend-item" data-severity="Low">
+                    <i></i><span>Low</span><strong>0</strong>
+                  </div>
+                  <div class="severity-legend-item" data-severity="Moderate">
+                    <i></i><span>Moderate</span><strong>0</strong>
+                  </div>
+                  <div class="severity-legend-item" data-severity="High">
+                    <i></i><span>High</span><strong>0</strong>
+                  </div>
+                  <div
+                    class="severity-legend-item critical"
+                    data-severity="Critical"
+                  >
+                    <i></i><span>Critical</span><strong>0</strong>
+                  </div>
                 </div>
               </div>
             </article>
@@ -131,22 +153,46 @@
                 </div>
                 <a class="view-button" href="#incidents">Manage reports</a>
               </div>
-              <div class="incident-status-summary" id="dashboard-status-summary">
+              <div
+                class="incident-status-summary"
+                id="dashboard-status-summary"
+              >
                 <div class="incident-status-row pending" data-status="Pending">
-                  <div class="incident-status-label"><i></i><span>Pending</span></div>
-                  <div class="incident-status-track"><i></i></div><strong>0</strong>
+                  <div class="incident-status-label">
+                    <i></i><span>Pending</span>
+                  </div>
+                  <div class="incident-status-track"><i></i></div>
+                  <strong>0</strong>
                 </div>
-                <div class="incident-status-row review" data-status="Under Review">
-                  <div class="incident-status-label"><i></i><span>Under Review</span></div>
-                  <div class="incident-status-track"><i></i></div><strong>0</strong>
+                <div
+                  class="incident-status-row review"
+                  data-status="Under Review"
+                >
+                  <div class="incident-status-label">
+                    <i></i><span>Under Review</span>
+                  </div>
+                  <div class="incident-status-track"><i></i></div>
+                  <strong>0</strong>
                 </div>
-                <div class="incident-status-row progress" data-status="In Progress">
-                  <div class="incident-status-label"><i></i><span>In Progress</span></div>
-                  <div class="incident-status-track"><i></i></div><strong>0</strong>
+                <div
+                  class="incident-status-row progress"
+                  data-status="In Progress"
+                >
+                  <div class="incident-status-label">
+                    <i></i><span>In Progress</span>
+                  </div>
+                  <div class="incident-status-track"><i></i></div>
+                  <strong>0</strong>
                 </div>
-                <div class="incident-status-row resolved" data-status="Resolved">
-                  <div class="incident-status-label"><i></i><span>Resolved</span></div>
-                  <div class="incident-status-track"><i></i></div><strong>0</strong>
+                <div
+                  class="incident-status-row resolved"
+                  data-status="Resolved"
+                >
+                  <div class="incident-status-label">
+                    <i></i><span>Resolved</span>
+                  </div>
+                  <div class="incident-status-track"><i></i></div>
+                  <strong>0</strong>
                 </div>
               </div>
             </article>
@@ -206,9 +252,9 @@
             <div class="incidents-heading">
               <div>
                 <h2>Recent Incidents</h2>
-                  <p>Latest reports submitted by reporters</p>
+                <p>Latest reports submitted by reporters</p>
               </div>
-                <a class="view-button" href="#incidents">View all incidents</a>
+              <a class="view-button" href="#incidents">View all incidents</a>
             </div>
             <div class="table-scroll">
               <table class="admin-data-table">
@@ -223,7 +269,9 @@
                   </tr>
                 </thead>
                 <tbody id="dashboard-recent-incident-rows">
-                  <tr><td colspan="6">Loading recent incidents...</td></tr>
+                  <tr>
+                    <td colspan="6">Loading recent incidents...</td>
+                  </tr>
                 </tbody>
               </table>
             </div>
@@ -282,7 +330,11 @@
                 </svg>
               </div>
               <strong id="management-stat-critical">0</strong
-              ><span class="status-pill red-pill" id="management-stat-critical-label">Needs attention</span>
+              ><span
+                class="status-pill red-pill"
+                id="management-stat-critical-label"
+                >Needs attention</span
+              >
             </article>
           </div>
           <section class="panel incidents-panel" id="incident-list">
@@ -295,10 +347,32 @@
                 </p>
               </div>
               <div class="table-tools">
-                <div class="incident-date-filters" aria-label="Filter by report month and day">
-                  <label>Month<input type="month" id="incident-date-month" aria-label="Report month" /></label>
-                  <label>Day<select id="incident-date-day" aria-label="Report day" disabled><option value="">All days</option></select></label>
-                  <button class="clear-date-filter" id="clear-incident-dates" type="button">Clear</button>
+                <div
+                  class="incident-date-filters"
+                  aria-label="Filter by report month and day"
+                >
+                  <label
+                    >Month<input
+                      type="month"
+                      id="incident-date-month"
+                      aria-label="Report month"
+                  /></label>
+                  <label
+                    >Day<select
+                      id="incident-date-day"
+                      aria-label="Report day"
+                      disabled
+                    >
+                      <option value="">All days</option>
+                    </select></label
+                  >
+                  <button
+                    class="clear-date-filter"
+                    id="clear-incident-dates"
+                    type="button"
+                  >
+                    Clear
+                  </button>
                 </div>
                 <div class="incident-search-group">
                   <label class="search-box"
@@ -332,7 +406,9 @@
                   </tr>
                 </thead>
                 <tbody id="admin-incident-rows">
-                  <tr><td colspan="6">Loading incident reports...</td></tr>
+                  <tr>
+                    <td colspan="6">Loading incident reports...</td>
+                  </tr>
                 </tbody>
               </table>
             </div>
@@ -737,8 +813,20 @@
               </div>
               <div class="account-directory-tools">
                 <div class="account-view-actions">
-                  <button class="reporter-action" type="button" data-account-view="officer-history">Registered History</button>
-                  <button class="reporter-action" type="button" data-account-view="officer-blocked">Blocked Accounts</button>
+                  <button
+                    class="reporter-action"
+                    type="button"
+                    data-account-view="officer-history"
+                  >
+                    Registered History
+                  </button>
+                  <button
+                    class="reporter-action"
+                    type="button"
+                    data-account-view="officer-blocked"
+                  >
+                    Blocked Accounts
+                  </button>
                 </div>
                 <label class="reporter-search"
                   >Search officers<input
@@ -1050,8 +1138,20 @@
               </div>
               <div class="account-directory-tools">
                 <div class="account-view-actions">
-                  <button class="reporter-action" type="button" data-account-view="reporter-history">Registered History</button>
-                  <button class="reporter-action" type="button" data-account-view="reporter-blocked">Blocked Accounts</button>
+                  <button
+                    class="reporter-action"
+                    type="button"
+                    data-account-view="reporter-history"
+                  >
+                    Registered History
+                  </button>
+                  <button
+                    class="reporter-action"
+                    type="button"
+                    data-account-view="reporter-blocked"
+                  >
+                    Blocked Accounts
+                  </button>
                 </div>
                 <label class="reporter-search"
                   >Search reporters<input

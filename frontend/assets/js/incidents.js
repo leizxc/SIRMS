@@ -10,6 +10,7 @@
   const filterButtons = [...document.querySelectorAll('#incidents .filters button')];
 
   const endpoint = "../../backend/public/auth/incidents.php";
+  const officerEndpoint = "../../backend/public/auth/officers.php";
   const escapeHtml = (value) => String(value ?? "").replace(/[&<>"']/g, (char) => ({
     "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;",
   })[char]);
@@ -21,6 +22,19 @@
   }[status] || "gray-pill");
 
   let incidentRecords = [];
+  let officers = [];
+  let activeIncident = null;
+
+  async function loadOfficers() {
+    try {
+      const response = await fetch(officerEndpoint, { credentials: "same-origin", headers: { Accept: "application/json" } });
+      const result = await response.json();
+      if (!response.ok || !result.ok) throw new Error(result.message || "Unable to load officers.");
+      officers = (result.officers || []).filter((officer) => Number(officer.is_active) === 1);
+    } catch (error) {
+      window.showAdminToast?.(error.message || "Unable to load officers.", "error");
+    }
+  }
   function updateStats(incidents) {
     const open = incidents.filter((incident) => incident.status !== "Resolved").length;
     const resolved = incidents.filter((incident) => incident.status === "Resolved").length;
@@ -99,8 +113,9 @@
     if (!detailDialog) {
       detailDialog = document.createElement("dialog");
       detailDialog.className = "reporter-edit-dialog incident-detail-dialog";
-      detailDialog.innerHTML = '<div class="reporter-edit-form"><h2>Incident Report</h2><dl></dl><div class="reporter-edit-actions"><button class="reporter-reset" type="button">Close</button></div></div>';
-      detailDialog.querySelector("button").addEventListener("click", () => detailDialog.close());
+      detailDialog.innerHTML = '<div class="reporter-edit-form"><h2>Incident Report</h2><dl></dl><label class="incident-assignment-field" for="incident-officer-select">Assign officer<select id="incident-officer-select"><option value="">Choose an officer</option></select></label><div class="reporter-edit-actions"><button class="reporter-reset" type="button" data-close-incident>Close</button><button class="reporter-save" type="button" data-save-assignment>Assign officer</button></div></div>';
+      detailDialog.querySelector("[data-close-incident]").addEventListener("click", () => detailDialog.close());
+      detailDialog.querySelector("[data-save-assignment]").addEventListener("click", saveAssignment);
       detailDialog.addEventListener("click", (event) => {
         if (event.target === detailDialog) detailDialog.close();
       });
@@ -113,6 +128,7 @@
       ["Occurred at", incident.occurred_at],
       ["Severity", incident.severity],
       ["Status", incident.status],
+      ["Assigned officer", incident.assigned_officer || "Not assigned"],
       ["Reported by", [incident.first_name, incident.last_name].filter(Boolean).join(" ")],
       ["Description", incident.description],
       ["Witnesses", incident.witnesses || "None listed"],
@@ -125,6 +141,11 @@
       description.textContent = value || "—";
       return [term, description];
     }));
+    activeIncident = incident;
+    const officerSelect = detailDialog.querySelector("#incident-officer-select");
+    officerSelect.replaceChildren(new Option("Choose an officer", ""));
+    officers.forEach((officer) => officerSelect.add(new Option(`${officer.first_name} ${officer.last_name}`.trim(), String(officer.id))));
+    officerSelect.value = incident.officer_user_id ? String(incident.officer_user_id) : "";
     for (const file of incident.evidence || []) {
       const term = document.createElement("dt");
       term.textContent = "Evidence";
@@ -160,6 +181,33 @@
       list.append(term, description);
     }
     detailDialog.showModal();
+  }
+
+  async function saveAssignment(event) {
+    const button = event.currentTarget;
+    const officerId = detailDialog.querySelector("#incident-officer-select").value;
+    if (!activeIncident || !officerId) {
+      window.showAdminToast?.("Choose an officer to assign.", "error");
+      return;
+    }
+    button.disabled = true;
+    try {
+      const response = await fetch(endpoint, {
+        method: "POST",
+        credentials: "same-origin",
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify({ action: "assign", incident_id: activeIncident.id, officer_id: officerId }),
+      });
+      const result = await response.json();
+      if (!response.ok || !result.ok) throw new Error(result.message || "Unable to assign officer.");
+      window.showAdminToast?.(result.message || "Officer assigned.", "success");
+      detailDialog.close();
+      await loadIncidents();
+    } catch (error) {
+      window.showAdminToast?.(error.message || "Unable to assign officer.", "error");
+    } finally {
+      button.disabled = false;
+    }
   }
 
   rows.addEventListener("click", async (event) => {
@@ -217,7 +265,7 @@
     filterRows();
   }));
 
-  loadIncidents();
+  loadOfficers().then(loadIncidents);
   window.addEventListener("hashchange", () => {
     if (window.location.hash === "#incidents") loadIncidents();
   });

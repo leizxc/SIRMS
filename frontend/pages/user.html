@@ -289,10 +289,19 @@
                     aria-label="Search submitted reports"
                 /></label>
                 <div class="report-filters" aria-label="Filter reports">
-                  <button class="selected" type="button" data-report-filter="all">ALL</button
-                  ><button type="button" data-report-filter="pending">PENDING CONFIRMATION</button
-                  ><button type="button" data-report-filter="investigating">UNDER INVESTIGATION</button
-                  ><button type="button" data-report-filter="resolved">RESOLVED</button>
+                  <button
+                    class="selected"
+                    type="button"
+                    data-report-filter="all"
+                  >
+                    ALL</button
+                  ><button type="button" data-report-filter="pending">
+                    PENDING CONFIRMATION</button
+                  ><button type="button" data-report-filter="investigating">
+                    UNDER INVESTIGATION</button
+                  ><button type="button" data-report-filter="resolved">
+                    RESOLVED
+                  </button>
                 </div>
               </div>
               <div class="report-list">
@@ -522,9 +531,16 @@
                 <div class="report-fields">
                   <label
                     >Plant Sector <b>*</b
-                    ><select name="plant_sector_id" id="report-plant-sector" required>
-                      <option value="">Loading plant sectors...</option>
-                    </select><small>Select the plant sector where the incident occurred.</small></label
+                    ><select
+                      name="plant_sector_id"
+                      id="report-plant-sector"
+                      required
+                    >
+                      <option value="">Loading plant sectors...</option></select
+                    ><small
+                      >Select the plant sector where the incident
+                      occurred.</small
+                    ></label
                   >
                   <label
                     >Date &amp; Time of Occurrence <b>*</b

@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 header('Content-Type: application/json; charset=utf-8');
@@ -32,15 +33,17 @@ try {
     $role = strtoupper((string) $account['role']);
     $method = $_SERVER['REQUEST_METHOD'] ?? 'GET';
     if ($method === 'GET' && isset($_GET['evidence'])) {
-        if (!in_array($role, ['ADMIN', 'USER', 'USERS', 'REPORTER'], true)) {
+        if (!in_array($role, ['ADMIN', 'USER', 'USERS', 'REPORTER', 'OFFICER'], true)) {
             incident_respond(403, ['ok' => false, 'message' => 'You cannot view incident evidence.']);
         }
         $evidenceId = filter_var($_GET['evidence'], FILTER_VALIDATE_INT);
         if (!$evidenceId || $evidenceId < 1) incident_respond(404, ['ok' => false, 'message' => 'Evidence file not found.']);
         $evidenceQuery = $pdo->prepare('SELECT e.original_name, e.storage_name, e.mime_type
             FROM incident_evidence e INNER JOIN incidents i ON i.id = e.incident_id
-            WHERE e.id = :evidence_id AND (:is_admin = 1 OR i.reporter_id = :reporter_id) LIMIT 1');
-        $evidenceQuery->execute(['evidence_id' => $evidenceId, 'is_admin' => $role === 'ADMIN' ? 1 : 0, 'reporter_id' => $userId]);
+            WHERE e.id = :evidence_id AND (:is_admin = 1 OR i.reporter_id = :reporter_id OR EXISTS (
+                SELECT 1 FROM incident_assignments a WHERE a.incident_id = i.id AND a.officer_user_id = :officer_id
+            )) LIMIT 1');
+        $evidenceQuery->execute(['evidence_id' => $evidenceId, 'is_admin' => $role === 'ADMIN' ? 1 : 0, 'reporter_id' => $userId, 'officer_id' => $role === 'OFFICER' ? $userId : 0]);
         $evidence = $evidenceQuery->fetch();
         if (!$evidence) incident_respond(404, ['ok' => false, 'message' => 'Evidence file not found.']);
         $filePath = dirname(__DIR__, 2) . '/storage/incident-evidence/' . basename((string) $evidence['storage_name']);
@@ -54,22 +57,36 @@ try {
         exit;
     }
     if ($method === 'GET') {
-        if ($role !== 'ADMIN' && !in_array($role, ['USER', 'USERS', 'REPORTER'], true)) {
+        if ($role !== 'ADMIN' && !in_array($role, ['USER', 'USERS', 'REPORTER', 'OFFICER'], true)) {
             incident_respond(403, ['ok' => false, 'message' => 'You cannot view incident reports.']);
         }
         if ($role === 'ADMIN') {
             $query = $pdo->query("SELECT i.id, i.incident_code, i.category, s.sector_name AS location, i.plant_sector_id, i.occurred_at,
                     i.severity, i.description, i.witnesses, i.status, i.created_at,
-                    u.first_name, u.last_name
+                    u.first_name, u.last_name, a.officer_user_id, CONCAT(o.first_name, ' ', o.last_name) AS assigned_officer
                 FROM incidents i INNER JOIN users u ON u.id = i.reporter_id
                 INNER JOIN plant_sectors s ON s.id = i.plant_sector_id
+                LEFT JOIN incident_assignments a ON a.incident_id = i.id
+                LEFT JOIN users o ON o.id = a.officer_user_id
                 ORDER BY i.created_at DESC, i.id DESC");
+        } elseif ($role === 'OFFICER') {
+            $query = $pdo->prepare("SELECT i.id, i.incident_code, i.category, s.sector_name AS location, i.plant_sector_id, i.occurred_at,
+                    i.severity, i.description, i.witnesses, i.status, i.created_at,
+                    u.first_name, u.last_name, a.officer_user_id, CONCAT(o.first_name, ' ', o.last_name) AS assigned_officer
+                FROM incidents i INNER JOIN users u ON u.id = i.reporter_id
+                INNER JOIN plant_sectors s ON s.id = i.plant_sector_id
+                INNER JOIN incident_assignments a ON a.incident_id = i.id AND a.officer_user_id = :officer_id
+                INNER JOIN users o ON o.id = a.officer_user_id
+                ORDER BY i.created_at DESC, i.id DESC");
+            $query->execute(['officer_id' => $userId]);
         } else {
             $query = $pdo->prepare("SELECT i.id, i.incident_code, i.category, s.sector_name AS location, i.plant_sector_id, i.occurred_at,
                     i.severity, i.description, i.witnesses, i.status, i.created_at,
-                    u.first_name, u.last_name
+                    u.first_name, u.last_name, CONCAT(o.first_name, ' ', o.last_name) AS assigned_officer
                 FROM incidents i INNER JOIN users u ON u.id = i.reporter_id
                 INNER JOIN plant_sectors s ON s.id = i.plant_sector_id
+                LEFT JOIN incident_assignments a ON a.incident_id = i.id
+                LEFT JOIN users o ON o.id = a.officer_user_id
                 WHERE i.reporter_id = :reporter_id
                 ORDER BY i.created_at DESC, i.id DESC");
             $query->execute(['reporter_id' => $userId]);
@@ -77,6 +94,11 @@ try {
         $incidents = $query->fetchAll();
         if ($role === 'ADMIN') {
             $evidenceQuery = $pdo->query('SELECT e.id, e.incident_id, e.original_name, e.mime_type FROM incident_evidence e ORDER BY e.id');
+        } elseif ($role === 'OFFICER') {
+            $evidenceQuery = $pdo->prepare('SELECT e.id, e.incident_id, e.original_name, e.mime_type
+                FROM incident_evidence e INNER JOIN incident_assignments a ON a.incident_id = e.incident_id
+                WHERE a.officer_user_id = :officer_id ORDER BY e.id');
+            $evidenceQuery->execute(['officer_id' => $userId]);
         } else {
             $evidenceQuery = $pdo->prepare('SELECT e.id, e.incident_id, e.original_name, e.mime_type FROM incident_evidence e INNER JOIN incidents i ON i.id = e.incident_id WHERE i.reporter_id = :reporter_id ORDER BY e.id');
             $evidenceQuery->execute(['reporter_id' => $userId]);
@@ -93,6 +115,7 @@ try {
             $incident['evidence'] = $evidenceByIncident[(int) $incident['id']] ?? [];
         }
         unset($incident);
+        if ($role === 'OFFICER') incident_respond(200, ['ok' => true, 'incidents' => $incidents]);
         $sectors = $pdo->query('SELECT id, sector_name FROM plant_sectors WHERE is_active = 1 ORDER BY sector_name')->fetchAll();
         incident_respond(200, ['ok' => true, 'incidents' => $incidents, 'sectors' => $sectors]);
     }
@@ -100,6 +123,50 @@ try {
     if ($method !== 'POST') {
         header('Allow: GET, POST');
         incident_respond(405, ['ok' => false, 'message' => 'Method not allowed.']);
+    }
+    if ($role === 'ADMIN') {
+        $data = json_decode((string) file_get_contents('php://input'), true);
+        if (!is_array($data) || ($data['action'] ?? '') !== 'assign') {
+            incident_respond(400, ['ok' => false, 'message' => 'Invalid assignment request.']);
+        }
+        $incidentId = filter_var($data['incident_id'] ?? null, FILTER_VALIDATE_INT);
+        $officerId = filter_var($data['officer_id'] ?? null, FILTER_VALIDATE_INT);
+        if (!$incidentId || $incidentId < 1) incident_respond(422, ['ok' => false, 'message' => 'Choose a valid incident.']);
+        if (!$officerId || $officerId < 1) incident_respond(422, ['ok' => false, 'message' => 'Choose an officer to assign.']);
+        $incidentCheck = $pdo->prepare('SELECT id FROM incidents WHERE id = :id LIMIT 1');
+        $incidentCheck->execute(['id' => $incidentId]);
+        if (!$incidentCheck->fetch()) incident_respond(404, ['ok' => false, 'message' => 'Incident report not found.']);
+        $officerCheck = $pdo->prepare("SELECT u.id FROM users u INNER JOIN officer_profiles p ON p.user_id = u.id WHERE u.id = :id AND UPPER(u.role) = 'OFFICER' AND u.is_active = 1 LIMIT 1");
+        $officerCheck->execute(['id' => $officerId]);
+        if (!$officerCheck->fetch()) incident_respond(422, ['ok' => false, 'message' => 'Choose an active officer account.']);
+        $assign = $pdo->prepare('INSERT INTO incident_assignments (incident_id, officer_user_id, assigned_by)
+            VALUES (:incident_id, :officer_user_id, :assigned_by)
+            ON DUPLICATE KEY UPDATE officer_user_id = VALUES(officer_user_id), assigned_by = VALUES(assigned_by), assigned_at = CURRENT_TIMESTAMP');
+        $assign->execute(['incident_id' => $incidentId, 'officer_user_id' => $officerId, 'assigned_by' => $userId]);
+        incident_respond(200, ['ok' => true, 'message' => 'Officer assigned to the incident.']);
+    }
+    if ($role === 'OFFICER') {
+        $data = json_decode((string) file_get_contents('php://input'), true);
+        if (!is_array($data) || ($data['action'] ?? '') !== 'update_status') {
+            incident_respond(400, ['ok' => false, 'message' => 'Invalid incident update request.']);
+        }
+        $incidentId = filter_var($data['incident_id'] ?? null, FILTER_VALIDATE_INT);
+        $status = trim((string) ($data['status'] ?? ''));
+        if (!$incidentId || $incidentId < 1) incident_respond(422, ['ok' => false, 'message' => 'Choose a valid incident.']);
+        if (!in_array($status, ['Under Review', 'In Progress', 'Resolved'], true)) {
+            incident_respond(422, ['ok' => false, 'message' => 'Choose a valid incident status.']);
+        }
+        $update = $pdo->prepare("UPDATE incidents i INNER JOIN incident_assignments a ON a.incident_id = i.id
+            SET i.status = :status WHERE i.id = :incident_id AND a.officer_user_id = :officer_id");
+        $update->execute(['status' => $status, 'incident_id' => $incidentId, 'officer_id' => $userId]);
+        if ($update->rowCount() < 1) {
+            $check = $pdo->prepare('SELECT i.status FROM incidents i INNER JOIN incident_assignments a ON a.incident_id = i.id WHERE i.id = :incident_id AND a.officer_user_id = :officer_id LIMIT 1');
+            $check->execute(['incident_id' => $incidentId, 'officer_id' => $userId]);
+            $current = $check->fetch();
+            if (!$current) incident_respond(404, ['ok' => false, 'message' => 'This incident is not assigned to your account.']);
+            if ($current['status'] !== $status) incident_respond(500, ['ok' => false, 'message' => 'Unable to update the incident status.']);
+        }
+        incident_respond(200, ['ok' => true, 'message' => 'Incident status updated.']);
     }
     if (!in_array($role, ['USER', 'USERS', 'REPORTER'], true)) {
         incident_respond(403, ['ok' => false, 'message' => 'Only reporter accounts can submit incident reports.']);
@@ -113,8 +180,12 @@ try {
     $description = incident_input('description', 1000);
     $witnesses = incident_input('witnesses', 500);
     $categories = [
-        'Equipment Malfunction', 'Chemical / Hazardous Spill', 'Slip, Trip & Fall Hazard',
-        'Fire & Electrical Safety', 'PPE Non-Compliance', 'Structural Damage / Exit Block',
+        'Equipment Malfunction',
+        'Chemical / Hazardous Spill',
+        'Slip, Trip & Fall Hazard',
+        'Fire & Electrical Safety',
+        'PPE Non-Compliance',
+        'Structural Damage / Exit Block',
     ];
     $severities = ['Low', 'Moderate', 'High', 'Critical'];
     if (!in_array($category, $categories, true)) incident_respond(422, ['ok' => false, 'message' => 'Choose a valid incident category.']);

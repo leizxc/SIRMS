@@ -81,6 +81,25 @@
 
   document.addEventListener("pointerdown", (event) => {
     if (!navMenus.some((menu) => menu.contains(event.target))) closeMenus();
+    if (!navigation?.contains(event.target) && !navToggle?.contains(event.target)) {
+      setNavigationOpen(false);
+    }
+  });
+
+  const navigation = document.getElementById("primary-navigation");
+  const navToggle = document.querySelector(".nav-toggle");
+
+  function setNavigationOpen(open) {
+    navigation?.classList.toggle("is-open", open);
+    navToggle?.setAttribute("aria-expanded", String(open));
+  }
+
+  navToggle?.addEventListener("click", () => {
+    setNavigationOpen(navToggle.getAttribute("aria-expanded") !== "true");
+  });
+
+  navigation?.querySelectorAll("a").forEach((link) => {
+    link.addEventListener("click", () => setNavigationOpen(false));
   });
 
   const demoDialog = document.getElementById("demo-dialog");
@@ -106,6 +125,7 @@
     if (event.key === "Escape") {
       const openMenu = navMenus.find((menu) => menu.querySelector('.menu-trigger[aria-expanded="true"]'));
       closeMenus();
+      setNavigationOpen(false);
       openMenu?.querySelector(".menu-trigger")?.focus();
     }
   });
