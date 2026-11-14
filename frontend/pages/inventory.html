@@ -15,7 +15,7 @@
     />
     <link rel="stylesheet" href="../assets/css/style.css" />
   </head>
-  <body>
+  <body class="inventory-page">
     <header class="nav">
       <div class="nav-inner">
         <a class="brand" href="index.html"
@@ -47,95 +47,83 @@
       </div>
     </header>
     <main>
-      <section class="page-hero">
-        <div class="wrap">
-          <span class="sec-tag">TOOL &amp; EQUIPMENT READINESS</span>
-          <h1 class="sec-title">Keep unsafe equipment out of the worksite.</h1>
-          <p>
-            Show the safety status of critical tools, link them to incidents,
-            and give maintenance teams a clear follow-up queue.
-          </p>
+      <section class="page-hero inventory-hero">
+        <div class="wrap inventory-hero-container">
+          <div class="inventory-hero-copy">
+            <span class="sec-tag">TOOL &amp; EQUIPMENT READINESS</span>
+            <h1 class="sec-title">Keep unsafe equipment out of the worksite</h1>
+            <p>Show the safety status of critical tools, link them to incidents, and give maintenance teams a clear follow-up queue.</p>
+          </div>
+          <div class="inventory-hero-frame" role="img" aria-label="Sample equipment readiness preview showing lifecycle status and a tool needing inspection">
+            <div class="inventory-preview">
+              <div class="inventory-preview-header">
+                <span class="inventory-preview-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M3 12h18M5 12V9a7 7 0 0 1 14 0v3M7 12v7m10-7v7M5 19h14" /></svg></span>
+                <span><small>SAFE SITE INVENTORY</small><strong>Equipment readiness</strong></span>
+                <span class="inventory-preview-badge">SAMPLE</span>
+              </div>
+              <div class="inventory-status-overview">
+                <div class="inventory-status-card"><span><i class="inventory-dot available"></i>Available</span><strong>18</strong><small>Ready for use</small></div>
+                <div class="inventory-status-card"><span><i class="inventory-dot in-use"></i>In Use</span><strong>07</strong><small>Assigned on site</small></div>
+                <div class="inventory-status-card"><span><i class="inventory-dot attention"></i>Quarantine / Maintenance</span><strong>03</strong><small>Needs follow-up</small></div>
+              </div>
+              <div class="inventory-followup-preview">
+                <div class="inventory-followup-title"><span><small>MAINTENANCE FOLLOW-UP</small><strong>Equipment needing review</strong></span><span class="inventory-open-count">03 OPEN</span></div>
+                <div class="inventory-tool-row"><span class="inventory-tool-mark"><svg viewBox="0 0 24 24" fill="none"><path d="M14.7 6.3a5 5 0 0 0-6.4 6.4L3 18l3 3 5.3-5.3a5 5 0 0 0 6.4-6.4L15 12l-3-3z" /></svg></span><span class="inventory-tool-copy"><b>Tool 204 · Power drill</b><small>Inspection required before use</small></span><span class="inventory-quarantine">Quarantine</span></div>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
-      <section class="page-section">
+      <section class="page-section inventory-visibility" aria-labelledby="inventory-heading">
         <div class="wrap">
-          <div class="sec-head">
+          <div class="sec-head inventory-section-intro">
             <span class="sec-tag">INVENTORY VISIBILITY</span>
-            <h2 class="sec-title">
-              Equipment status that supports safer decisions.
-            </h2>
+            <h2 class="sec-title" id="inventory-heading">Equipment status that supports safer decisions.</h2>
+            <p class="sec-desc">Keep each tool's condition connected to the reports and follow-up actions that affect its readiness.</p>
           </div>
-          <div class="info-grid">
-            <article class="info-card">
-              <div class="fi fi-green">
-                <img src="../assets/icons/security-helmet.png" alt="" />
-              </div>
+          <div class="inventory-feature-grid">
+            <article class="inventory-feature-card inventory-feature-card--lifecycle">
+              <span class="inventory-feature-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M3 12h18M5 12V9a7 7 0 0 1 14 0v3M7 12v7m10-7v7M5 19h14" /><path d="m9 8 2 2 4-4" /></svg></span>
+              <span class="inventory-feature-label">01 · STATUS</span>
               <h3>Lifecycle Status</h3>
-              <p>
-                Communicate whether an asset is Available, In Use, or in
-                Quarantine/Maintenance so teams can make safer choices before
-                work begins.
-              </p>
+              <p>Communicate whether an asset is Available, In Use, or in Quarantine/Maintenance so teams can make safer choices before work begins.</p>
+              <div class="inventory-status-pills" aria-hidden="true"><span class="pill-available">Available</span><span class="pill-in-use">In Use</span><span class="pill-quarantine">Quarantine</span></div>
             </article>
-            <article class="info-card">
-              <div class="fi fi-red">
-                <img src="../assets/icons/warning.png" alt="" />
-              </div>
+            <article class="inventory-feature-card inventory-feature-card--link">
+              <span class="inventory-feature-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M10 13a5 5 0 0 0 7.1 0l3-3A5 5 0 0 0 13 2.9l-1.7 1.7" /><path d="M14 11a5 5 0 0 0-7.1 0l-3 3A5 5 0 0 0 11 21.1l1.7-1.7" /></svg></span>
+              <span class="inventory-feature-label">02 · CONTEXT</span>
               <h3>Incident-to-Tool Context</h3>
-              <p>
-                Associate a Tool ID or serial number with a report to preserve
-                the connection between the equipment and the safety event.
-              </p>
+              <p>Associate a Tool ID or serial number with a report to preserve the connection between the equipment and the safety event.</p>
+              <div class="inventory-link-preview" aria-hidden="true"><span>INCIDENT REPORT</span><i></i><b>TOOL ID</b></div>
             </article>
-            <article class="info-card">
-              <div class="fi fi-yellow">
-                <img src="../assets/icons/quality-control.png" alt="" />
-              </div>
+            <article class="inventory-feature-card inventory-feature-card--maintenance">
+              <span class="inventory-feature-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M14.7 6.3a5 5 0 0 0-6.4 6.4L3 18l3 3 5.3-5.3a5 5 0 0 0 6.4-6.4L15 12l-3-3z" /><path d="M17 4h4m-2-2v4" /></svg></span>
+              <span class="inventory-feature-label">03 · FOLLOW-UP</span>
               <h3>Maintenance Follow-up</h3>
-              <p>
-                Highlight assets that require inspection, repair, or clearance
-                before they return to service.
-              </p>
+              <p>Highlight assets that require inspection, repair, or clearance before they return to service.</p>
+              <div class="inventory-maintenance-note" aria-hidden="true"><i></i>Inspection required <span>Before return to use</span></div>
             </article>
           </div>
         </div>
       </section>
-      <section class="page-section tinted">
+      <section class="page-section tinted inventory-flow-section" aria-labelledby="inventory-flow-heading">
         <div class="wrap">
-          <div class="sec-head">
+          <div class="sec-head inventory-section-intro">
             <span class="sec-tag">SAFETY FLOW</span>
-            <h2 class="sec-title">From a reported defect to safe clearance.</h2>
+            <h2 class="sec-title" id="inventory-flow-heading">From a reported defect to safe clearance.</h2>
           </div>
-          <div class="workflow-list">
-            <article class="workflow-item">
-              <span class="workflow-number">01</span>
-              <div>
-                <h3>Identify the equipment</h3>
-                <p>
-                  Capture the Tool ID or serial number with the incident or
-                  near-miss details.
-                </p>
-              </div>
+          <div class="inventory-flow-grid">
+            <article class="inventory-flow-step">
+              <span class="inventory-flow-number">01</span>
+              <h3>Identify the equipment</h3><p>Capture the Tool ID or serial number with the incident or near-miss details.</p>
             </article>
-            <article class="workflow-item">
-              <span class="workflow-number">02</span>
-              <div>
-                <h3>Quarantine when necessary</h3>
-                <p>
-                  Make the equipment's unsafe status visible while it awaits
-                  inspection or repair.
-                </p>
-              </div>
+            <article class="inventory-flow-step inventory-flow-step--hold">
+              <span class="inventory-flow-number">02</span>
+              <h3>Quarantine when necessary</h3><p>Make the equipment's unsafe status visible while it awaits inspection or repair.</p>
             </article>
-            <article class="workflow-item">
-              <span class="workflow-number">03</span>
-              <div>
-                <h3>Clear only after review</h3>
-                <p>
-                  Return the tool to an available state after its condition has
-                  been reviewed and cleared.
-                </p>
-              </div>
+            <article class="inventory-flow-step">
+              <span class="inventory-flow-number">03</span>
+              <h3>Clear only after review</h3><p>Return the tool to an available state after its condition has been reviewed and cleared.</p>
             </article>
           </div>
         </div>
