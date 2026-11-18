@@ -22,13 +22,15 @@
 
       let currentPage = 1;
       function render() {
-      const allRows = Array.from(body.rows);
-      const rows = allRows.filter((row) => row.dataset.filteredOut !== "1");
+        const allRows = Array.from(body.rows);
+        const rows = allRows.filter((row) => row.dataset.filteredOut !== "1");
         const totalPages = Math.max(1, Math.ceil(rows.length / pageSize));
         currentPage = Math.min(currentPage, totalPages);
         const start = (currentPage - 1) * pageSize;
-      allRows.forEach((row) => { row.hidden = true; });
-      rows.forEach((row, index) => {
+        allRows.forEach((row) => {
+          row.hidden = true;
+        });
+        rows.forEach((row, index) => {
           Array.from(row.cells).forEach((cell, cellIndex) => {
             if (!cell.hasAttribute("data-label") && headers[cellIndex])
               cell.dataset.label = headers[cellIndex];

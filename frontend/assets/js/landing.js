@@ -13,10 +13,18 @@
       if (active) link.setAttribute("aria-current", "location");
       else link.removeAttribute("aria-current");
     });
-    document.querySelector('[aria-controls="how-menu-panel"]')?.classList.toggle("active", id === "how");
-    document.querySelector('[aria-controls="features-menu-panel"]')?.classList.toggle("active", id === "features");
-    document.querySelector('[aria-controls="compliances-menu-panel"]')?.classList.toggle("active", id === "compliance");
-    document.querySelector('[aria-controls="contact-menu-panel"]')?.classList.toggle("active", id === "contact");
+    document
+      .querySelector('[aria-controls="how-menu-panel"]')
+      ?.classList.toggle("active", id === "how");
+    document
+      .querySelector('[aria-controls="features-menu-panel"]')
+      ?.classList.toggle("active", id === "features");
+    document
+      .querySelector('[aria-controls="compliances-menu-panel"]')
+      ?.classList.toggle("active", id === "compliance");
+    document
+      .querySelector('[aria-controls="contact-menu-panel"]')
+      ?.classList.toggle("active", id === "contact");
   }
 
   let scheduled = false;
@@ -24,11 +32,13 @@
     scheduled = false;
     if (!sections.length) return;
 
-    const headerHeight = document.querySelector("header.nav")?.offsetHeight ?? 0;
+    const headerHeight =
+      document.querySelector("header.nav")?.offsetHeight ?? 0;
     const marker = window.scrollY + headerHeight + 24;
     let current = sections[0];
     for (const section of sections) {
-      if (section.getBoundingClientRect().top + window.scrollY <= marker) current = section;
+      if (section.getBoundingClientRect().top + window.scrollY <= marker)
+        current = section;
       else break;
     }
     setActive(current.id);
@@ -81,7 +91,10 @@
 
   document.addEventListener("pointerdown", (event) => {
     if (!navMenus.some((menu) => menu.contains(event.target))) closeMenus();
-    if (!navigation?.contains(event.target) && !navToggle?.contains(event.target)) {
+    if (
+      !navigation?.contains(event.target) &&
+      !navToggle?.contains(event.target)
+    ) {
       setNavigationOpen(false);
     }
   });
@@ -115,7 +128,9 @@
     if (demoVideo) demoVideo.currentTime = 0;
   }
 
-  document.getElementById("demo-close")?.addEventListener("click", () => demoDialog?.close());
+  document
+    .getElementById("demo-close")
+    ?.addEventListener("click", () => demoDialog?.close());
   demoDialog?.addEventListener("click", (event) => {
     if (event.target === demoDialog) demoDialog.close();
   });
@@ -123,7 +138,9 @@
 
   document.addEventListener("keydown", (event) => {
     if (event.key === "Escape") {
-      const openMenu = navMenus.find((menu) => menu.querySelector('.menu-trigger[aria-expanded="true"]'));
+      const openMenu = navMenus.find((menu) =>
+        menu.querySelector('.menu-trigger[aria-expanded="true"]'),
+      );
       closeMenus();
       setNavigationOpen(false);
       openMenu?.querySelector(".menu-trigger")?.focus();

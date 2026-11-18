@@ -29,7 +29,10 @@
     const showPassword = passwordInput.type === "password";
     passwordInput.type = showPassword ? "text" : "password";
     const icon = passwordToggle.querySelector("img");
-    if (icon) icon.src = showPassword ? "../assets/icons/eye-close-up.png" : "../assets/icons/closed-eyes.png";
+    if (icon)
+      icon.src = showPassword
+        ? "../assets/icons/eye-close-up.png"
+        : "../assets/icons/closed-eyes.png";
     passwordToggle.setAttribute("aria-pressed", String(showPassword));
     passwordToggle.setAttribute(
       "aria-label",
@@ -68,9 +71,17 @@
         loginForm.elements.password.value = "";
         if (String(result.role || "").toUpperCase() === "ADMIN") {
           window.location.href = "admin.html";
-        } else if (["USER", "USERS", "REPORTER"].includes(String(result.role || "").toUpperCase())) {
+        } else if (
+          ["USER", "USERS", "REPORTER"].includes(
+            String(result.role || "").toUpperCase(),
+          )
+        ) {
           window.location.href = "user.html";
-        } else if (["OFFICER", "OFFICERS", "SAFETY_OFFICER"].includes(String(result.role || "").toUpperCase())) {
+        } else if (
+          ["OFFICER", "OFFICERS", "SAFETY_OFFICER"].includes(
+            String(result.role || "").toUpperCase(),
+          )
+        ) {
           window.location.href = "officer.html";
         }
       }

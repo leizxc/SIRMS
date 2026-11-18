@@ -25,9 +25,10 @@
         return;
       }
 
-      const titleCase = (value) => value
-        .toLocaleLowerCase()
-        .replace(/(^|[\s'-])\p{L}/gu, (letter) => letter.toLocaleUpperCase());
+      const titleCase = (value) =>
+        value
+          .toLocaleLowerCase()
+          .replace(/(^|[\s'-])\p{L}/gu, (letter) => letter.toLocaleUpperCase());
       const firstName = titleCase(result.first_name || "");
       const lastName = titleCase(result.last_name || "");
       const fullName = [firstName, lastName].filter(Boolean).join(" ");
